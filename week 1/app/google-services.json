@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "450701307970",
+    "firebase_url": "https://practicesociallogin.firebaseio.com",
+    "project_id": "practicesociallogin",
+    "storage_bucket": "practicesociallogin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450701307970:android:c10375aecf0c9da7677ddb",
+        "android_client_info": {
+          "package_name": "com.example.practicegooglelogin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450701307970-0vr2m8fm2se9sosl3cahto6hae9ccolu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.practicegooglelogin",
+            "certificate_hash": "362d91c17fc345c423bdd0d3756f4838e659a93f"
+          }
+        },
+        {
+          "client_id": "450701307970-scdopt8c0ov99vp5vatt621bf28di86k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDr88tuP3TCpl6FqHKqAa3DsdW-FOZApQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "450701307970-scdopt8c0ov99vp5vatt621bf28di86k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
