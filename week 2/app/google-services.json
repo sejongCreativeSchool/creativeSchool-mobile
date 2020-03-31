@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "751036844481",
+    "firebase_url": "https://practicefirebasedatabase-434ce.firebaseio.com",
+    "project_id": "practicefirebasedatabase-434ce",
+    "storage_bucket": "practicefirebasedatabase-434ce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:751036844481:android:6b13f88b0529d42c498740",
+        "android_client_info": {
+          "package_name": "com.example.practicefirebasedatabase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "751036844481-gp0ujak2vvd7h86d59n9si2h6n5ajfgd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.practicefirebasedatabase",
+            "certificate_hash": "179935a0c0b834ea506d3be02d6efb044ba331f3"
+          }
+        },
+        {
+          "client_id": "751036844481-r791ukje8dmaq73m9a42cr1n89m3djji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRj-_cRFC7Do8GJvn2db3-JUpUiq7WEpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "751036844481-r791ukje8dmaq73m9a42cr1n89m3djji.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
