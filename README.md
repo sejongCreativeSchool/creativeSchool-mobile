@@ -15,3 +15,13 @@ https://www.youtube.com/watch?v=FrRo26dYGfc
 - Use Firebase Auth, Glide
 
 (20.03.22)
+
+
+## 2주차
+- 이번 실습은 노트북이 고장나고 수리로 인한 입고로 인해 늦게 깃에 푸쉬되었음.
+- 리사이클러뷰와 파이어베이스 데이터베이스를 활용하여 게시판 만들기 실습을 진행함.
+- 기준은 위와 동일.
+- 데이터베이스에 저장된 이름, 패스워드, 닉네임, 프로필urld을 받아와 리스트로 띄움.
+- 실습 중 파이어베이스 연동 및 리사이클러뷰 작성법에 대한 교안으로 유튜브 "홍드로이드" 동영상을 참고함.
+https://www.youtube.com/watch?v=HcPWt69d_wY
+- Use Firebase Database, Glide
