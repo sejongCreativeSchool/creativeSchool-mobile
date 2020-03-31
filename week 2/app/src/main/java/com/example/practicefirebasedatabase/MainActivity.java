@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+      
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true ); //리사이클러뷰 성능 강화
         layoutManager = new LinearLayoutManager(this);
@@ -60,6 +60,5 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new CustomAdapter(arrayList, this);
         recyclerView.setAdapter(adapter);//리사이클러뷰에 어댑터연결
-
     }
 }
