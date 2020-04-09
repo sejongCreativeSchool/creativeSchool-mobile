@@ -101,38 +101,6 @@ public class MainActivity extends AppCompatActivity implements TMapGpsManager.on
         MaskApi maskApi = retrofit.create(MaskApi.class);
         Log.d("loc","enter fetchStoreSale");
 
-        /*
-        Call<StoreSaleResult> temp = maskApi.getStoresByGeo(lat,lng,m);
-
-        temp.enqueue(new Callback<StoreSaleResult>() {
-            @Override
-            public void onResponse(Call<StoreSaleResult> call, Response<StoreSaleResult> response) {
-                Log.d("loc","enter fetch onResponse successful");
-                if(response.isSuccessful())
-                {
-                    Log.d("loc","enter fetch onResponse response.issucceful sucess");
-                    StoreSaleResult result = response.body();
-                    updateMapMakers(result);
-                }
-                if(response.code() == 200)
-                {
-                    Log.d("loc","enter fetch onResponse  response.code ==200 sucess");
-                    StoreSaleResult result = response.body();
-                    updateMapMakers(result);
-                }
-                Log.d("loc","enter fetch onResponse  response"+response.isSuccessful());
-                Log.d("loc","enter fetch onResponse  response"+response.code());
-            }
-
-            @Override
-            public void onFailure(Call<StoreSaleResult> call, Throwable t) {
-
-                Log.d("loc","enter fetch onFailure");
-            }
-        });
-
-         */
-
         maskApi.getStoresByGeo(lat, lng, m).enqueue(new Callback<StoreSaleResult>() {
             @Override
             public void onResponse(Call<StoreSaleResult> call, Response<StoreSaleResult> response) {
@@ -140,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements TMapGpsManager.on
                  {
                      Log.d("loc","enter fetch onResponse successful 212");
                      StoreSaleResult result = response.body();
-                     updateMapMakers(result);
+                     updateMapMakers(result); //마커 찍는 함수
                  }
             }
 
