@@ -59,6 +59,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             this.nickName = itemView.findViewById(R.id.listNickname);
             this.lastContext = itemView.findViewById(R.id.listLastContext);
             this.newMark = itemView.findViewById(R.id.listNewMark);
+
+            newMark.setVisibility(View.INVISIBLE);
         }
     }
 }

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,15 +46,24 @@ public class MainActivity extends AppCompatActivity {
                 arrayList.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren())
                 {
-                    User user = snapshot.getValue(User.class); //유저객체에 데이터넣기
+                    User user = snapshot.getValue(User.class); //유저객체에 데이터넣
+                    arrayList.add(user);
                 }
+                adapter.notifyDataSetChanged(); // 리스트 새로고침
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Log.e("MainActivity",databaseError.toException().toString());
             }
         });
 
+        adapter = new CustomAdapter(arrayList, this);
+        recyclerView.setAdapter(adapter);
+
     }
+
+
+
 }
