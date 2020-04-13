@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "888336927384",
+    "firebase_url": "https://practicefcm-122f2.firebaseio.com",
+    "project_id": "practicefcm-122f2",
+    "storage_bucket": "practicefcm-122f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888336927384:android:ac49a8c4f473c6c39cdeed",
+        "android_client_info": {
+          "package_name": "com.example.practicefcm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888336927384-ai4msv5680dv29q21iqmvlnbegqlb94b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.practicefcm",
+            "certificate_hash": "179935a0c0b834ea506d3be02d6efb044ba331f3"
+          }
+        },
+        {
+          "client_id": "888336927384-o7bsqq95kpo7e1ql6bug151l06nq63e0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpJvw3GKPrey8GzAHcgaltzxHoaVq71SQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888336927384-o7bsqq95kpo7e1ql6bug151l06nq63e0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
