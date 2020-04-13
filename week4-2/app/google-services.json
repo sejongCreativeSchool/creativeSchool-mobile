@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "487488326425",
+    "firebase_url": "https://practicemessaginga.firebaseio.com",
+    "project_id": "practicemessaginga",
+    "storage_bucket": "practicemessaginga.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487488326425:android:ffb3e69e0c419339365388",
+        "android_client_info": {
+          "package_name": "com.example.practicemessagingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "487488326425-uecp2infm43ubcg2fvr4a4qgdots5vds.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkukQesbYhW9ugGDC1kv8Iv9acJEGgGzk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "487488326425-uecp2infm43ubcg2fvr4a4qgdots5vds.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
