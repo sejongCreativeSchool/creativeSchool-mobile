@@ -37,7 +37,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
         Glide.with(holder.itemView).load(arrayList.get(position).getProfile()).into(holder.profile);
         holder.nickName.setText(arrayList.get(position).getNickname());
-        holder.lastContext.setText(arrayList.get(position).getLastContext());
+        /*
+        라스트컨텐츠는 채팅관련 데베에서 가져와야지
+         */
+        //holder.lastContext.setText(arrayList.get(position).getLastContext());
         Glide.with(holder.itemView).load(R.drawable.reddot).into(holder.newMark);
     }
 

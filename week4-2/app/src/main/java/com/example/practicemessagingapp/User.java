@@ -1,9 +1,10 @@
 package com.example.practicemessagingapp;
 
 public class User {
+
     private String profile;
     private String nickname;
-    private String lastContext;
+    private String id;
 
     public User() {
     }
@@ -24,11 +25,11 @@ public class User {
         this.nickname = nickname;
     }
 
-    public String getLastContext() {
-        return lastContext;
+    public String getId() {
+        return id;
     }
 
-    public void setLastContext(String lastContext) {
-        this.lastContext = lastContext;
+    public void setId(String id) {
+        this.id = id;
     }
 }

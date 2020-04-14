@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,11 +26,14 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         recyclerView = findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);// 리사이클러뷰 성능강화
@@ -50,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                     arrayList.add(user);
                 }
                 adapter.notifyDataSetChanged(); // 리스트 새로고침
+
 
             }
 
