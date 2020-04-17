@@ -69,10 +69,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         if (requestCode == REQ_SIGN_GOOGLE)
         {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            Log.d("Login","InOnActivityResult");
             if(result.isSuccess())
             {
                 GoogleSignInAccount account = result.getSignInAccount(); //account는 구글 로그인 정보를 담고 있음.(닉네임,프로필사진uri,이메일 등)
                 resultLogin(account); // 로그인 결과값 출력 수행하는 메소
+                Log.d("Login","InIsSuccess");
             }
 
         }
@@ -93,10 +95,13 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             intent.putExtra(UserStringCode.ID.getValue(),account.getId());
                             intent.putExtra(UserStringCode.PROFILE.getValue(),String.valueOf(account.getPhotoUrl()));
 
+                            Log.d("Login","Success");
                             startActivity(intent);
+                            finish();
                         }
                         else {
                             Toast.makeText(LoginActivity.this, "로그인실패",Toast.LENGTH_SHORT).show();
+                            Log.d("Login","Failed");
                         }
 
                     }
