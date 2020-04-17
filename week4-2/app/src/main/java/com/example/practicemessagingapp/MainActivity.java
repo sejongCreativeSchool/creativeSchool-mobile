@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance(); //파이어베이스데이터베이스 연동
         databaseReference = database.getReference("User"); // 디비테이블 연동
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //디비 데이터 받아오는 곳
@@ -54,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
                     arrayList.add(user);
                 }
                 adapter.notifyDataSetChanged(); // 리스트 새로고침
-
-
             }
 
             @Override
