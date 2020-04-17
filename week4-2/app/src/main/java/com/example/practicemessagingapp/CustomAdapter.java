@@ -34,14 +34,29 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final CustomViewHolder holder, final int position) {
         Glide.with(holder.itemView).load(arrayList.get(position).getProfile()).into(holder.profile);
         holder.nickName.setText(arrayList.get(position).getNickname());
         /*
-        라스트컨텐츠는 채팅관련 데베에서 가져와야지
+        라스트컨텐츠는 채팅관련
          */
         //holder.lastContext.setText(arrayList.get(position).getLastContext());
+        if(arrayList.get(position).isNewmark())
+            holder.newMark.setVisibility(View.VISIBLE);
+        else
+            holder.newMark.setVisibility(View.INVISIBLE);
         Glide.with(holder.itemView).load(R.drawable.reddot).into(holder.newMark);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                arrayList.get(position).setNewmark(false);
+                holder.newMark.setVisibility(View.INVISIBLE);
+                /*
+                뉴마커 변경에 있어 데이터베이스 변경은 신경쓰지 않음.
+                 */
+            }
+        });
     }
 
     @Override

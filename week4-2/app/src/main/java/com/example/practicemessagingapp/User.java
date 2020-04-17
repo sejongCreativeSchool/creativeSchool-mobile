@@ -4,6 +4,7 @@ public class User {
 
     private String profile;
     private String nickname;
+    private boolean newmark;
     private String id;
 
     public User() {
@@ -31,5 +32,13 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public boolean isNewmark() {
+        return newmark;
+    }
+
+    public void setNewmark(boolean newmark) {
+        this.newmark = newmark;
     }
 }
