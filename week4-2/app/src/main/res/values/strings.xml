@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PracticeMessagingApp</string>
+    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
+    <string name="default_notification_channel_id">0</string>
 </resources>
