@@ -5,6 +5,7 @@
 ##### 사용한 API
 - T Map API
 - Retrofit2
+- TedPermission
 
 ##### T Map API 사용방법
 [T Map API 사용 가이드](http://tmapapi.sktelecom.com/main.html#android/guide/androidGuide.sample1)를 참고하여 진행함. 
