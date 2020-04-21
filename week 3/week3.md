@@ -1,6 +1,7 @@
 # 창의학기제 모바일(3주차)
 
 ### 학습내용
+
 ##### 사용한 API
 - T Map API
 - Retrofit2
@@ -11,93 +12,135 @@
 ##### Retrofit이란?
 Retrofit은 HTTP API를 자바 인터페이스 형태로 사용 가능한 typesafe한 http클라이언트 라이브러리이다.
 네트워크로 전달받은 데이터를 필요한 형태의 객체로 저장 가능하다.
+```java
+public interface GitHubService{
+	@GET("/users/{user}/repos")
+	Call<List<Repo>> listRepo(@Path("User") String user);
+}
 ```
 
+Retrofit 클래스로 인터페이스를 구현하여 생성한다.
+```java
+Retrofit retrofit = new Retrofit.Builder()
+	.baseUrl(""https://8oi9s0nnth.apigw.ntruss.com"") // 이 주소에 서버 주소가 들어감
+	.build();
+}
 ```
 
 ##### 발생한 문제
 
-- Kakao Map API는 Script 태그 형태로 불러와서 사용하는데, React 컴포넌트에서 사용하는 방법을 몰랐다.   
-- 아래는 Kakao Map API Docs에서 제공하는 맵 띄우는 예시 코드이다.
+-레트로핏 사용법을 알기 위해선 HTTP 등의 이해가 더 필요했다. 실 프로젝트 진행 전까지 더 공부할 예정.
+
+-Tmap 관련하여 문제는 발생하지 않음.
+
+- 현재위치를 알기 위해서는 GPS와 네트워크로 현재위치를 받아온다는 퍼미션을 하여야 한다.
+
+```xml
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+```
+현재위치는 개인정보보호를 위해 앱 첫 실행시, 경우에 따라선 해당 퍼미션을 수행해야 할 때마다 사용자에게 허가를 받아야 한다.
+안드로이드에서 기본 퍼미션 받는 방법은
 ```java
-<html>
-<head>
-	<meta charset="utf-8"/>
-	<title>Kakao 지도 시작하기</title>
-</head>
-<body>
-	<div id="map" style="width:500px;height:400px;"></div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 APP KEY를 넣으시면 됩니다."></script>
-	<script>
-		var container = document.getElementById('map');
-		var options = {
-			center: new kakao.maps.LatLng(33.450701, 126.570667),
-			level: 3
-		};
+ // Here, thisActivity is the current activity
+    if (ContextCompat.checkSelfPermission(thisActivity,
+            Manifest.permission.READ_CONTACTS)
+            != PackageManager.PERMISSION_GRANTED) {
 
-		var map = new kakao.maps.Map(container, options);
-	</script>
-</body>
-</html>
+        // Permission is not granted
+        // Should we show an explanation?
+        if (ActivityCompat.shouldShowRequestPermissionRationale(thisActivity,
+                Manifest.permission.READ_CONTACTS)) {
+            // Show an explanation to the user *asynchronously* -- don't block
+            // this thread waiting for the user's response! After the user
+            // sees the explanation, try again to request the permission.
+        } else {
+            // No explanation needed; request the permission
+            ActivityCompat.requestPermissions(thisActivity,
+                    new String[]{Manifest.permission.READ_CONTACTS},
+                    MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+
+            // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+            // app-defined int constant. The callback method gets the
+            // result of the request.
+        }
+    } else {
+        // Permission has already been granted
+    }
+    
 ```
-이거를 React에 적용하는 방법을 몰라 크게 애를 먹었다.   
-내가 해결한 방법은 다음과 같다.   
-- 우선 public/index.html 의 head 태그의 자식 요소로 
-    ```
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 APP KEY를 넣으시면 됩니다."></script>
-    ```
-    를 넣었다.
-- 이 후, Map을 보여주는 Component인 src/components/KakaoMap.js 를 만들고 다음과 같이 코드를 작성하였다.   
-```
-import React, { useEffect, useRef } from "react";
-const { kakao } = window; // window에 존재하는 kakao를 비구조화 할당해준다.
+응답처리는 다음과 같다.
+```java
+   @Override
+    public void onRequestPermissionsResult(int requestCode,
+            String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_READ_CONTACTS: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
 
-function KakaoMap() {
-  const mapContainer = useRef(); // id가 Map인 div태그의 DOM 을 직접 건드리기 위해 useRef Hooks를 사용하였다.
-  useEffect(() => {
-    kakao.maps.load(() => {
-      let el = mapContainer.current; // 변수 el에 id가 "map"인 DOM 요소를 할당해 준다.
-      let map = new kakao.maps.Map(el, {
-        center: new kakao.maps.LatLng(37.549503, 127.075174)
-      });
-
-      // 마커가 지도 위에 표시되도록 설정합니다
-      markers.map(marker => marker.setMap(map));
-    });
-  }, []);
-
-  return (
-    <div
-      id="map"
-      style={{
-        width: "700px",
-        height: "630px",
-        ref={mapContainer} // DOM을 직접 조작하기 위해 ref 속성을 추가해준다.
-    ></div>
-  );
-}
-export default KakaoMap;
+            // other 'case' lines to check for other
+            // permissions this app might request.
+        }
+    }
 
 ```
-이런식으로 해주니 Kakao Map이 떴다.   
-추후, JavaScript Window 객체에 대해 추가적인 공부를 진행할 예정이다.
+그러나 매번 응답처리도 힘들었고, OS와 퍼미션에 따라 조금씩 달라 애를 먹었다.
 
-### Kakao Map API를 이용한 세종대 근처 맛집 WEB APP
+그래서 찾은 것이 TedPermission이다.
+사용법은 다음과 같다.
+```java
+ TedPermission.with(this)
+                .setPermissionListener(permissionlistener) // 리스너 아래 참고
+                .setRationaleMessage("현재위치 정보를 받기 위해서는 위치정보 접근 권한이 필요해요") //퍼미션을 받는 이유
+                .setDeniedMessage("왜 거부하셨어요...\n하지만 [설정] > [권한] 에서 권한을 허용할 수 있어요.") //퍼미션 거부 시 메세지
+                .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.INTERNET) // 퍼미션 종류
+                .check();
+```
 
-<img width="1330" alt="스크린샷 2020-03-31 오후 8 36 44" src="https://user-images.githubusercontent.com/52201658/78022334-b99fda00-738f-11ea-9ec4-1762e4443d1e.png">
+위에서 퍼미션 권한 허용 여부에 따라 리스너에서 처리한다.
 
+```java
+ PermissionListener permissionlistener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                Toast.makeText(CheckPermission.this, "권한 허가", Toast.LENGTH_SHORT).show();
+                Intent intent= new Intent(CheckPermission.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+
+            }
+
+            @Override
+            public void onPermissionDenied(List<String> deniedPermissions) {
+                Toast.makeText(CheckPermission.this, "권한 거부\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+            }
+        };
+```
+
+### T Map API와 Retrofit을 이용한 공적마스크 지도 APP
+
+<img width="400" alt="스크린샷 2020-03-31 오후 8 36 44" src="https://user-images.githubusercontent.com/45682868/79812004-88c12c80-83b2-11ea-9190-e5a519cce23a.jpeg">
+
+<Retrofit에 관한 예제이기에 수량체크는 하지 않음>
 
 ##### Purpose
-React에서 외부 Script 형식의 API를 사용하는 것을 경험하기 위해 프로젝트를 시작했습니다.
+안드로이드에서 Retrofit을 사용법을 알아보기 위해 공적마스크 지도 어플 제작 프로젝트를 시작하였음.
 
-##### TechSet
-Language: Javascript ES6, JSX   
-Library: React, Redux, Styled-Components, Kakao Map API 
+##### Language
+: JAVA (Android)
 
 ##### Comments
-- 순수한 자바스크립트(Vanilla JS)로 하는 프론트엔드 개발을 거치지 않고, 리액트로 프론트엔드 개발을 시작해 기본적인 JavaScript 웹 개발 개념이 부족한거 같다.   
-- 추후에, 순수한 자바스크립트로(Vanilla JS)로 프론트엔드 개발을 진행해봐야 겠다고 느꼈다.   
-- 지난 주에도 느꼈지만, CSS기초가 너무 부족한 것 같다. 빨리 다음주가 되서 CSS 공부를 진행하고 싶다고 느꼈다.    
-- 확실히 리액트, 리덕스가 많이 익숙해 진 것 같다. 이제 단순 구현을 넘어서 최적화 진행에도 관심을 가져야겠다.   
+- TedPermission을 사용하지 못하더라도 퍼미션체크를 할 수 있도록 안드로이드에서 제공하느 기본 퍼미션 체크를 더 연습해봐야겠다.  
+- 레트로핏 관련하여 공식문서와 작성법 등을 더 배워야겠다.  
 ##### Study Result
 
