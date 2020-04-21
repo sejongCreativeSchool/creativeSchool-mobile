@@ -27,4 +27,4 @@ https://www.youtube.com/watch?v=HcPWt69d_wY
 - Use Firebase Database, Glide
 
 ## 3주차
-##### Retrofit을 활용하여 공적마스크 지도 앱 제작 (./week3/week3.md)
+##### Retrofit을 활용하여 공적마스크 지도 앱 제작 (./week 3/week3.md)
