@@ -25,3 +25,6 @@ https://www.youtube.com/watch?v=FrRo26dYGfc
 - 실습 중 파이어베이스 연동 및 리사이클러뷰 작성법에 대한 교안으로 유튜브 "홍드로이드" 동영상을 참고함.
 https://www.youtube.com/watch?v=HcPWt69d_wY
 - Use Firebase Database, Glide
+
+## 3주차
+##### Retrofit을 활용하여 공적마스크 지도 앱 제작 (.week 3/week3.md)
