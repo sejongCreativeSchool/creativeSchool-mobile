@@ -2,10 +2,12 @@ package com.example.practicesharedpreferences;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,6 +23,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity
         implements CustomAdapter.OnListItemSelectedInterface, CustomAdapter.OnListItemLongSelectedInterface {
@@ -110,6 +114,7 @@ public class MainActivity extends AppCompatActivity
 
     void savePreferences()
     {
+        Collections.sort(arrayList, new DescendingObj());
         Gson gson = new Gson();
         String json = gson.toJson(arrayList);
         mEditor.putString(DEFAULT_PREF_MEMO, json);
@@ -118,6 +123,7 @@ public class MainActivity extends AppCompatActivity
 
     void getPreferences()
     {
+        Collections.sort(arrayList, new DescendingObj());
         Gson gson = new Gson();
         String json = mPrefs.getString(DEFAULT_PREF_MEMO, "EMPTY");
         Type type = new TypeToken<ArrayList<Memo>>() {}.getType();
@@ -125,8 +131,25 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onItemLongSelected(View v, int position) {
-        Toast.makeText(this, "Long", Toast.LENGTH_SHORT).show();
+    public void onItemLongSelected(View v, final int position) {
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        dialog.setMessage("삭제하시겠습니까?")
+                .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "cancelled", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setPositiveButton("예", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        arrayList.remove(position);
+                        adapter.notifyDataSetChanged();
+                        savePreferences();
+                    }
+                })
+                .show();
     }
 
     @Override
@@ -139,6 +162,17 @@ public class MainActivity extends AppCompatActivity
         intent.putExtra("position",position);
         startActivityForResult(intent, DETAILMEMO_REQUEST_CODE);
     }
+
+    // String 내림차순
+    class DescendingObj implements Comparator<Memo> {
+
+        @Override
+        public int compare(Memo o1, Memo o2) {
+            return o2.getTime().compareTo(o1.getTime());
+        }
+
+    }
+
 
 }
 
