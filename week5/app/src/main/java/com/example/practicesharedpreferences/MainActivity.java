@@ -1,4 +1,4 @@
-package com.example.practicesharedpreference;
+package com.example.practicesharedpreferences;
 
 import androidx.appcompat.app.AppCompatActivity;
 

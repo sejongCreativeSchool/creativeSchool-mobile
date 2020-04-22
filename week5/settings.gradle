@@ -1,2 +1,2 @@
-rootProject.name='PracticeSharedPreference'
+rootProject.name='PracticeSharedPreferences'
 include ':app'
