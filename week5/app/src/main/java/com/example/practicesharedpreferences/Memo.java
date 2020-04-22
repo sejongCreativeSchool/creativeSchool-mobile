@@ -5,6 +5,10 @@ public class Memo {
     String text;
     String time;
 
+    final static String TITLE_INTENT_KEY = "newTitle";
+    final static String CONTENTS_INTENT_KEY = "newContents";
+    final static String TIME_INTENT_KEY = "newTime";
+
     public Memo(String title, String text, String time) {
         this.title = title;
         this.text = text;
