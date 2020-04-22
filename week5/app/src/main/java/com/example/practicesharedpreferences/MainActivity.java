@@ -1,12 +1,17 @@
 package com.example.practicesharedpreferences;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -18,10 +23,12 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     final static String DEFAULT_PREF_MEMO = "default";
+    final static int NEWMEMO_REQUEST_CODE = 100;
 
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
+    Button button;
     ArrayList<Memo> arrayList;
 
     SharedPreferences mPrefs;
@@ -33,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        button = (Button)findViewById(R.id.button);
         arrayList = new ArrayList<>();
         mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         mEditor = mPrefs.edit();
@@ -44,6 +52,36 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NewMemoSetting.class);
+                startActivityForResult(intent, NEWMEMO_REQUEST_CODE);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == NEWMEMO_REQUEST_CODE)
+        {
+            if(resultCode == RESULT_OK)
+            {
+                String newTitle = data.getStringExtra(NewMemoSetting.NEW_TITLE_INTENT_KEY);
+                String newContents = data.getStringExtra(NewMemoSetting.NEW_CONTENTS_INTENT_KEY);
+                String newTime = data.getStringExtra(NewMemoSetting.NEW_TIME_INTENT_KEY);
+                arrayList.add(new Memo(newTitle, newContents, newTime));
+                Toast.makeText(this, "작성완료", Toast.LENGTH_SHORT).show();
+                adapter.notifyDataSetChanged();
+                savePreferences();
+            }
+            else
+            {
+                Toast.makeText(this, "cancelled", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     void savePreferences()
