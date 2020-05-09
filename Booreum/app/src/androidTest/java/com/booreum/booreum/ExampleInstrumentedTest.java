@@ -1,4 +1,4 @@
-package com.example.booreum;
+package com.booreum.booreum;
 
 import android.content.Context;
 

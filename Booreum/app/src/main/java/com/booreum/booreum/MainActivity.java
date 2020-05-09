@@ -1,7 +1,6 @@
-package com.example.booreum;
+package com.booreum.booreum;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
