@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.LoginActivity">
+    tools:context=".login.LoginActivity"
+    android:id="@+id/login_parentLayout">
 
     <LinearLayout
         android:id="@+id/login_progressBar"
@@ -97,7 +98,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="0dp"
-                android:background="@color/needer_blue_dark"
+                android:background="@drawable/button_custom_blue"
                 android:padding="0dp"
                 android:text="로그인"
                 android:textColor="@android:color/white" />
@@ -131,6 +132,7 @@
                 android:layout_height="wrap_content"
                 android:text="회원가입"
                 android:textColor="@color/helper_red_light"
+                android:background="?android:attr/selectableItemBackground"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/login_isAutoLoginChecked"
@@ -143,6 +145,7 @@
                 android:lines="1"
                 android:text="아이디/비번 찾기"
                 android:textColor="@color/helper_red_light"
+                android:background="?android:attr/selectableItemBackground"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/login_signUp"
