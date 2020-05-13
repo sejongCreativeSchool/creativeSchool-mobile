@@ -27,8 +27,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         login_id = (EditText)findViewById(R.id.login_id);
         login_pw = (EditText)findViewById(R.id.login_pw);
         loginButton = (Button)findViewById(R.id.login_loginButton);
-        signUpButton = (Button)findViewById(R.id.login_signUp);
-        findIdPwButton = (Button)findViewById(R.id.login_findIdPw);
+        //signUpButton = (Button)findViewById(R.id.login_signUp);
+        //findIdPwButton = (Button)findViewById(R.id.login_findIdPw);
         autoLoginCheckBox = (CheckBox)findViewById(R.id.login_isAutoLoginChecked);
         login_facebook = (ImageButton)findViewById(R.id.login_facebook);
         login_kakao = (ImageButton)findViewById(R.id.login_kakao);
@@ -36,8 +36,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //set Listener
         loginButton.setOnClickListener(this);
-        signUpButton.setOnClickListener(this);
-        findIdPwButton.setOnClickListener(this);
+        //signUpButton.setOnClickListener(this);
+        //findIdPwButton.setOnClickListener(this);
 
     }
 
