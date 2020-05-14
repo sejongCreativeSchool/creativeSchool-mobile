@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
-import android.text.Layout;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -13,12 +11,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.booreum.booreum.R;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener, I_LoginView {
 
     private EditText login_id, login_pw;
     private Button loginButton;
@@ -26,6 +25,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private CheckBox autoLoginCheckBox;
     private ImageButton login_facebook, login_kakao, login_google;
     private ConstraintLayout parentLayout;
+    private LinearLayout progressBar;
+
+    private I_LoginPresenter loginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         login_kakao = (ImageButton)findViewById(R.id.login_kakao);
         login_google = (ImageButton)findViewById(R.id.login_google);
         parentLayout = (ConstraintLayout)findViewById(R.id.login_parentLayout);
+        progressBar = (LinearLayout) findViewById(R.id.login_progressBar);
 
         //set Listener
         loginButton.setOnClickListener(this);
@@ -68,6 +71,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
+        //init Presenter
+        loginPresenter = new LoginPresenter();
+
     }
 
     @Override
@@ -78,7 +84,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.login_signUp :
                 //break;
             case R.id.login_findIdPw :
-                Toast.makeText(getApplicationContext(), "추후 업데이트", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -89,5 +94,40 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             v.setBackground(getDrawable(R.drawable.border_edittext_blue));
         else
             v.setBackground(getDrawable(R.drawable.border_edittext));
+    }
+
+    @Override
+    public void onLoginResult(Boolean result, int code) {
+
+    }
+
+    @Override
+    public void onAutoLogin() {
+
+    }
+
+    @Override
+    public void onSignIn() {
+
+    }
+
+    @Override
+    public void onLoginFacebook() {
+
+    }
+
+    @Override
+    public void onLoginKakaoTalk() {
+
+    }
+
+    @Override
+    public void onLoginGoogle() {
+
+    }
+
+    @Override
+    public void onProgressBarVisibility(int visibility) {
+        progressBar.setVisibility(visibility);
     }
 }
