@@ -5,21 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".login.LoginActivity"
-    android:id="@+id/login_parentLayout">
-
-    <LinearLayout
-        android:id="@+id/login_progressBar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#99bbbbbb"
-        android:visibility="gone">
-
-        <ProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
-    </LinearLayout>
-
+    android:id="@+id/login_parentLayout"
+    android:background="@android:color/white">
 
     <ImageView
         android:id="@+id/imageView"
@@ -27,10 +14,10 @@
         android:layout_height="110dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="125dp"
-        android:layout_marginTop="10dp"
         android:layout_marginRight="125dp"
-        android:elevation="5dp"
-        android:src="@drawable/ic_launcher_background"
+        android:elevation="15dp"
+        android:src="@drawable/logo_booreum_red"
+        android:background="@drawable/border_round_coner"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -79,7 +66,7 @@
                 android:layout_height="55dp"
                 android:background="@drawable/border_edittext"
                 android:hint="아이디를 입력해주세요"
-                android:inputType="text"
+                android:inputType="textEmailAddress"
                 android:padding="10dp" />
 
             <EditText
@@ -93,15 +80,27 @@
                 android:inputType="text"
                 android:padding="10dp" />
 
-            <Button
-                android:id="@+id/login_loginButton"
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="0dp"
-                android:background="@drawable/button_custom_blue"
-                android:padding="0dp"
-                android:text="로그인"
-                android:textColor="@android:color/white" />
+                android:layout_height="match_parent">
+                <Button
+                    android:id="@+id/login_loginButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="0dp"
+                    android:background="@drawable/button_custom_blue"
+                    android:padding="0dp"
+                    android:text="로그인"
+                    android:textColor="@android:color/white"/>
+
+                <ProgressBar
+                    android:id="@+id/login_progressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:visibility="gone"/>
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -170,7 +169,9 @@
             android:id="@+id/login_facebook"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/icon_facebook_circle_blue"
+            android:scaleType="fitXY"
+            android:background="?android:attr/selectableItemBackgroundBorderless"/>
 
         <ImageButton
             android:id="@+id/login_kakao"
@@ -178,13 +179,17 @@
             android:layout_height="55dp"
             android:layout_marginLeft="27dp"
             android:layout_marginRight="27dp"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/icon_kakao_circle_blue"
+            android:scaleType="fitXY"
+            android:background="?android:attr/selectableItemBackgroundBorderless" />
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/login_google"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/icon_google_circle_blue"
+            android:scaleType="fitXY"
+            android:background="?android:attr/selectableItemBackgroundBorderless"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

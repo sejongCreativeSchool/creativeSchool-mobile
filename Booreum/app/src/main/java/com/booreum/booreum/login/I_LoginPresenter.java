@@ -1,8 +1,10 @@
 package com.booreum.booreum.login;
 
 public interface I_LoginPresenter {
-    void doLogin(String email, String password);
-    void doAutoLogin();
+    void doLogin(String id, String password);
+    boolean getCheckBoxChecked();
+    void setCheckBoxChecked(Boolean isChecked);
+    void doAutoLoginCheck();
     void doSignIn();
     void doLoginFacebook();
     void doLoginKakaoTalk();
