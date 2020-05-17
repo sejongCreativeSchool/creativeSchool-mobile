@@ -44,7 +44,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
         //find View
         login_id = (EditText)findViewById(R.id.login_id);
         login_pw = (EditText)findViewById(R.id.login_pw);
