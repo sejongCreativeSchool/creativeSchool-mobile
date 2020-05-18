@@ -1,30 +1,35 @@
 package com.booreum.booreum;
 
-import android.content.Context;
+import android.text.Html;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public abstract class CustomAppCompatForToolbar extends AppCompatActivity {
-    Toolbar toolbar;
+    protected Toolbar toolbar;
 
-    abstract void linkToolbar();
+    protected abstract void linkToolbar();
 
-    ActionBar getDefaultActionBar(){
+    protected ActionBar getDefaultActionBar(String title){
 
         linkToolbar();
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true); // for customizing
         //actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setTitle("gi");
+        //actionBar.setTitle(title);
+        //actionBar.setTitle(Html.fromHtml("<font color='#ffffff'>" + title + "</font>"));
+        //actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        //actionBar.setCustomView(R.layout.title);
+        TextView textView = (TextView)findViewById(R.id.title_);
+        textView.setText(title);
         return actionBar;
     }
 
-    ActionBar getHomeAsUpActionBar(){
-        ActionBar actionBar = getDefaultActionBar();
+    protected ActionBar getHomeAsUpActionBar(String title){
+        ActionBar actionBar = getDefaultActionBar(title);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.clear);
         return actionBar;
@@ -34,7 +39,6 @@ public abstract class CustomAppCompatForToolbar extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:{
-                Toast.makeText(getApplicationContext(), "종료", Toast.LENGTH_SHORT).show();
                 finish();
                 return true;
             }

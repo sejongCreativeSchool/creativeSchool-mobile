@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.booreum.booreum.MainActivity;
 import com.booreum.booreum.R;
 import com.booreum.booreum.User;
+import com.booreum.booreum.signup.SignUp;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener, I_LoginView {
 
@@ -106,7 +107,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 loginPresenter.setCheckBoxChecked(autoLoginCheckBox.isChecked());
                 break;
             case R.id.login_signUp :
-                Toast.makeText(getApplicationContext(), "준비중입니다.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, SignUp.class);
+                startActivity(intent);
                 break;
             case R.id.login_findIdPw :
                 Toast.makeText(getApplicationContext(), "준비중입니다.", Toast.LENGTH_SHORT).show();
