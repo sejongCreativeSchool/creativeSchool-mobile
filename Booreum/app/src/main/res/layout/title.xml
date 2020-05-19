@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/title_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_titlebar"/>
+
     <TextView
+        android:id="@+id/title_tv"
+        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
+        android:text="d"
         style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-        android:text="test123"
         android:textColor="@android:color/white"/>
 
-</androidx.appcompat.widget.Toolbar>
+</RelativeLayout>

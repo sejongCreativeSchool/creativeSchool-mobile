@@ -26,8 +26,8 @@ public abstract class CustomAppCompatForToolbar extends AppCompatActivity {
         //actionBar.setTitle(Html.fromHtml("<font color='#ffffff'>" + title + "</font>"));
         //actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         //actionBar.setCustomView(R.layout.title);
-        TextView textView = (TextView)findViewById(R.id.title_);
-        textView.setText(title);
+        //TextView textView = (TextView)findViewById(R.id.title_);
+        //textView.setText(title);
         return actionBar;
     }
 

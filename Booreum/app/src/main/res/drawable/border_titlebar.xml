@@ -4,7 +4,7 @@
             <solid android:color="@color/needer_blue_dark" />
 \
             <corners
-                android:bottomRightRadius="50dp" />
+                android:bottomRightRadius="35dp" />
         </shape>
 
     </item>
