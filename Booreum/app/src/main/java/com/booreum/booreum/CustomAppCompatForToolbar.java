@@ -1,5 +1,6 @@
 package com.booreum.booreum;
 
+import android.graphics.drawable.Drawable;
 import android.text.Html;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 public abstract class CustomAppCompatForToolbar extends AppCompatActivity {
     protected Toolbar toolbar;
@@ -17,8 +19,9 @@ public abstract class CustomAppCompatForToolbar extends AppCompatActivity {
 
         linkToolbar();
         ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.border_titlebar));
         actionBar.setDisplayShowCustomEnabled(true); // for customizing
-        //actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowTitleEnabled(false);
         //actionBar.setTitle(title);
         //actionBar.setTitle(Html.fromHtml("<font color='#ffffff'>" + title + "</font>"));
         //actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
