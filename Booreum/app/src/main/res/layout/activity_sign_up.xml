@@ -50,7 +50,10 @@
                 android:background="@drawable/border_edittext_default_signup"
                 android:hint="내용을 입력하세요"
                 app:layout_constraintBottom_toTopOf="@+id/signup_id_tv"
-                app:layout_constraintTop_toBottomOf="@id/signup_name_tv" />
+                app:layout_constraintTop_toBottomOf="@id/signup_name_tv"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="15"/>
 
             <TextView
                 android:id="@+id/signup_id_tv"
@@ -70,7 +73,9 @@
                 android:background="@drawable/border_edittext_default_signup"
                 android:hint="내용을 입력하세요"
                 app:layout_constraintBottom_toTopOf="@id/signup_pw_tv"
-                app:layout_constraintTop_toBottomOf="@id/signup_id_tv" />
+                app:layout_constraintTop_toBottomOf="@id/signup_id_tv"
+                android:imeOptions="actionNext"
+                android:inputType="text"/>
 
             <TextView
                 android:id="@+id/signup_pw_tv"
@@ -90,7 +95,9 @@
                 android:background="@drawable/border_edittext_default_signup"
                 android:hint="내용을 입력하세요"
                 app:layout_constraintBottom_toTopOf="@id/signup_pw_check_tv"
-                app:layout_constraintTop_toBottomOf="@id/signup_pw_tv" />
+                app:layout_constraintTop_toBottomOf="@id/signup_pw_tv"
+                android:imeOptions="actionNext"
+                android:inputType="text"/>
 
             <TextView
                 android:id="@+id/signup_pw_check_tv"
@@ -110,7 +117,9 @@
                 android:background="@drawable/border_edittext_default_signup"
                 android:hint="내용을 입력하세요"
                 app:layout_constraintBottom_toTopOf="@id/signup_email_tv"
-                app:layout_constraintTop_toBottomOf="@id/signup_pw_check_tv" />
+                app:layout_constraintTop_toBottomOf="@id/signup_pw_check_tv"
+                android:imeOptions="actionNext"
+                android:inputType="text"/>
 
             <TextView
                 android:id="@+id/signup_email_tv"
@@ -130,7 +139,9 @@
                 android:background="@drawable/border_edittext_default_signup"
                 android:hint="내용을 입력하세요"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/signup_email_tv"/>
+                app:layout_constraintTop_toBottomOf="@id/signup_email_tv"
+                android:imeOptions="actionDone"
+                android:inputType="text"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
