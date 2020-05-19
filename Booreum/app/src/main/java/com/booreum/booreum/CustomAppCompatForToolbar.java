@@ -11,28 +11,21 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 public abstract class CustomAppCompatForToolbar extends AppCompatActivity {
-    protected Toolbar toolbar;
+
+    protected MyToolBar toolbar;
 
     protected abstract void linkToolbar();
 
-    protected ActionBar getDefaultActionBar(String title){
-
+    protected ActionBar getDefaultActionBar(){
         linkToolbar();
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.border_titlebar));
         actionBar.setDisplayShowCustomEnabled(true); // for customizing
         actionBar.setDisplayShowTitleEnabled(false);
-        //actionBar.setTitle(title);
-        //actionBar.setTitle(Html.fromHtml("<font color='#ffffff'>" + title + "</font>"));
-        //actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        //actionBar.setCustomView(R.layout.title);
-        //TextView textView = (TextView)findViewById(R.id.title_);
-        //textView.setText(title);
         return actionBar;
     }
 
-    protected ActionBar getHomeAsUpActionBar(String title){
-        ActionBar actionBar = getDefaultActionBar(title);
+    protected ActionBar getHomeAsUpActionBar(){
+        ActionBar actionBar = getDefaultActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.clear);
         return actionBar;

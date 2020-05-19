@@ -5,7 +5,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -18,14 +17,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.booreum.booreum.MainActivity;
 import com.booreum.booreum.R;
-import com.booreum.booreum.User;
 import com.booreum.booreum.signup.SignUp;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener, I_LoginView {
@@ -131,7 +127,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(hasFocus)
             v.setBackground(getDrawable(R.drawable.border_edittext_blue));
         else
-            v.setBackground(getDrawable(R.drawable.border_edittext));
+            v.setBackground(getDrawable(R.drawable.border_edittext_default));
     }
 
     void resetView()

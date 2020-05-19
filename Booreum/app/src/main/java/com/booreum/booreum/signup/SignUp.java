@@ -10,16 +10,19 @@ import com.booreum.booreum.CustomAppCompatForToolbar;
 import com.booreum.booreum.MyToolBar;
 import com.booreum.booreum.R;
 
-public class SignUp extends AppCompatActivity {
-
-    MyToolBar toolBar;
+public class SignUp extends CustomAppCompatForToolbar {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        toolBar = (MyToolBar)findViewById(R.id.signup_toolbar);
+        ActionBar actionBar = getHomeAsUpActionBar();
     }
 
+    @Override
+    protected void linkToolbar() {
+        toolbar = findViewById(R.id.signup_toolbar);
+        setSupportActionBar(toolbar.getToolbar());
+    }
 }

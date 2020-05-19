@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".signup.SignUp">
+    tools:context=".signup.SignUp"
+    android:background="@color/needer_blue_light">
 
     <com.booreum.booreum.MyToolBar
         android:id="@+id/signup_toolbar"
@@ -12,6 +13,143 @@
         android:layout_height="56dp"
         app:layout_constraintTop_toTopOf="parent"
         app:title_text="회원가입"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/border_view_container"
+        android:paddingLeft="37dp"
+        android:paddingRight="37dp"
+        android:layout_marginTop="49dp"
+        app:layout_constraintTop_toBottomOf="@+id/signup_toolbar"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/signup_centerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="480dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/signup_button">
+            <TextView
+                android:id="@+id/signup_name_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="이름"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toTopOf="@id/signup_name_et"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside"/>
+
+            <EditText
+                android:id="@+id/signup_name_et"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:paddingLeft="20dp"
+                android:background="@drawable/border_edittext_default_signup"
+                android:hint="내용을 입력하세요"
+                app:layout_constraintBottom_toTopOf="@+id/signup_id_tv"
+                app:layout_constraintTop_toBottomOf="@id/signup_name_tv" />
+
+            <TextView
+                android:id="@+id/signup_id_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="아이디"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toTopOf="@id/signup_id_et"
+                app:layout_constraintTop_toBottomOf="@+id/signup_name_et" />
+
+            <EditText
+                android:id="@+id/signup_id_et"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:paddingLeft="20dp"
+                android:background="@drawable/border_edittext_default_signup"
+                android:hint="내용을 입력하세요"
+                app:layout_constraintBottom_toTopOf="@id/signup_pw_tv"
+                app:layout_constraintTop_toBottomOf="@id/signup_id_tv" />
+
+            <TextView
+                android:id="@+id/signup_pw_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="비밀번호"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toTopOf="@id/signup_pw_et"
+                app:layout_constraintTop_toBottomOf="@+id/signup_id_et" />
+
+            <EditText
+                android:id="@+id/signup_pw_et"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:paddingLeft="20dp"
+                android:background="@drawable/border_edittext_default_signup"
+                android:hint="내용을 입력하세요"
+                app:layout_constraintBottom_toTopOf="@id/signup_pw_check_tv"
+                app:layout_constraintTop_toBottomOf="@id/signup_pw_tv" />
+
+            <TextView
+                android:id="@+id/signup_pw_check_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="비밀번호 확인"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toTopOf="@id/signup_pw_check_et"
+                app:layout_constraintTop_toBottomOf="@+id/signup_pw_et" />
+
+            <EditText
+                android:id="@+id/signup_pw_check_et"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:paddingLeft="20dp"
+                android:background="@drawable/border_edittext_default_signup"
+                android:hint="내용을 입력하세요"
+                app:layout_constraintBottom_toTopOf="@id/signup_email_tv"
+                app:layout_constraintTop_toBottomOf="@id/signup_pw_check_tv" />
+
+            <TextView
+                android:id="@+id/signup_email_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="비밀번호 확인"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toTopOf="@id/signup_email_et"
+                app:layout_constraintTop_toBottomOf="@+id/signup_pw_check_et" />
+
+            <EditText
+                android:id="@+id/signup_email_et"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:paddingLeft="20dp"
+                android:background="@drawable/border_edittext_default_signup"
+                android:hint="내용을 입력하세요"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/signup_email_tv"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        
+        <Button
+
+            android:id="@+id/signup_button"
+            android:layout_width="136dp"
+            android:layout_height="41dp"
+            android:text="회원가입"
+            android:background="@drawable/button_custom_blue"
+            app:layout_constraintTop_toBottomOf="@id/signup_centerLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

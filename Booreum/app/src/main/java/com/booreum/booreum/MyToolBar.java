@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 public class MyToolBar extends RelativeLayout {
     private Context context;
     private TextView textView;
+    private Toolbar toolbar;
 
     public MyToolBar(Context context) {
         super(context);
@@ -40,6 +41,7 @@ public class MyToolBar extends RelativeLayout {
         addView(view);
         textView = findViewById(R.id.title_tv);
         textView.setText("Set Title");
+        toolbar = findViewById(R.id.title_toolbar);
     }
 
     private void getAttrs(AttributeSet attrs) {
@@ -58,7 +60,14 @@ public class MyToolBar extends RelativeLayout {
         textView.setText(text_string);
 
         typedArray.recycle();
+    }
 
+    public Toolbar getToolbar() {
+        return toolbar;
+    }
+
+    public void setToolbar(Toolbar toolbar) {
+        this.toolbar = toolbar;
     }
 
 }
