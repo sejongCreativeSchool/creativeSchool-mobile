@@ -1,4 +1,4 @@
-package com.booreum.booreum;
+package com.booreum.booreum.constant;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -1,4 +1,4 @@
-package com.booreum.booreum;
+package com.booreum.booreum.CustomToolbar;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+
+import com.booreum.booreum.R;
 
 public class MyToolBar extends RelativeLayout {
     private Context context;

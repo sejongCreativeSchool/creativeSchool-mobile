@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".signup.SignUp"
-    android:background="@color/needer_blue_light">
+    tools:context=".view.signup.SignUpActivity"
+    android:background="@color/needer_blue_light"
+    android:id="@+id/signup_parentLayout">
 
-    <com.booreum.booreum.MyToolBar
+    <com.booreum.booreum.CustomToolbar.MyToolBar
         android:id="@+id/signup_toolbar"
         android:layout_width="match_parent"
         android:layout_height="56dp"

@@ -1,4 +1,4 @@
-package com.booreum.booreum;
+package com.booreum.booreum.model;
 
 import com.google.firebase.auth.FirebaseAuth;
 

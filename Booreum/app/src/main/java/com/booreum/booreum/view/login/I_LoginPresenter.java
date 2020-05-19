@@ -1,11 +1,11 @@
-package com.booreum.booreum.login;
+package com.booreum.booreum.view.login;
 
 public interface I_LoginPresenter {
     void doLogin(String id, String password);
     boolean getCheckBoxChecked();
     void setCheckBoxChecked(Boolean isChecked);
     void doAutoLoginCheck();
-    void doSignIn();
+    void doSignUp();
     void doLoginFacebook();
     void doLoginKakaoTalk();
     void doLoginGoogle();

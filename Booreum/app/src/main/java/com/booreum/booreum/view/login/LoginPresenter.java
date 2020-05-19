@@ -1,4 +1,4 @@
-package com.booreum.booreum.login;
+package com.booreum.booreum.view.login;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,13 +7,12 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import com.booreum.booreum.PreferenceManager;
-import com.booreum.booreum.User;
+import com.booreum.booreum.constant.PreferenceManager;
+import com.booreum.booreum.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LoginPresenter implements I_LoginPresenter {
 
@@ -24,7 +23,7 @@ public class LoginPresenter implements I_LoginPresenter {
 
     public LoginPresenter(I_LoginView i_loginView, Context context) {
         this.i_loginView = i_loginView;
-        this.mAuth = FirebaseAuth.getInstance();
+        this.mAuth = FirebaseAuth.getInstance(); //객체 초기화
         this.context = context;
 
         if(getCheckBoxChecked()){
@@ -74,8 +73,8 @@ public class LoginPresenter implements I_LoginPresenter {
     }
 
     @Override
-    public void doSignIn() {
-
+    public void doSignUp() {
+        i_loginView.onSignUp();
     }
 
     @Override

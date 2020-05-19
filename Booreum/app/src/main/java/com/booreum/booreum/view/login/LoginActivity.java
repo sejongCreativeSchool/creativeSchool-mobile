@@ -1,4 +1,4 @@
-package com.booreum.booreum.login;
+package com.booreum.booreum.view.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -12,7 +12,6 @@ import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -22,7 +21,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.booreum.booreum.R;
-import com.booreum.booreum.signup.SignUp;
+import com.booreum.booreum.constant.CheckValid;
+import com.booreum.booreum.constant.HideKeyboard;
+import com.booreum.booreum.view.signup.SignUpActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener, I_LoginView {
 
@@ -91,11 +92,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.login_loginButton :
-                hideKeyBoard(loginButton);
-                String id = login_id.getText().toString();
-                String pw = login_pw.getText().toString();
-                if(isValidEmail() && isValidPasswd()) {
+                HideKeyboard.hideKeyBoard(this, loginButton);
+                if(CheckValid.isValidEmail(this,login_id) && CheckValid.isValidPassword(this, login_pw)) {
                     loginPresenter.setProgressBarVisibility(View.VISIBLE);
+                    String id = login_id.getText().toString();
+                    String pw = login_pw.getText().toString();
                     loginPresenter.doLogin(id , pw);
                 }
                 break;
@@ -103,8 +104,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 loginPresenter.setCheckBoxChecked(autoLoginCheckBox.isChecked());
                 break;
             case R.id.login_signUp :
-                Intent intent = new Intent(LoginActivity.this, SignUp.class);
-                startActivity(intent);
+                loginPresenter.doSignUp();
                 break;
             case R.id.login_findIdPw :
                 Toast.makeText(getApplicationContext(), "준비중입니다.", Toast.LENGTH_SHORT).show();
@@ -132,18 +132,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     void resetView()
     {
-        login_id.clearFocus();
-        login_pw.clearFocus();
-        hideKeyBoard(login_id);
+        HideKeyboard.hideKeyBoard(this, login_id);
+        HideKeyboard.hideKeyBoard(this, login_pw);
     }
 
-    void hideKeyBoard(View view)
-    {
-        if(view != null) {
-            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-    }
+
 
     @Override
     public void onLoginResult(Boolean result) {
@@ -163,8 +156,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    public void onSignIn() {
-
+    public void onSignUp() {
+        Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -182,35 +176,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    // 이메일 유효성 검사
-    private boolean isValidEmail() {
-        String id = login_id.getText().toString();
-        Log.d("LoginActivity", "in isValidEmail => id = " + id);
-        if (id.isEmpty() || id == null) {
-            // 이메일 공백
-            Toast.makeText(getApplicationContext(), "아이디를 입력해주세요.", Toast.LENGTH_SHORT).show();
-            return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(login_id.getText().toString()).matches()) {
-            // 이메일 형식 불일치
-            Toast.makeText(getApplicationContext(), "아이디는 이메일 형식입니다.", Toast.LENGTH_SHORT).show();
-            return false;
-        } else {
-            return true;
-        }
-    }
 
-    // 비밀번호 유효성 검사
-    private boolean isValidPasswd() {
-        String pw = login_pw.getText().toString();
-        Log.d("LoginActivity", "in isValidEmail => pw = " + pw);
-        if (pw.isEmpty() || pw==null) {
-            // 비밀번호 공백다
-            Toast.makeText(getApplicationContext(), "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
-            return false;
-        } else {
-            return true;
-        }
-    }
 
     @Override
     public void onProgressBarVisibility(int visibility) {

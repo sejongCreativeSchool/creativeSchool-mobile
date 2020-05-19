@@ -1,8 +1,8 @@
-package com.booreum.booreum.login;
+package com.booreum.booreum.view.login;
 
 public interface I_LoginView {
     public void onLoginResult(Boolean result);
-    public void onSignIn();
+    public void onSignUp();
     public void onLoginFacebook();
     public void onLoginKakaoTalk();
     public void onLoginGoogle();

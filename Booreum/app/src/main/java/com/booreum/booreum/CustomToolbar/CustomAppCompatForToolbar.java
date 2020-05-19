@@ -1,14 +1,11 @@
-package com.booreum.booreum;
+package com.booreum.booreum.CustomToolbar;
 
-import android.graphics.drawable.Drawable;
-import android.text.Html;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
+
+import com.booreum.booreum.R;
 
 public abstract class CustomAppCompatForToolbar extends AppCompatActivity {
 
