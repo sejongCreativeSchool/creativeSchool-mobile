@@ -1,6 +1,7 @@
 package com.booreum.booreum.signup;
 
 import android.os.Bundle;
+import android.widget.EditText;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,8 @@ import com.booreum.booreum.MyToolBar;
 import com.booreum.booreum.R;
 
 public class SignUp extends CustomAppCompatForToolbar {
+
+    private EditText name, id, pw, pw_check, email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
