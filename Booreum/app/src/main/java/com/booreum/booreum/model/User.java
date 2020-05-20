@@ -5,13 +5,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    String name;
-    String department;
-    Boolean helper;
-    String phone;
+    private String name;
+    private String id;
+    private String phone;
 
     public User() {
 
+    }
+
+    public User(String id, String name,  String phone) {
+        this.name = name;
+        this.id = id;
+        this.phone = phone;
     }
 
     public String getName() {
@@ -22,20 +27,12 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getId() {
+        return id;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public Boolean getHelper() {
-        return helper;
-    }
-
-    public void setHelper(Boolean helper) {
-        this.helper = helper;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPhone() {

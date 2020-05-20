@@ -11,7 +11,7 @@
     <com.booreum.booreum.CustomToolbar.MyToolBar
         android:id="@+id/signup_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="?attr/actionBarSize"
         app:layout_constraintTop_toTopOf="parent"
         app:title_text="회원가입"/>
 
@@ -19,8 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/border_view_container"
-        android:paddingLeft="37dp"
-        android:paddingRight="37dp"
         android:layout_marginTop="49dp"
         app:layout_constraintTop_toBottomOf="@+id/signup_toolbar"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -28,33 +26,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/signup_centerLayout"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="480dp"
+            android:layout_marginLeft="37dp"
+            android:layout_marginRight="37dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/signup_button"
             app:layout_constraintVertical_chainStyle="spread">
-            <TextView
-                android:id="@+id/signup_name_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="이름"
-                android:textColor="#606060"
-                android:textSize="15dp"
-                app:layout_constraintBottom_toTopOf="@id/signup_name_et"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="spread_inside"/>
-
-            <EditText
-                android:id="@+id/signup_name_et"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:paddingLeft="20dp"
-                android:background="@drawable/border_edittext_default_signup"
-                android:hint="내용을 입력하세요"
-                app:layout_constraintBottom_toTopOf="@+id/signup_id_tv"
-                app:layout_constraintTop_toBottomOf="@id/signup_name_tv"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:maxLength="15"/>
 
             <TextView
                 android:id="@+id/signup_id_tv"
@@ -63,8 +40,9 @@
                 android:text="아이디"
                 android:textColor="#606060"
                 android:textSize="15dp"
-                app:layout_constraintBottom_toTopOf="@id/signup_id_et"
-                app:layout_constraintTop_toBottomOf="@+id/signup_name_et" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/signup_id_et"
+                app:layout_constraintVertical_chainStyle="spread_inside"/>
 
             <EditText
                 android:id="@+id/signup_id_et"
@@ -73,10 +51,10 @@
                 android:paddingLeft="20dp"
                 android:background="@drawable/border_edittext_default_signup"
                 android:hint="내용을 입력하세요"
-                app:layout_constraintBottom_toTopOf="@id/signup_pw_tv"
                 app:layout_constraintTop_toBottomOf="@id/signup_id_tv"
+                app:layout_constraintBottom_toTopOf="@id/signup_pw_tv"
                 android:imeOptions="actionNext"
-                android:inputType="text"/>
+                android:inputType="textEmailAddress"/>
 
             <TextView
                 android:id="@+id/signup_pw_tv"
@@ -85,8 +63,8 @@
                 android:text="비밀번호"
                 android:textColor="#606060"
                 android:textSize="15dp"
-                app:layout_constraintBottom_toTopOf="@id/signup_pw_et"
-                app:layout_constraintTop_toBottomOf="@+id/signup_id_et" />
+                app:layout_constraintTop_toBottomOf="@+id/signup_id_et"
+                app:layout_constraintBottom_toTopOf="@id/signup_pw_et" />
 
             <EditText
                 android:id="@+id/signup_pw_et"
@@ -95,8 +73,8 @@
                 android:paddingLeft="20dp"
                 android:background="@drawable/border_edittext_default_signup"
                 android:hint="내용을 입력하세요"
-                app:layout_constraintBottom_toTopOf="@id/signup_pw_check_tv"
                 app:layout_constraintTop_toBottomOf="@id/signup_pw_tv"
+                app:layout_constraintBottom_toTopOf="@id/signup_pw_check_tv"
                 android:imeOptions="actionNext"
                 android:inputType="text"/>
 
@@ -107,8 +85,8 @@
                 android:text="비밀번호 확인"
                 android:textColor="#606060"
                 android:textSize="15dp"
-                app:layout_constraintBottom_toTopOf="@id/signup_pw_check_et"
-                app:layout_constraintTop_toBottomOf="@+id/signup_pw_et" />
+                app:layout_constraintTop_toBottomOf="@+id/signup_pw_et"
+                app:layout_constraintBottom_toTopOf="@id/signup_pw_check_et"/>
 
             <EditText
                 android:id="@+id/signup_pw_check_et"
@@ -117,32 +95,55 @@
                 android:paddingLeft="20dp"
                 android:background="@drawable/border_edittext_default_signup"
                 android:hint="내용을 입력하세요"
-                app:layout_constraintBottom_toTopOf="@id/signup_email_tv"
                 app:layout_constraintTop_toBottomOf="@id/signup_pw_check_tv"
+                app:layout_constraintBottom_toTopOf="@id/signup_name_tv"
                 android:imeOptions="actionNext"
                 android:inputType="text"/>
 
             <TextView
-                android:id="@+id/signup_email_tv"
+                android:id="@+id/signup_name_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="이메일"
+                android:text="이름"
                 android:textColor="#606060"
                 android:textSize="15dp"
-                app:layout_constraintBottom_toTopOf="@id/signup_email_et"
-                app:layout_constraintTop_toBottomOf="@+id/signup_pw_check_et" />
+                app:layout_constraintTop_toBottomOf="@id/signup_pw_check_et"
+                app:layout_constraintBottom_toTopOf="@id/signup_name_et"/>
 
             <EditText
-                android:id="@+id/signup_email_et"
+                android:id="@+id/signup_name_et"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:paddingLeft="20dp"
                 android:background="@drawable/border_edittext_default_signup"
                 android:hint="내용을 입력하세요"
+                app:layout_constraintTop_toBottomOf="@id/signup_name_tv"
+                app:layout_constraintBottom_toTopOf="@+id/signup_phone_tv"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="15"/>
+
+            <TextView
+                android:id="@+id/signup_phone_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="휴대전화"
+               android:textColor="#606060"
+                android:textSize="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/signup_name_et"
+                app:layout_constraintBottom_toTopOf="@id/signup_phone_et" />
+
+            <EditText
+                android:id="@+id/signup_phone_et"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingLeft="20dp"
+                android:background="@drawable/border_edittext_default_signup"
+                android:hint="내용을 입력하세요"
+                app:layout_constraintTop_toBottomOf="@id/signup_phone_tv"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/signup_email_tv"
                 android:imeOptions="actionDone"
-                android:inputType="text"/>
+                android:inputType="phone"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

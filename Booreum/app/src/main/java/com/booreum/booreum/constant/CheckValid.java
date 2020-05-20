@@ -9,9 +9,8 @@ import android.widget.Toast;
 public final class CheckValid {
 
     // 이메일 유효성 검사
-    public static boolean isValidEmail(Context context, EditText ed) {
-        String id = ed.getText().toString();
-        Log.d("CheckValid", "in isValidEmail => id = " + id);
+    public static boolean isValidEmail(Context context, String id) {
+        Log.d("SignUpActivity_checkValid", "id = "+id);
         if (id.isEmpty() || id == null) {
             // 이메일 공백
             Toast.makeText(context.getApplicationContext(), "아이디를 입력해주세요.", Toast.LENGTH_SHORT).show();
@@ -26,9 +25,7 @@ public final class CheckValid {
     }
 
     // 비밀번호 유효성 검사
-    public static boolean isValidPassword(Context context, EditText ed) {
-        String pw = ed.getText().toString();
-        Log.d("CheckValid", "in isValidEmail => pw = " + pw);
+    public static boolean isValidPassword(Context context, String pw) {
         if (pw.isEmpty() || pw == null) {
             // 비밀번호 공백
             Toast.makeText(context.getApplicationContext(), "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
@@ -39,11 +36,10 @@ public final class CheckValid {
     }
 
     // 공 검사
-    public static boolean isValidNotEmpty(Context context, EditText... ed) {
+    public static boolean isValidNotEmpty(Context context, String... string) {
         Log.d("CheckValid", "in isValidNotEmpty ");
 
-        for (EditText editText : ed) {
-            String str = editText.getText().toString();
+        for (String str : string) {
             if (str.isEmpty() || str == null) {
                 //  공백
                 Toast.makeText(context.getApplicationContext(), "빈칸이 있습니다.", Toast.LENGTH_SHORT).show();

@@ -57,6 +57,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //init View
         login_pw.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        login_pw.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         //set Listener
         loginButton.setOnClickListener(this);
@@ -69,7 +70,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         login_kakao.setOnClickListener(this);
         login_google.setOnClickListener(this);
 
-        login_pw.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
 
         /**
          * This is for clearFocus when you touch not edittextView
@@ -84,7 +85,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
 
         //init Presenter
-        loginPresenter = new LoginPresenter(this, LoginActivity.this);
+        loginPresenter = new LoginPresenter(this, this);
 
     }
 
@@ -93,10 +94,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()){
             case R.id.login_loginButton :
                 HideKeyboard.hideKeyBoard(this, loginButton);
-                if(CheckValid.isValidEmail(this,login_id) && CheckValid.isValidPassword(this, login_pw)) {
+                String id = login_id.getText().toString();
+                String pw = login_pw.getText().toString();
+                if(CheckValid.isValidEmail(this,id) && CheckValid.isValidPassword(this, pw)) {
                     loginPresenter.setProgressBarVisibility(View.VISIBLE);
-                    String id = login_id.getText().toString();
-                    String pw = login_pw.getText().toString();
                     loginPresenter.doLogin(id , pw);
                 }
                 break;
