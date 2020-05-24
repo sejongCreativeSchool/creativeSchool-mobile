@@ -37,7 +37,7 @@ public class SignUpActivity extends CustomAppCompatForToolbar implements I_SignU
         setViewListener();
         i_signUpPresenter = new SignUpPresenter(this, this);
     }
-//
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
