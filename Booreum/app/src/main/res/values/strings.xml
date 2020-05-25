@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Booreum</string>
+    <string name="BASE_URI">https://api.booreum.com</string>
 </resources>

@@ -33,14 +33,12 @@ public class SignUpPresenter implements I_SignUpPresenter {
         if ((!CheckValid.isValidEmail(context, user.getId()))
                 || (!CheckValid.isValidPassword(context, pwStr))) //이메일, 비밀번호 형식 확인
         {
-            i_signUpView.onFailedSignUp("가입실패");
             i_signUpView.resetView();
             return;
         }
 
         if (!CheckValid.isValidNotEmpty(context, user.getName(), user.getPhone(), pwCheckStr)) //빈칸확인
         {
-            i_signUpView.onFailedSignUp("가입실패");
             i_signUpView.resetView();
             return;
         }
@@ -58,16 +56,14 @@ public class SignUpPresenter implements I_SignUpPresenter {
                         if(task.isSuccessful()){
                             //success
                             Log.d("SignUpPresenter", "createUserWithEmail:success");
+                            i_signUpView.resetView();
+                            i_signUpView.onSuccessSignUp();
                         }else{
                             //failed
                             Log.w("SignUpPresenter", "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(context, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                            i_signUpView.onFailedSignUp(task.getException().getLocalizedMessage());
                         }
                     }
                 });
-
-        i_signUpView.resetView();
-        i_signUpView.onSuccessSignUp();
-
     }
 }

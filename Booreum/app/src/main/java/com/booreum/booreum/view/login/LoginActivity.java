@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.booreum.booreum.R;
 import com.booreum.booreum.constant.CheckValid;
 import com.booreum.booreum.constant.HideKeyboard;
+import com.booreum.booreum.view.main.MainActivity;
 import com.booreum.booreum.view.signup.SignUpActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener, I_LoginView {
@@ -146,6 +147,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         {
             //로그인성공하면
             Log.d("LoginActivity", "로그인성공");
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
         }
         else {
             //로그인 실패시

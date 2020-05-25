@@ -128,7 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="휴대전화"
-               android:textColor="#606060"
+                android:textColor="#606060"
                 android:textSize="15dp"
                 app:layout_constraintTop_toBottomOf="@+id/signup_name_et"
                 app:layout_constraintBottom_toTopOf="@id/signup_phone_et" />
@@ -165,3 +165,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

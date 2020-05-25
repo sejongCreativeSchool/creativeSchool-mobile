@@ -1,5 +1,6 @@
 package com.booreum.booreum.view.signup;
 
+import android.graphics.Point;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
@@ -7,10 +8,13 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -98,6 +102,8 @@ public class SignUpActivity extends CustomAppCompatForToolbar implements I_SignU
 
     @Override
     public void onSuccessSignUp() {
+        Toast.makeText(getApplicationContext(), "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override
@@ -114,11 +120,16 @@ public class SignUpActivity extends CustomAppCompatForToolbar implements I_SignU
 
     @Override
     public void resetView() {
-        HideKeyboard.hideKeyBoard(this, name);
-        HideKeyboard.hideKeyBoard(this, id);
-        HideKeyboard.hideKeyBoard(this, pw);
-        HideKeyboard.hideKeyBoard(this, pw_check);
-        HideKeyboard.hideKeyBoard(this, phone);
+        View v = getCurrentFocus();
+        if(v!=null){
+            v.clearFocus();
+            HideKeyboard.hideKeyBoard(this, v);
+        }
+        //HideKeyboard.hideKeyBoard(this, name);
+        //HideKeyboard.hideKeyBoard(this, id);
+        //HideKeyboard.hideKeyBoard(this, pw);
+        //HideKeyboard.hideKeyBoard(this, pw_check);
+        //HideKeyboard.hideKeyBoard(this, phone);
     }
 
     @Override
