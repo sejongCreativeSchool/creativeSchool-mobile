@@ -6,13 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".view.main.MainActivity"
     app:tabGravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@android:color/white">
 
     <com.booreum.booreum.CustomToolbar.MyToolBar
         android:id="@+id/main_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/main_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/main_toolbar"
+        app:layout_constraintBottom_toTopOf="@id/main_tapLayout"/>
 
 
     <com.google.android.material.tabs.TabLayout
@@ -25,19 +33,6 @@
         app:tabIndicatorColor="@color/colorPrimary"
         android:background="@drawable/border_tap_layout_blue"
         android:id="@+id/main_tapLayout" >
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:icon="@drawable/ic_launcher_background"/>
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="ddd"/>
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="ddd"
-            android:background="@color/needer_blue_tapLayout"/>
     </com.google.android.material.tabs.TabLayout>
 
 
