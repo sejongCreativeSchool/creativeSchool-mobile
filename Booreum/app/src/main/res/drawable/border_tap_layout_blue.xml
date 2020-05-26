@@ -12,6 +12,7 @@
             android:shape="rectangle">
             <solid android:color="@color/needer_blue_tapLayout"/>
             <corners android:topRightRadius="30dp"/>
+
         </shape>
     </item>
 

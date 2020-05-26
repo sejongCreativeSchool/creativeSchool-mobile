@@ -1,5 +1,6 @@
 package com.booreum.view.login;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +36,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private ImageButton login_facebook, login_kakao, login_google;
     private ConstraintLayout parentLayout;
     private ProgressBar progressBar;
+    private LinearLayout progressBar_social;
 
     private I_LoginPresenter loginPresenter;
 
@@ -54,6 +57,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         login_google = (ImageButton)findViewById(R.id.login_google);
         parentLayout = (ConstraintLayout)findViewById(R.id.login_parentLayout);
         progressBar = (ProgressBar) findViewById(R.id.login_progressBar);
+        progressBar_social = (LinearLayout) findViewById(R.id.login_progressBar_social);
 
         //init View
         login_pw.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -117,7 +121,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(getApplicationContext(), "준비중입니다.", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.login_google:
-                Toast.makeText(getApplicationContext(), "준비중입니다.", Toast.LENGTH_SHORT).show();
+                loginPresenter.doLoginGoogle();
                 break;
 
         }
@@ -137,11 +141,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         HideKeyboard.hideKeyBoard(this, login_pw);
     }
 
-
-
     @Override
     public void onLoginResult(Boolean result) {
-
         if(result)
         {
             //로그인성공하면
@@ -157,6 +158,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         }
 
+    }
+
+    @Override
+    public void onSocialLoginResult(Intent intent) {
+        startActivity(intent);
+        finish();
     }
 
     @Override
@@ -176,11 +183,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    public void onLoginGoogle() {
-        loginPresenter.doLoginGoogle();
+    public void onLoginGoogle(Intent intent) {
+        startActivityForResult(intent, LoginPresenter.REQ_SIGN_GOOGLE);
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        loginPresenter.onActivityResult(requestCode, resultCode, data);
+    }
 
     @Override
     public void onProgressBarVisibility(int visibility) {
@@ -194,6 +204,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case View.GONE : case View.INVISIBLE :
                 loginButton.setVisibility(View.VISIBLE);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                break;
+        }
+    }
+
+    @Override
+    public void onSocialProgressBarVisibility(int visibility) {
+        progressBar_social.setVisibility(visibility);
+        switch (visibility){
+            case View.VISIBLE :
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                break;
+            case View.GONE : case View.INVISIBLE :
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 break;
         }
