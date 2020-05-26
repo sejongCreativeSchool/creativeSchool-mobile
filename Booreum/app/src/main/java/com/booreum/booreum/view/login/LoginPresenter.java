@@ -7,6 +7,9 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
+import com.booreum.booreum.R;
+import com.booreum.booreum.constant.GitHubService;
+import com.booreum.booreum.constant.GitHubServiceProvider;
 import com.booreum.booreum.constant.PreferenceManager;
 import com.booreum.booreum.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -14,17 +17,25 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class LoginPresenter implements I_LoginPresenter {
 
     Context context;
     I_LoginView i_loginView;
     User user;
     FirebaseAuth mAuth;
+    GitHubService retrofit;
 
     public LoginPresenter(I_LoginView i_loginView, Context context) {
         this.i_loginView = i_loginView;
         this.mAuth = FirebaseAuth.getInstance(); //객체 초기화
         this.context = context;
+        this.retrofit = GitHubServiceProvider.providerGithubService();
 
         if(getCheckBoxChecked()){
             doAutoLoginCheck();
@@ -38,15 +49,15 @@ public class LoginPresenter implements I_LoginPresenter {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Boolean result;
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             result = true;
                             /**
                              * 통신통해서 유저 정보 가져오기
                              */
                             i_loginView.onLoginResult(result);
-                        }
-                        else {
+                            retrofit();
+                        } else {
                             // If sign in fails, display a message to the user.
                             Log.w("LoginPresent", "signInWithEmail:failure", task.getException());
                             result = false;
@@ -55,6 +66,29 @@ public class LoginPresenter implements I_LoginPresenter {
                         }
                     }
                 });
+
+    }
+
+    void retrofit()
+    {
+        Log.d("LoginPresent", "do test retrofit init");
+
+        retrofit.listErrand().enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                Log.d("LoginPresent", "onResponse body= " + response.body());
+                Log.d("LoginPresent", "onResponse message= " + response.message());
+                Log.d("LoginPresent", "onResponse tostring= " + response.toString());
+
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.d("LoginPresent", "onFailure = " + t.getMessage());
+            }
+        });
+
+        Log.d("LoginPresent", "d");
     }
 
     @Override
