@@ -8,7 +8,6 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface GitHubService {
-    public final static String BASE_URL = "https://api.booreum.com";
     @GET("/corona19-masks/v1/storesByGeo/json")
     Call<User> getStoresByGeo();
 

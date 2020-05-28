@@ -7,7 +7,7 @@ public final class GitHubServiceProvider {
     public static GitHubService providerGithubService()
     {
         return new Retrofit.Builder()
-            .baseUrl("http://booreum.com:3000/")
+            .baseUrl("https://www.booreum.com:3001")
             .addConverterFactory(GsonConverterFactory.create())
             .build() .create(GitHubService.class);
     }
