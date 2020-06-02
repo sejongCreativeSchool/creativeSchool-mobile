@@ -28,6 +28,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import retrofit2.Call;
@@ -72,8 +73,6 @@ public class LoginPresenter implements I_LoginPresenter, GoogleApiClient.OnConne
                             Toast.makeText(context, "로그인성공",Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(context, MainActivity.class);
 
-                            //intent.putExtra("nickname",account.getDisplayName());
-                            //intent.putExtra("photoUrl",String.valueOf(account.getPhotoUrl()));
                             /**
                              * 통신통해서 유저 정보 가져오기
                              */
@@ -117,23 +116,7 @@ public class LoginPresenter implements I_LoginPresenter, GoogleApiClient.OnConne
 
     void retrofit(int retrofit_code)
     {
-        GitHubServiceProvider.retrofit.listErrand().enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if(response.isSuccessful()){
-                    Log.d("LoginPresent", "onResponse body= " + response.body());
-                    Log.d("LoginPresent", "onResponse message= " + response.message());
-                    Log.d("LoginPresent", "onResponse tostring= " + response.toString());
-                }
-                else
-                    Log.d("LoginPresent", "onResponse but failde ");
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Log.d("LoginPresent", "onFailure = " + t.getMessage());
-            }
-        });
+        //개별유저 불러오기
     }
 
     @Override

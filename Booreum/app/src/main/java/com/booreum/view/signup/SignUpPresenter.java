@@ -38,6 +38,7 @@ public class SignUpPresenter implements I_SignUpPresenter {
     public void doSignUp(User user, String email, String pwStr, String pwCheckStr) {
 
         i_signUpView.onProgressBarVisibility(View.VISIBLE);
+        i_signUpView.resetView();
 
         if ((!CheckValid.isValidEmail(context, email))
                 || (!CheckValid.isValidPassword(context, pwStr))) //이메일, 비밀번호 형식 확인
@@ -68,11 +69,10 @@ public class SignUpPresenter implements I_SignUpPresenter {
                         if(task.isSuccessful()){
                             //success
                             Log.d("SignUpPresenter", "createUserWithEmail:success");
-                            i_signUpView.resetView();
-                            i_signUpView.onSuccessSignUp();
 
                             FirebaseUser createUser = mAuth.getCurrentUser();
                             user.setAccessToken(createUser.getUid());
+
                             retrofit(user);
                         }else{
                             //failed
@@ -92,18 +92,37 @@ public class SignUpPresenter implements I_SignUpPresenter {
                     public void onResponse(Call<User> call, Response<User> response) {
                         if(!response.isSuccessful()){
                             Toast.makeText(context, "회원가입 실패 : 서버", Toast.LENGTH_SHORT).show();
+                            deleteUserInFirebase();
                             return;
                         }
-
-                        Log.d("SignUpPresenter", "response body  => " + response.body());
-
+                        Log.d("SignUpPresenter", "회원가입 완료 : 서버");
+                        i_signUpView.onSuccessSignUp();
                     }
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
-
+                        Toast.makeText(context, "회원가입 실패 : 서버", Toast.LENGTH_SHORT).show();
+                        deleteUserInFirebase();
                     }
                 });
 
+    }
+
+    void deleteUserInFirebase()
+    {
+        FirebaseUser createUser = mAuth.getCurrentUser();
+
+        createUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(!task.isSuccessful()){
+                    Log.d("SignUpPresenter", "파이어베이스 등록 후 서버이상, 파이어베이스삭제완료");
+                }else{
+                    Log.e("SignUpPresenter", "파이어베이스 등록 후 서버이상, 파이어베이스삭제 이상", task.getException());
+                }
+            }
+        });
+
+        i_signUpView.onProgressBarVisibility(View.INVISIBLE);
     }
 }
