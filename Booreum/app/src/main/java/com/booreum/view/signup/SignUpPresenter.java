@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -26,38 +27,36 @@ public class SignUpPresenter implements I_SignUpPresenter {
     private FirebaseAuth mAuth;
     private I_SignUpView i_signUpView;
     private Context context;
-    static GitHubService retrofit1;
 
     public SignUpPresenter(I_SignUpView i_signUpView, Context context) {
         this.i_signUpView = i_signUpView;
         this.context = context;
         this.mAuth = FirebaseAuth.getInstance();
-        this.retrofit1 = GitHubServiceProvider.providerGithubService();
     }
 
     @Override
     public void doSignUp(User user, String email, String pwStr, String pwCheckStr) {
 
-        i_signUpView.onSocialProgressBarVisibility(View.VISIBLE);
+        i_signUpView.onProgressBarVisibility(View.VISIBLE);
 
         if ((!CheckValid.isValidEmail(context, email))
                 || (!CheckValid.isValidPassword(context, pwStr))) //이메일, 비밀번호 형식 확인
         {
-            i_signUpView.resetView();i_signUpView.onSocialProgressBarVisibility(View.INVISIBLE);
+            i_signUpView.resetView();i_signUpView.onProgressBarVisibility(View.INVISIBLE);
             return;
         }
 
         if (!CheckValid.isValidNotEmpty(context, user.getName(), user.getPhone(), pwCheckStr)) //빈칸확인
         {
             i_signUpView.resetView();
-            i_signUpView.onSocialProgressBarVisibility(View.INVISIBLE);
+            i_signUpView.onProgressBarVisibility(View.INVISIBLE);
             return;
         }
 
         if ((!pwCheckStr.isEmpty()) && (!pwStr.equals(pwCheckStr))) {
             i_signUpView.isPasswordCheckerConfirm();
             i_signUpView.resetView();
-            i_signUpView.onSocialProgressBarVisibility(View.INVISIBLE);
+            i_signUpView.onProgressBarVisibility(View.INVISIBLE);
             return;
         }
 
@@ -73,67 +72,38 @@ public class SignUpPresenter implements I_SignUpPresenter {
                             i_signUpView.onSuccessSignUp();
 
                             FirebaseUser createUser = mAuth.getCurrentUser();
-                            retrofit(email,createUser.getUid(), user);
+                            user.setAccessToken(createUser.getUid());
+                            retrofit(user);
                         }else{
                             //failed
                             Log.w("SignUpPresenter", "createUserWithEmail:failure", task.getException());
                             i_signUpView.onFailedSignUp(task.getException().getLocalizedMessage());
+                            i_signUpView.onProgressBarVisibility(View.INVISIBLE);
                         }
                     }
                 });
     }
 
-    void retrofit( String email, String accessToken, User user)
+    void retrofit(User user)
     {
-        Log.d("SignUpPresenter", "name => " + user.getName());
-        Log.d("SignUpPresenter", "phone => " + user.getPhone());
-
-        retrofit1.createUser(user.getName(), accessToken, false, user.getPhone())
+        GitHubServiceProvider.retrofit.createUser(user)
                 .enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-                        if(response.isSuccessful())
-                        {
-                            Log.d("SignUpPresenter", "retrofit : response body =>  " + response.body());
-                            Log.d("SignUpPresenter", "retrofit : response to string =>  " + response.toString());
-                            Log.d("SignUpPresenter", "retrofit : response message =>  " + response.message());
-                            Log.d("SignUpPresenter", "retrofit : response code =>  " + response.code());
-                            Log.d("SignUpPresenter", "retrofit : response error body =>  " + response.errorBody());
-                            Log.d("SignUpPresenter", "retrofit : response error headers =>  " + response.headers());
+                        if(!response.isSuccessful()){
+                            Toast.makeText(context, "회원가입 실패 : 서버", Toast.LENGTH_SHORT).show();
+                            return;
                         }
-                        else {
-                            Log.d("SignUpPresenter", "retrofit : onResponese but failed");
-                        }
+
+                        Log.d("SignUpPresenter", "response body  => " + response.body());
+
                     }
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
-                        Log.d("SignUpPresenter", "retrofit : ");
+
                     }
                 });
 
-
-        GitHubServiceProvider.retrofit.loadUser().enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if(response.isSuccessful())
-                {
-                    Log.d("SignUpPresenter", "retrofit : response body =>  " + response.body());
-                    Log.d("SignUpPresenter", "retrofit : response to string =>  " + response.toString());
-                    Log.d("SignUpPresenter", "retrofit : response message =>  " + response.message());
-                    Log.d("SignUpPresenter", "retrofit : response code =>  " + response.code());
-                    Log.d("SignUpPresenter", "retrofit : response error body =>  " + response.errorBody());
-                    Log.d("SignUpPresenter", "retrofit : response error headers =>  " + response.headers());
-                }
-                else {
-                    Log.d("SignUpPresenter", "retrofit : onResponese but failed");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Log.d("SignUpPresenter", "retrofit : ");
-            }
-        });
     }
 }

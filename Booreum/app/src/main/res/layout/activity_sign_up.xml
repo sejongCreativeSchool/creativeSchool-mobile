@@ -8,7 +8,7 @@
     android:background="@color/needer_blue_light"
     android:id="@+id/signup_parentLayout">
 
-    <com.booreum.CustomToolbar.MyToolBar
+    <com.booreum.Custom.Toolbar.MyToolBar
         android:id="@+id/signup_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"

@@ -3,6 +3,7 @@ package com.booreum.Constant;
 import com.booreum.model.User;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -19,6 +20,5 @@ public interface GitHubService {
 
     //유저 추가하기
     @POST("/v1/auth/user")
-    Call<User> createUser(@Query("name") String name, @Query("accessToken") String accessToken,
-                          @Query("helper") Boolean helper,@Query("phone") String phone);
+    Call<User> createUser(@Body User user);
 }

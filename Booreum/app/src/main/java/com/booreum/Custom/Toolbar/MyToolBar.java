@@ -1,4 +1,4 @@
-package com.booreum.CustomToolbar;
+package com.booreum.Custom.Toolbar;
 
 import android.content.Context;
 import android.content.res.TypedArray;

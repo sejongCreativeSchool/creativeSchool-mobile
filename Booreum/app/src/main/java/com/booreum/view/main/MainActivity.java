@@ -9,12 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.booreum.CustomToolbar.CustomAppCompatForToolbar;
+import com.booreum.Custom.Toolbar.CustomAppCompatForToolbar;
 import com.booreum.booreum.R;
 import com.booreum.adapter.MainAdapter;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends CustomAppCompatForToolbar implements I_MainView, TabLayout.BaseOnTabSelectedListener {
 

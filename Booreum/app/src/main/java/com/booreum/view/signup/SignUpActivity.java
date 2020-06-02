@@ -14,9 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.widget.ContentLoadingProgressBar;
 
-import com.booreum.CustomToolbar.CustomAppCompatForToolbar;
+import com.booreum.Custom.Toolbar.CustomAppCompatForToolbar;
 import com.booreum.booreum.R;
 import com.booreum.Constant.HideKeyboard;
 import com.booreum.model.User;
@@ -132,7 +131,7 @@ public class SignUpActivity extends CustomAppCompatForToolbar implements I_SignU
     }
 
     @Override
-    public void onSocialProgressBarVisibility(int visibility) {
+    public void onProgressBarVisibility(int visibility) {
         resetView();
         switch (visibility){
             case View.VISIBLE :

@@ -1,11 +1,19 @@
 package com.booreum.model;
 
+import androidx.annotation.NonNull;
+
 public class ChatList
 {
-    String chatId;
-    String photoUrl;
-    String name;
-    String lastChat;
+    @NonNull
+    private String chatId;
+
+    private String photoUrl;
+    private String name;
+    private String lastChat;
+
+    public ChatList(String chatId) {
+        this.chatId = chatId;
+    }
 
     public ChatList(String chatId, String photoUrl, String name, String lastChat) {
         this.chatId = chatId;
