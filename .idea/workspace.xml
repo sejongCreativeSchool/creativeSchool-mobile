@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6d6c174f-4cc6-421b-befb-6516f5421c46" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/constant/CheckValid.java" beforeDir="false" afterPath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/Constant/CheckValid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/constant/GitHubService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/Constant/GitHubService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/constant/GitHubServiceProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/Constant/GitHubServiceProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/constant/HideKeyboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/Constant/HideKeyboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/constant/PreferenceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/Constant/PreferenceManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/view/login/I_LoginPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/view/login/I_LoginPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/view/login/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/view/login/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/view/login/LoginPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/view/login/LoginPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/view/main/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/view/main/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/view/signup/SignUpActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/view/signup/SignUpActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/view/signup/SignUpPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Booreum/app/src/main/java/com/booreum/view/signup/SignUpPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Booreum/app/src/main/res/drawable/border_tap_layout_blue.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Booreum/app/src/main/res/drawable/border_tap_layout_blue.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Booreum/app/src/main/res/drawable/border_titlebar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Booreum/app/src/main/res/drawable/border_titlebar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Booreum/app/src/main/res/drawable/border_view_container.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Booreum/app/src/main/res/drawable/border_view_container.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Booreum/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Booreum/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Booreum/app/src/main/res/layout/activity_sign_up.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Booreum/app/src/main/res/layout/activity_sign_up.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Booreum/app/src/main/res/layout/title.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Booreum/app/src/main/res/layout/title.xml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1chxJvZ5N1GIwn6BD9KjIE76AKq" />
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6d6c174f-4cc6-421b-befb-6516f5421c46" name="Default Changelist" comment="" />
+      <created>1590994557689</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590994557689</updated>
+    </task>
+    <servers />
+  </component>
+</project>

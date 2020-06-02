@@ -22,8 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.booreum.booreum.R;
-import com.booreum.constant.CheckValid;
-import com.booreum.constant.HideKeyboard;
+import com.booreum.Constant.CheckValid;
+import com.booreum.Constant.HideKeyboard;
 import com.booreum.view.main.MainActivity;
 import com.booreum.view.signup.SignUpActivity;
 

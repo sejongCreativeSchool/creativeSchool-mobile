@@ -12,9 +12,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
 import com.booreum.booreum.R;
-import com.booreum.constant.GitHubService;
-import com.booreum.constant.GitHubServiceProvider;
-import com.booreum.constant.PreferenceManager;
+import com.booreum.Constant.GitHubService;
+import com.booreum.Constant.GitHubServiceProvider;
+import com.booreum.Constant.PreferenceManager;
 import com.booreum.model.User;
 import com.booreum.view.main.MainActivity;
 import com.google.android.gms.auth.api.Auth;
@@ -38,7 +38,10 @@ public class LoginPresenter implements I_LoginPresenter, GoogleApiClient.OnConne
 
     static final int REQ_SIGN_GOOGLE = 100; //구글 로그인 결과 코드
     static final int NOMAL_LOGIN = 1; //일반로그인 결과 코드
-    static final int GOOGLE_LOGIN = 2; //일반로그인 결과 코드
+    static final int GOOGLE_LOGIN = 2; //구글로그인 결과 코드
+
+    final static int RETROFIT_CREATE_USER = 100; // 유저 회원가입 레트로핏 코드
+    final static int RETROFIT_LOAD_USER = 200; // 유저 회원가입 레트로핏 코드
 
     Context context;
     I_LoginView i_loginView;
@@ -59,7 +62,7 @@ public class LoginPresenter implements I_LoginPresenter, GoogleApiClient.OnConne
     }
 
     @Override
-    public void resultLogin(int result, GoogleSignInAccount account) {
+    public void resultLogin(int sns, GoogleSignInAccount account) {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener((Activity)context, new OnCompleteListener<AuthResult>() {
@@ -100,7 +103,7 @@ public class LoginPresenter implements I_LoginPresenter, GoogleApiClient.OnConne
                                  * 통신통해서 유저 정보 가져오기
                                  */
                                 i_loginView.onLoginResult(result);
-                                retrofit();
+                                retrofit(RETROFIT_LOAD_USER);
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w("LoginPresent", "signInWithEmail:failure", task.getException());
@@ -112,16 +115,18 @@ public class LoginPresenter implements I_LoginPresenter, GoogleApiClient.OnConne
                     });
     }
 
-    void retrofit()
+    void retrofit(int retrofit_code)
     {
-        Log.d("LoginPresent", "do test retrofit init");
-
-        retrofit.listErrand().enqueue(new Callback<User>() {
+        GitHubServiceProvider.retrofit.listErrand().enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                Log.d("LoginPresent", "onResponse body= " + response.body());
-                Log.d("LoginPresent", "onResponse message= " + response.message());
-                Log.d("LoginPresent", "onResponse tostring= " + response.toString());
+                if(response.isSuccessful()){
+                    Log.d("LoginPresent", "onResponse body= " + response.body());
+                    Log.d("LoginPresent", "onResponse message= " + response.message());
+                    Log.d("LoginPresent", "onResponse tostring= " + response.toString());
+                }
+                else
+                    Log.d("LoginPresent", "onResponse but failde ");
             }
 
             @Override
@@ -129,8 +134,6 @@ public class LoginPresenter implements I_LoginPresenter, GoogleApiClient.OnConne
                 Log.d("LoginPresent", "onFailure = " + t.getMessage());
             }
         });
-
-        Log.d("LoginPresent", "d");
     }
 
     @Override

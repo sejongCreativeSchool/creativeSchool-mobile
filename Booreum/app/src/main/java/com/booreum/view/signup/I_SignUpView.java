@@ -5,4 +5,5 @@ public interface I_SignUpView {
     void onFailedSignUp(String message);
     void isPasswordCheckerConfirm();
     void resetView();
+    public void onSocialProgressBarVisibility(int visibility);
 }

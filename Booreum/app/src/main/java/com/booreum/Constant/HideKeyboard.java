@@ -1,4 +1,4 @@
-package com.booreum.constant;
+package com.booreum.Constant;
 
 import android.content.Context;
 import android.view.View;

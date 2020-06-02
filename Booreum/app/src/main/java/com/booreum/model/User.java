@@ -1,43 +1,82 @@
 package com.booreum.model;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class User implements Serializable {
+    @SerializedName("name")
+    @NonNull
     private String name;
-    private String id;
+
+    @SerializedName("accessToken")
+    @NonNull
+    private String accessToken;
+
+    @SerializedName("helper")
+    @NonNull
+    private Boolean helper;
+
+    @SerializedName("phone")
+    @NonNull
     private String phone;
 
-    public User() {
+    @SerializedName("department")
+    @Expose
+    private String department;
 
-    }
-
-    public User(String id, String name,  String phone) {
+    public User(@NonNull String name, @NonNull String accessToken, @NonNull Boolean helper, @NonNull String phone) {
         this.name = name;
-        this.id = id;
+        this.accessToken = accessToken;
+        this.helper = helper;
         this.phone = phone;
     }
 
+    @NonNull
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(@NonNull String name) {
         this.name = name;
     }
 
-    public String getId() {
-        return id;
+    @NonNull
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setAccessToken(@NonNull String accessToken) {
+        this.accessToken = accessToken;
     }
 
+    @NonNull
+    public Boolean getHelper() {
+        return helper;
+    }
+
+    public void setHelper(@NonNull Boolean helper) {
+        this.helper = helper;
+    }
+
+    @NonNull
     public String getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(@NonNull String phone) {
         this.phone = phone;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 }

@@ -7,15 +7,18 @@ import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.ContentLoadingProgressBar;
 
 import com.booreum.CustomToolbar.CustomAppCompatForToolbar;
 import com.booreum.booreum.R;
-import com.booreum.constant.HideKeyboard;
+import com.booreum.Constant.HideKeyboard;
 import com.booreum.model.User;
 
 public class SignUpActivity extends CustomAppCompatForToolbar implements I_SignUpView, View.OnClickListener, View.OnFocusChangeListener, View.OnTouchListener {
@@ -23,6 +26,7 @@ public class SignUpActivity extends CustomAppCompatForToolbar implements I_SignU
     private EditText name, id, pw, pw_check, phone;
     private ConstraintLayout parentLayout;
     private Button button;
+    private ProgressBar progressBar;
     private I_SignUpPresenter i_signUpPresenter;
 
     @Override
@@ -43,6 +47,7 @@ public class SignUpActivity extends CustomAppCompatForToolbar implements I_SignU
 
     private void initView() {
         getHomeAsUpActionBar(); //for Toolbar
+
         name = (EditText) findViewById(R.id.signup_name_et);
         id = (EditText) findViewById(R.id.signup_id_et);
         pw = (EditText) findViewById(R.id.signup_pw_et);
@@ -50,6 +55,7 @@ public class SignUpActivity extends CustomAppCompatForToolbar implements I_SignU
         phone = (EditText) findViewById(R.id.signup_phone_et);
         parentLayout = (ConstraintLayout) findViewById(R.id.signup_parentLayout);
         button = (Button) findViewById(R.id.signup_button);
+        progressBar = (ProgressBar) findViewById(R.id.signup_progressbar);
 
         //init View
         pw.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -75,11 +81,11 @@ public class SignUpActivity extends CustomAppCompatForToolbar implements I_SignU
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.signup_button:
-                User user = new User(id.getText().toString()
-                        ,name.getText().toString(),phone.getText().toString());
+                User user = new User(name.getText().toString(), "NULL",
+                        false, phone.getText().toString());
                 String pwStr = pw.getText().toString();
                 String pwCheckStr = pw_check.getText().toString();
-                i_signUpPresenter.doSignUp(user, pwStr, pwCheckStr);
+                i_signUpPresenter.doSignUp(user, id.getText().toString(), pwStr, pwCheckStr);
                 break;
             default:
 
@@ -123,6 +129,23 @@ public class SignUpActivity extends CustomAppCompatForToolbar implements I_SignU
         //HideKeyboard.hideKeyBoard(this, pw);
         //HideKeyboard.hideKeyBoard(this, pw_check);
         //HideKeyboard.hideKeyBoard(this, phone);
+    }
+
+    @Override
+    public void onSocialProgressBarVisibility(int visibility) {
+        resetView();
+        switch (visibility){
+            case View.VISIBLE :
+                button.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(visibility);
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                break;
+            case View.INVISIBLE :
+                button.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(visibility);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        }
     }
 
     @Override

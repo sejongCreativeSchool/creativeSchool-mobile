@@ -13,6 +13,8 @@ import com.booreum.CustomToolbar.CustomAppCompatForToolbar;
 import com.booreum.booreum.R;
 import com.booreum.adapter.MainAdapter;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends CustomAppCompatForToolbar implements I_MainView, TabLayout.BaseOnTabSelectedListener {
 
@@ -35,6 +37,8 @@ public class MainActivity extends CustomAppCompatForToolbar implements I_MainVie
     private void initView() {
         tabLayout = (TabLayout) findViewById(R.id.main_tapLayout);
         viewPager = (ViewPager) findViewById(R.id.main_viewpager);
+
+        tabLayout.setElevation(10);
 
         tabLayout.addTab(tabLayout.newTab().setCustomView(createTabView(R.drawable.ic_launcher_background)));
         tabLayout.addTab(tabLayout.newTab().setCustomView(createTabView(R.drawable.ic_launcher_background)));
