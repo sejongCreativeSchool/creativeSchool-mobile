@@ -16,6 +16,7 @@ import com.booreum.Constant.GitHubService;
 import com.booreum.Constant.GitHubServiceProvider;
 import com.booreum.Constant.PreferenceManager;
 import com.booreum.model.User;
+import com.booreum.model.UserResult;
 import com.booreum.view.main.MainActivity;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -30,6 +31,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.gson.JsonObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -116,35 +118,34 @@ public class LoginPresenter implements I_LoginPresenter, GoogleApiClient.OnConne
         Log.d("LoginPresenter", "getCurrentUser.Getid : "+mAuth.getCurrentUser().getUid());
 
         GitHubServiceProvider.retrofit.loadUser(mAuth.getCurrentUser().getUid())
-                .enqueue(new Callback<User>() {
+                .enqueue(new Callback<UserResult>() {
                     @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
+                    public void onResponse(Call<UserResult> call, Response<UserResult> response) {
                         Log.d("LoginPresenter", "load user success");
                         Log.d("LoginPresenter", "response : " + response.body());
 
-                        User user = response.body();
+                        //User user = response.body().users.get(0);
 
                         Log.d("LoginPresenter", "response : " + response.isSuccessful());
                         Log.d("LoginPresenter", "response : " + response.errorBody());
                         Log.d("LoginPresenter", "response : " + response.raw());
                         Log.d("LoginPresenter", "response : " + response.body().toString());
-                        Log.d("LoginPresenter", "response : " + response.message());
+                        Log.d("LoginPresenter", "response : " + response.body().data.get(0).getName());
+                        Log.d("LoginPresenter", "response : " + response.body().status);
                         Log.d("LoginPresenter", "response : " + response.code());
 
-                        Log.d("LoginPresenter", "User : " + user.getName() + user.getPhone() + user.getAccessToken());
-                        Log.d("LoginPresenter", "response : " + response.body().getName() + response.body().getPhone() + response.body().getAccessToken());
-                        Intent intent = new Intent(context, MainActivity.class);
-                        i_loginView.onLoginResult(true, intent);
+                        //Log.d("LoginPresenter", "User : " + user.getName() + user.getPhone() + user.getAccessToken());
+                        //Log.d("LoginPresenter", "response : " + response.body().users.get(0).getName() + response.body().users.get(0).getPhone() + response.body().users.get(0).getAccessToken());
+                        //Intent intent = new Intent(context, MainActivity.class);
+                        //i_loginView.onLoginResult(true, intent);
                     }
 
                     @Override
-                    public void onFailure(Call<User> call, Throwable t) {
+                    public void onFailure(Call<UserResult> call, Throwable t) {
                         Log.d("LoginPresenter", "load user failed");
                         Log.w("LoginPresenter", "response : ", t.getCause());
                     }
                 });
-
-
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.booreum.Constant;
 
 import com.booreum.model.User;
+import com.booreum.model.UserResult;
+import com.google.gson.JsonObject;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -15,9 +17,17 @@ public interface GitHubService {
     @GET("/v1/errand")
     Call<User> listErrand();
 
-    //유저 불러오기
+    //개별유저 불러오기
     @GET("/v1/auth/user/{accessToken}")
-    Call<User> loadUser(@Path("accessToken") String accessToken);
+    Call<UserResult> loadUser(@Path("accessToken") String accessToken);
+
+    //개별유저 불러오기
+    @GET("/v1/auth/user/{accessToken}")
+    Call<JsonObject> loadTestUser(@Path("accessToken") String accessToken);
+
+    //유저 불러오기
+    @GET("/v1/auth/users")
+    Call<UserResult> loadUsers();
 
     //유저 추가하기
     @POST("/v1/auth/user")

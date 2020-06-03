@@ -27,13 +27,13 @@
     <com.google.android.material.tabs.TabLayout
         android:elevation="15dp"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:tabMode="fixed"
         app:tabTextColor="#000000"
         app:tabSelectedTextColor="@color/colorPrimary"
         app:tabIndicatorColor="@color/colorPrimary"
-        android:background="@drawable/border_tap_layout_blue"
+        android:background="@drawable/tab_layout_blue"
         app:tabRippleColor="@color/needer_blue_dark_selected"
         app:tabUnboundedRipple="true"
         android:id="@+id/main_tapLayout"/>
