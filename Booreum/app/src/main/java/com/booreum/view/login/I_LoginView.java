@@ -3,7 +3,7 @@ package com.booreum.view.login;
 import android.content.Intent;
 
 public interface I_LoginView {
-    public void onLoginResult(Boolean result);
+    public void onLoginResult(Boolean result, Intent intent);
     public void onSocialLoginResult(Intent intent);
     public void onSignUp();
     public void onLoginFacebook();

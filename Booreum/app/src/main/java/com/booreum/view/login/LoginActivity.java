@@ -142,12 +142,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    public void onLoginResult(Boolean result) {
+    public void onLoginResult(Boolean result, Intent intent) {
         if(result)
         {
             //로그인성공하면
             Log.d("LoginActivity", "로그인성공");
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         }
@@ -204,7 +203,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case View.GONE : case View.INVISIBLE :
                 loginButton.setVisibility(View.VISIBLE);
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 break;
         }
     }

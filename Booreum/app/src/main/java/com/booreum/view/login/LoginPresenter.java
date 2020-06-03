@@ -76,8 +76,6 @@ public class LoginPresenter implements I_LoginPresenter, GoogleApiClient.OnConne
                             /**
                              * 통신통해서 유저 정보 가져오기
                              */
-
-                            i_loginView.onSocialLoginResult(intent);
                         }
                         else {
                             Toast.makeText(context, "로그인실패",Toast.LENGTH_SHORT).show();
@@ -97,17 +95,13 @@ public class LoginPresenter implements I_LoginPresenter, GoogleApiClient.OnConne
                             Boolean result;
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
-                                result = true;
-                                /**
-                                 * 통신통해서 유저 정보 가져오기
-                                 */
-                                i_loginView.onLoginResult(result);
                                 retrofit(RETROFIT_LOAD_USER);
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w("LoginPresent", "signInWithEmail:failure", task.getException());
                                 result = false;
-                                i_loginView.onLoginResult(result);
+
+                                i_loginView.onLoginResult(result, null);
                                 i_loginView.onProgressBarVisibility(View.GONE);
                             }
                         }
@@ -117,6 +111,40 @@ public class LoginPresenter implements I_LoginPresenter, GoogleApiClient.OnConne
     void retrofit(int retrofit_code)
     {
         //개별유저 불러오기
+        //레트로핏통신 실패서 로그인다시
+        Log.d("LoginPresenter", "in LoginPresenter retrofit func.");
+        Log.d("LoginPresenter", "getCurrentUser.Getid : "+mAuth.getCurrentUser().getUid());
+
+        GitHubServiceProvider.retrofit.loadUser(mAuth.getCurrentUser().getUid())
+                .enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        Log.d("LoginPresenter", "load user success");
+                        Log.d("LoginPresenter", "response : " + response.body());
+
+                        User user = response.body();
+
+                        Log.d("LoginPresenter", "response : " + response.isSuccessful());
+                        Log.d("LoginPresenter", "response : " + response.errorBody());
+                        Log.d("LoginPresenter", "response : " + response.raw());
+                        Log.d("LoginPresenter", "response : " + response.body());
+                        Log.d("LoginPresenter", "response : " + response.message());
+                        Log.d("LoginPresenter", "response : " + response.code());
+
+                        Log.d("LoginPresenter", "User : " + user.getName() + user.getPhone() + user.getAccessToken());
+                        Log.d("LoginPresenter", "response : " + response.body().getName() + response.body().getPhone() + response.body().getAccessToken());
+                        Intent intent = new Intent(context, MainActivity.class);
+                        i_loginView.onLoginResult(true, intent);
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        Log.d("LoginPresenter", "load user failed");
+                        Log.w("LoginPresenter", "response : ", t.getCause());
+                    }
+                });
+
+
     }
 
     @Override
@@ -165,6 +193,10 @@ public class LoginPresenter implements I_LoginPresenter, GoogleApiClient.OnConne
 
         Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient); // 구글에서 만든 구글 인증하는 곳
         i_loginView.onLoginGoogle(intent);
+
+        /**
+         * 구글로그인시 서버로 데이터 전송 혹은 불러오기
+         */
     }
 
     @Override
