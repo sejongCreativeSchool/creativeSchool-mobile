@@ -203,6 +203,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case View.GONE : case View.INVISIBLE :
                 loginButton.setVisibility(View.VISIBLE);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 break;
         }
     }

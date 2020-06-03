@@ -9,24 +9,19 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    @SerializedName("name")
+
     @NonNull
     private String name;
 
-    @SerializedName("accessToken")
     @NonNull
     private String accessToken;
 
-    @SerializedName("helper")
     @NonNull
     private Boolean helper;
 
-    @SerializedName("phone")
     @NonNull
     private String phone;
 
-    @SerializedName("department")
-    @Expose
     private String department;
 
     public User(@NonNull String name, @NonNull String accessToken, @NonNull Boolean helper, @NonNull String phone) {

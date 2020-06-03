@@ -127,7 +127,7 @@ public class LoginPresenter implements I_LoginPresenter, GoogleApiClient.OnConne
                         Log.d("LoginPresenter", "response : " + response.isSuccessful());
                         Log.d("LoginPresenter", "response : " + response.errorBody());
                         Log.d("LoginPresenter", "response : " + response.raw());
-                        Log.d("LoginPresenter", "response : " + response.body());
+                        Log.d("LoginPresenter", "response : " + response.body().toString());
                         Log.d("LoginPresenter", "response : " + response.message());
                         Log.d("LoginPresenter", "response : " + response.code());
 

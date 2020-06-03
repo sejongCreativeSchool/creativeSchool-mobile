@@ -46,7 +46,7 @@ public class ChatFragment extends Fragment implements I_ChatView{
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        RecyclerDecoration spaceDaoration = new RecyclerDecoration(20);
+        RecyclerDecoration spaceDaoration = new RecyclerDecoration(5);
         recyclerView.addItemDecoration(spaceDaoration);
 
         chatLists = new ArrayList<ChatList>();

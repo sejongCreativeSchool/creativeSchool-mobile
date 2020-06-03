@@ -44,7 +44,7 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ChatListAdapter.ViewHolder holder, int position) {
-        Glide.with(holder.itemView).load(chatLists.get(position).getPhotoUrl()).into(holder.profile);
+        //Glide.with(holder.itemView).load(chatLists.get(position).getPhotoUrl()).into(holder.profile);
         holder.name.setText(chatLists.get(position).getName());
         holder.lastChat.setText(chatLists.get(position).getLastChat());
         holder.button.setOnClickListener(new View.OnClickListener() {
