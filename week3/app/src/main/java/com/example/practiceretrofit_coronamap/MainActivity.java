@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements TMapGpsManager.on
                 .baseUrl("https://8oi9s0nnth.apigw.ntruss.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
+/*
         MaskApi maskApi = retrofit.create(MaskApi.class);
         Log.d("loc","enter fetchStoreSale");
 
@@ -117,6 +117,8 @@ public class MainActivity extends AppCompatActivity implements TMapGpsManager.on
                 Log.d("loc","enter fetch onResponse fail");
             }
         });
+
+ */
 
         Log.d("loc","enter fetchStoreSale2");
     }

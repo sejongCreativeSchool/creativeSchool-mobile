@@ -2,7 +2,7 @@ package com.booreum.model;
 
 import java.util.List;
 
-public class UserResult {
+public class UserResults {
     public int status;
-    public User data;
+    public List<User> data;
 }

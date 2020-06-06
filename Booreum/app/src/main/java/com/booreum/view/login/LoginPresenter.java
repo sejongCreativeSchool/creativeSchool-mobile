@@ -17,6 +17,7 @@ import com.booreum.Constant.GitHubServiceProvider;
 import com.booreum.Constant.PreferenceManager;
 import com.booreum.model.User;
 import com.booreum.model.UserResult;
+import com.booreum.model.UserResults;
 import com.booreum.view.main.MainActivity;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -29,9 +30,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.gson.JsonObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,7 +43,7 @@ public class LoginPresenter implements I_LoginPresenter, GoogleApiClient.OnConne
     static final int GOOGLE_LOGIN = 2; //구글로그인 결과 코드
 
     final static int RETROFIT_CREATE_USER = 100; // 유저 회원가입 레트로핏 코드
-    final static int RETROFIT_LOAD_USER = 200; // 유저 회원가입 레트로핏 코드
+    final static int RETROFIT_LOAD_USER = 200; // 유저 불러오기 레트로핏 코드
 
     Context context;
     I_LoginView i_loginView;
@@ -122,28 +121,21 @@ public class LoginPresenter implements I_LoginPresenter, GoogleApiClient.OnConne
                     @Override
                     public void onResponse(Call<UserResult> call, Response<UserResult> response) {
                         Log.d("LoginPresenter", "load user success");
-                        Log.d("LoginPresenter", "response : " + response.body());
-
-                        //User user = response.body().users.get(0);
-
-                        Log.d("LoginPresenter", "response : " + response.isSuccessful());
-                        Log.d("LoginPresenter", "response : " + response.errorBody());
-                        Log.d("LoginPresenter", "response : " + response.raw());
-                        Log.d("LoginPresenter", "response : " + response.body().toString());
-                        Log.d("LoginPresenter", "response : " + response.body().data.get(0).getName());
+                        Log.d("LoginPresenter", "response : " + response.body().data.getName());
                         Log.d("LoginPresenter", "response : " + response.body().status);
-                        Log.d("LoginPresenter", "response : " + response.code());
 
-                        //Log.d("LoginPresenter", "User : " + user.getName() + user.getPhone() + user.getAccessToken());
-                        //Log.d("LoginPresenter", "response : " + response.body().users.get(0).getName() + response.body().users.get(0).getPhone() + response.body().users.get(0).getAccessToken());
-                        //Intent intent = new Intent(context, MainActivity.class);
-                        //i_loginView.onLoginResult(true, intent);
+                        Boolean result = true;
+                        Intent intent = new Intent(context, MainActivity.class);
+                        i_loginView.onLoginResult(result, intent);
                     }
 
                     @Override
                     public void onFailure(Call<UserResult> call, Throwable t) {
                         Log.d("LoginPresenter", "load user failed");
                         Log.w("LoginPresenter", "response : ", t.getCause());
+                        i_loginView.onProgressBarVisibility(View.GONE);
+                        mAuth.signOut();
+                        Toast.makeText(context, "서버와 연결할 수 없습니다", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
