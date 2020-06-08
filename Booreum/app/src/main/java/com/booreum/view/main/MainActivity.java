@@ -3,6 +3,7 @@ package com.booreum.view.main;
 import androidx.appcompat.app.ActionBar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import com.booreum.Custom.Toolbar.CustomAppCompatForToolbar;
 import com.booreum.booreum.R;
 import com.booreum.adapter.MainAdapter;
+import com.booreum.model.User;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends CustomAppCompatForToolbar implements I_MainView, TabLayout.BaseOnTabSelectedListener {
@@ -20,19 +22,25 @@ public class MainActivity extends CustomAppCompatForToolbar implements I_MainVie
     private ViewPager viewPager;
     private MainAdapter mAdapter;
     private I_MainPresenter mainPresenter;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mainPresenter = new MainPresenter(this);
         initView();
         setListener();
         ActionBar actionBar = getDefaultActionBar();
     }
 
     private void initView() {
+        Intent intent = getIntent();
+        user = (User) intent.getSerializableExtra(User.CURRNET_USER_INTENT_CODE);
+        Log.d("LoginPresenter", "in main user : " + user.getName());
+
+        mainPresenter = new MainPresenter(this);
+
         tabLayout = (TabLayout) findViewById(R.id.main_tapLayout);
         viewPager = (ViewPager) findViewById(R.id.main_viewpager);
 

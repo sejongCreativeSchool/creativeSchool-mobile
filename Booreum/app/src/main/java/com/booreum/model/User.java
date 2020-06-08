@@ -10,6 +10,8 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
+    public final static String CURRNET_USER_INTENT_CODE = "currentUser";
+
     @NonNull
     private String name;
 

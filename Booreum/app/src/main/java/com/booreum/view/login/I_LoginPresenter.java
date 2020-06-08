@@ -16,6 +16,6 @@ public interface I_LoginPresenter {
     void doLoginKakaoTalk();
     void doLoginGoogle();
     void onActivityResult(int requestCode, int resultCode, @Nullable Intent data);
-    void resultLogin(int sns, GoogleSignInAccount account);
+    void resultLogin(GoogleSignInAccount account);
     void setProgressBarVisibility(int visibility);
 }

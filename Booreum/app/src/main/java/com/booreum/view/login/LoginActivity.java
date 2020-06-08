@@ -26,6 +26,8 @@ import com.booreum.Constant.CheckValid;
 import com.booreum.Constant.HideKeyboard;
 import com.booreum.view.main.MainActivity;
 import com.booreum.view.signup.SignUpActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener, I_LoginView {
 
@@ -75,6 +77,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         login_google.setOnClickListener(this);
 
 
+        //init Presenter
+        loginPresenter = new LoginPresenter(this, this);
+
+        //자동로그인 체크박스 확인
+        //로그인 프레젠터 뒤에 항상 올 것.
+        autoLoginCheckBox.setChecked(loginPresenter.getCheckBoxChecked());
 
         /**
          * This is for clearFocus when you touch not edittextView
@@ -88,8 +96,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        //init Presenter
-        loginPresenter = new LoginPresenter(this, this);
+        //자동로그인 확인
+        if(autoLoginCheckBox.isChecked()){
+            loginPresenter.doAutoLoginCheck();
+        }
 
     }
 
