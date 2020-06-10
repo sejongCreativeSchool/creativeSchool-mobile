@@ -11,7 +11,7 @@
                 android:topRightRadius="12dp" />
             <stroke
                 android:width="2dp"
-                android:color="@color/helper_red_dark" />
+                android:color="?attr/helper_red_dark" />
         </shape>
 
     </item>

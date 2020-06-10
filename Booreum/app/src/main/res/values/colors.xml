@@ -8,10 +8,14 @@
     <color name="helper_red_dark_selected">#c20009</color>
     <color name="helper_red_light">#ff7f8b</color>
     <color name="helper_red_tapLayout">#ffa9b2</color>
+    <color name="helper_red_setting_layer_1">#ffd4d8</color>
+    <color name="helper_red_setting_layer_2">#ffeaec</color>
     <color name="needer_blue_dark">#0105ac</color>
     <color name="needer_blue_dark_selected">#000168</color>
     <color name="needer_blue_light">#484bc3</color>
     <color name="needer_blue_tapLayout">#a3a5e1</color>
+    <color name="needer_blue_setting_layer_1">#d1d2f0</color>
+    <color name="needer_blue_setting_layer_2">#e8e8f8</color>
 
     <color name="booreum_default_color">#757575</color>
 

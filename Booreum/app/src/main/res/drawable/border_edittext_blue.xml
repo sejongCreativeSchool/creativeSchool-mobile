@@ -11,7 +11,7 @@
                 android:topRightRadius="12dp" />
             <stroke
                 android:width="2dp"
-                android:color="@color/needer_blue_dark" />
+                android:color="?attr/needer_blue_dark" />
         </shape>
 
     </item>

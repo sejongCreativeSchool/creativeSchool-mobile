@@ -1,11 +1,13 @@
 package com.booreum.Custom.Toolbar;
 
+import android.graphics.drawable.Drawable;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.booreum.Constant.PreferenceManager;
 import com.booreum.booreum.R;
 
 public abstract class CustomAppCompatForToolbar extends AppCompatActivity {
@@ -14,11 +16,19 @@ public abstract class CustomAppCompatForToolbar extends AppCompatActivity {
 
     protected abstract void linkToolbar();
 
+    protected void setToolbarImage(){
+        toolbar.setBackgroundResource(R.drawable.toolbar_red);
+    }
+
     protected ActionBar getDefaultActionBar(){
         linkToolbar();
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true); // for customizing
         actionBar.setDisplayShowTitleEnabled(false);
+        if(PreferenceManager.isHelper(this))
+        {
+           actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.toolbar_red));
+        }
         return actionBar;
     }
 

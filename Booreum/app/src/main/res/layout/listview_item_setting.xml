@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="63dp"
+    android:background="?attr/selectableItemBackground">
+
+    <TextView
+        android:text="error"
+        android:textSize="18dp"
+        android:textColor="@android:color/black"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="47dp"
+        android:id="@+id/listview_item_textview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

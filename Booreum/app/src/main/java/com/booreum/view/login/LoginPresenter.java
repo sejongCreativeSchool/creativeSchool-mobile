@@ -196,19 +196,37 @@ public class LoginPresenter implements I_LoginPresenter, GoogleApiClient.OnConne
 
     @Override
     public boolean getCheckBoxChecked() {
-        return PreferenceManager.getBoolean(context, PreferenceManager.AUTO_LOGIN);
+        return PreferenceManager.getBoolean(context, PreferenceManager.KEY_AUTO_LOGIN);
     }
 
     @Override
     public void setCheckBoxChecked(Boolean isChecked) {
-        PreferenceManager.setBoolean(context, PreferenceManager.AUTO_LOGIN, isChecked);
+        PreferenceManager.setBoolean(context, PreferenceManager.KEY_AUTO_LOGIN, isChecked);
     }
 
     @Override
     public void doAutoLoginCheck() {
+        i_loginView.onSocialProgressBarVisibility(View.VISIBLE);
         FirebaseUser cUser = mAuth.getCurrentUser();
-        User user = new User(cUser.getDisplayName(), cUser.getUid(), false, cUser.getPhoneNumber());
-        isSuccess(user);
+        if(cUser == null){
+            return;
+        }
+        GitHubServiceProvider.retrofit.loadUser(cUser.getUid())
+                .enqueue(new Callback<UserResult>() {
+                    @Override
+                    public void onResponse(Call<UserResult> call, Response<UserResult> response) {
+                        if(!response.isSuccessful()){
+                            isFailed();
+                        }
+                        User user = response.body().data;
+                        isSuccess(user);
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserResult> call, Throwable t) {
+                        isFailed();
+                    }
+                });
     }
 
     @Override

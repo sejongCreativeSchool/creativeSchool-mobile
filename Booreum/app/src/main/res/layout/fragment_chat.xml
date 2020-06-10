@@ -9,11 +9,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="84dp"
+        android:layout_marginBottom="56dp"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/view_curtain"/>
+
 
 </RelativeLayout>

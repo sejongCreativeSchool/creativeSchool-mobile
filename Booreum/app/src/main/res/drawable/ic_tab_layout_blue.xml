@@ -12,6 +12,6 @@
         android:fillAlpha="0.4"/>
     <path
         android:pathData="M1350,56.8h-1350v224h1440v-134A90,90 0,0 0,1350 56.8Z"
-        android:fillColor="#a3a5e1"/>
+        android:fillColor="?attr/needer_blue_tapLayout"/>
   </group>
 </vector>

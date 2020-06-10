@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppTheme_needer"
         android:usesCleartextTraffic="true">
         <activity
             android:name="com.booreum.view.signup.SignUpActivity"
@@ -18,15 +18,16 @@
 
         </activity>
         <activity
-            android:name="com.booreum.view.login.LoginActivity"
-            android:theme="@style/LoginTheme">
+            android:name="com.booreum.view.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.booreum.view.main.MainActivity">
+        <activity
+            android:name="com.booreum.view.main.MainActivity"
+            android:windowSoftInputMode="adjustResize">
 
         </activity>
     </application>

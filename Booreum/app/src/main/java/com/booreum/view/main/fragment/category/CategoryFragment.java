@@ -5,10 +5,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.booreum.booreum.R;
 
@@ -29,7 +32,8 @@ public class CategoryFragment extends Fragment implements I_CategoryFrag, View.O
             R.id.category_instead,
             R.id.category_ect
     };
-    private ImageButton imageButton[];
+    private ImageButton imageButton[], search;
+    private EditText editText;
     private I_CategoryPresenter i_categoryPresenter;
 
     @Override
@@ -49,6 +53,8 @@ public class CategoryFragment extends Fragment implements I_CategoryFrag, View.O
             imageButton[i] = view.findViewById(imageButtonID[i]);
             imageButton[i].setOnClickListener(this);
         }
+        search = (ImageButton)view.findViewById(R.id.search_but);
+        editText = (EditText)view.findViewById(R.id.search_edit_text);
     }
 
     @Override
@@ -59,6 +65,13 @@ public class CategoryFragment extends Fragment implements I_CategoryFrag, View.O
 
     @Override
     public void onClick(View v) {
-        i_categoryPresenter.selectErrandIntent(v);
+        Log.d("Category","v.id : " + v.getId());
+        switch (v.getId()){
+            case R.id.search_but: case R.id.search_edit_text :
+                Toast.makeText(view.getContext(), "카테고리에서 골라주세요", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                i_categoryPresenter.selectErrandIntent(v);
+        }
     }
 }

@@ -6,7 +6,7 @@
             <corners
                 android:bottomLeftRadius="12dp"
                 android:topRightRadius="12dp" />
-            <solid android:color="@color/needer_blue_dark_selected" />
+            <solid android:color="?attr/needer_blue_dark_selected" />
         </shape>
     </item>
 
@@ -16,7 +16,7 @@
         <corners
             android:bottomLeftRadius="12dp"
             android:topRightRadius="12dp" />
-        <solid android:color="@color/needer_blue_dark" />
+        <solid android:color="?attr/needer_blue_dark" />
     </shape>
     </item>
 

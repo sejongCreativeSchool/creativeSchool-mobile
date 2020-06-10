@@ -24,7 +24,7 @@
         <Button
             android:id="@+id/chat_frag_button"
             android:layout_width="50dp"
-            android:layout_height="25dp"
+            android:layout_height="wrap_content"
             android:text="진행 중"
             android:gravity="center"
             android:background="@drawable/button_custom_blue_small"
@@ -58,7 +58,7 @@
             android:layout_marginLeft="16dp"
             android:text="1"
             android:textSize="10dp"
-            android:textColor="#ffa9b2"
+            android:textColor="?attr/helper_red_light"
             app:layout_constraintStart_toEndOf="@id/chat_frag_profile"
             app:layout_constraintTop_toBottomOf="@id/chat_frag_name"
             app:layout_constraintBottom_toBottomOf="parent"

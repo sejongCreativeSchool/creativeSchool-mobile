@@ -31,7 +31,7 @@ public class MainAdapter extends FragmentStatePagerAdapter {
                 ChatFragment chatFragment = new ChatFragment();
                 return chatFragment;
             case 2:
-                SettingFragment settingFragment = new SettingFragment();
+                SettingFragment settingFragment = new SettingFragment(context);
                 return settingFragment;
             default:
                 return null;

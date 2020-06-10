@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.booreum.Constant.SetTheme;
 import com.booreum.Custom.Toolbar.CustomAppCompatForToolbar;
 import com.booreum.booreum.R;
 import com.booreum.Constant.HideKeyboard;
@@ -31,6 +32,7 @@ public class SignUpActivity extends CustomAppCompatForToolbar implements I_SignU
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SetTheme.setTheme(this);
         setContentView(R.layout.activity_sign_up);
 
         initView();
@@ -81,7 +83,7 @@ public class SignUpActivity extends CustomAppCompatForToolbar implements I_SignU
         switch (v.getId()){
             case R.id.signup_button:
                 User user = new User(name.getText().toString(), "NULL",
-                        false, phone.getText().toString());
+                        true, phone.getText().toString());
                 String pwStr = pw.getText().toString();
                 String pwCheckStr = pw_check.getText().toString();
                 i_signUpPresenter.doSignUp(user, id.getText().toString(), pwStr, pwCheckStr);

@@ -1,5 +1,6 @@
 package com.booreum.view.main;
 
+import android.graphics.Color;
 import android.view.View;
 
 public interface I_MainView {

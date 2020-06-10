@@ -14,7 +14,11 @@ import android.view.ViewGroup;
 import com.booreum.Custom.RecyclerDecoration;
 import com.booreum.adapter.ChatListAdapter;
 import com.booreum.booreum.R;
+import com.booreum.model.ChatData;
 import com.booreum.model.ChatList;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -22,11 +26,10 @@ public class ChatFragment extends Fragment implements I_ChatView{
 
     private View view;
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<ChatList> chatLists;
+    private I_ChatPresenter i_chatPresenter;
 
-    ChatList chatList[] = new ChatList[100]; //test
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +44,15 @@ public class ChatFragment extends Fragment implements I_ChatView{
 
     private void initView()
     {
+        /*
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference();
+        reference.child(FirebaseAuth.getInstance().getUid()).child("5eo2IuITfzLvum3clERFqDQk5ws1").setValue(new ChatData("hi","you"));
+        reference.child("user").child(FirebaseAuth.getInstance().getUid()).push().setValue("5eo2IuITfzLvum3clERFqDQk5ws1");
+        */
+
+
         recyclerView = view.findViewById(R.id.chat_recycler);
         recyclerView.setHasFixedSize(true); // 성능강화
         layoutManager = new LinearLayoutManager(getContext());
@@ -49,22 +61,10 @@ public class ChatFragment extends Fragment implements I_ChatView{
         RecyclerDecoration spaceDaoration = new RecyclerDecoration(5);
         recyclerView.addItemDecoration(spaceDaoration);
 
-        chatLists = new ArrayList<ChatList>();
-        setTestArrayList();
-
-        adapter = new ChatListAdapter(chatLists);
-
-        recyclerView.setAdapter(adapter);
+        i_chatPresenter = new ChatPresenter(this,recyclerView);
     }
 
-    private void setTestArrayList()
-    {
 
-        for(int i=0; i< chatList.length; i++){
-            chatList[i] = new ChatList("1", "1", "1", "1");
-            chatLists.add(chatList[i]);
-        }
-    }
 
     @Override
     public void onIntentChatDetail() {

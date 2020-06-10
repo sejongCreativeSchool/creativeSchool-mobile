@@ -21,6 +21,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.booreum.Constant.PreferenceManager;
+import com.booreum.Constant.SetTheme;
 import com.booreum.booreum.R;
 import com.booreum.Constant.CheckValid;
 import com.booreum.Constant.HideKeyboard;
@@ -45,6 +47,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SetTheme.setTheme(this);
+
         setContentView(R.layout.activity_login);
 
         //find View
@@ -95,11 +100,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 return false;
             }
         });
-
-        //자동로그인 확인
-        if(autoLoginCheckBox.isChecked()){
-            loginPresenter.doAutoLoginCheck();
-        }
 
     }
 
@@ -158,6 +158,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //로그인성공하면
             Log.d("LoginActivity", "로그인성공");
             startActivity(intent);
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             finish();
         }
         else {

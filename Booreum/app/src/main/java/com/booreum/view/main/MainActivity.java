@@ -4,12 +4,15 @@ import androidx.appcompat.app.ActionBar;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.booreum.Constant.PreferenceManager;
+import com.booreum.Constant.SetTheme;
 import com.booreum.Custom.Toolbar.CustomAppCompatForToolbar;
 import com.booreum.booreum.R;
 import com.booreum.adapter.MainAdapter;
@@ -18,7 +21,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends CustomAppCompatForToolbar implements I_MainView, TabLayout.BaseOnTabSelectedListener {
 
-    private TabLayout tabLayout;
+    public static TabLayout tabLayout;
     private ViewPager viewPager;
     private MainAdapter mAdapter;
     private I_MainPresenter mainPresenter;
@@ -27,19 +30,20 @@ public class MainActivity extends CustomAppCompatForToolbar implements I_MainVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SetTheme.setTheme(this);
         setContentView(R.layout.activity_main);
 
+        ActionBar actionBar = getDefaultActionBar();
         initView();
         setListener();
-        ActionBar actionBar = getDefaultActionBar();
+
     }
 
     private void initView() {
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra(User.CURRNET_USER_INTENT_CODE);
-        Log.d("LoginPresenter", "in main user : " + user.getName());
 
-        mainPresenter = new MainPresenter(this);
+        mainPresenter = new MainPresenter(this, this);
 
         tabLayout = (TabLayout) findViewById(R.id.main_tapLayout);
         viewPager = (ViewPager) findViewById(R.id.main_viewpager);
@@ -56,6 +60,15 @@ public class MainActivity extends CustomAppCompatForToolbar implements I_MainVie
 
         //init title
         mainPresenter.doTabTitle(viewPager.getCurrentItem());
+
+        setImageTheme();
+    }
+
+    private void setImageTheme() {
+        if(PreferenceManager.isHelper(this))
+        {
+            tabLayout.setBackgroundResource(R.drawable.tab_layout_red);
+        }
     }
 
     private void setListener() {
@@ -81,6 +94,7 @@ public class MainActivity extends CustomAppCompatForToolbar implements I_MainVie
     protected void linkToolbar() {
         toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar.getToolbar());
+
     }
 
 

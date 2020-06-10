@@ -12,28 +12,39 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.booreum.Constant.GitHubServiceProvider;
 import com.booreum.booreum.R;
 import com.booreum.model.ChatList;
+import com.booreum.model.User;
+import com.booreum.model.UserResult;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHolder> {
 
-    private ArrayList<ChatList> chatLists;
+    private ArrayList<String> chatLists;
+    private ArrayList<User> chatListData;
 
-    public ChatListAdapter(ArrayList<ChatList> chatLists) {
+    public ChatListAdapter(ArrayList<String> chatLists) {
         this.chatLists = chatLists;
-        Log.d("chatList","dhkdn");
-        Log.d("chatList","chatlist length : " + chatLists.size());
-
-        Log.d("chatList","chatlist length : " + this.chatLists.size());
+        for(int i=0; i<chatLists.size(); i++){
+            setChatListData(chatLists.get(i));
+        }
     }
 
     @NonNull
     @Override
     public ChatListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_chat_list_item, parent, false);
+        View view;
+        if(chatLists.size() >0)
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_chat_list_item, parent, false);
+        else
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_chat_nothing, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
 
 
@@ -45,8 +56,8 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ChatListAdapter.ViewHolder holder, int position) {
         //Glide.with(holder.itemView).load(chatLists.get(position).getPhotoUrl()).into(holder.profile);
-        holder.name.setText(chatLists.get(position).getName());
-        holder.lastChat.setText(chatLists.get(position).getLastChat());
+        //holder.name.setText(chatListData.get(position).getName());
+        //holder.lastChat.setText(chatListData.get(position).getLastChat());
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,4 +87,24 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
             button = itemView.findViewById(R.id.chat_frag_button);
         }
     }
+
+    void setChatListData(String accessToken){
+        GitHubServiceProvider.retrofit.loadUser(accessToken)
+                .enqueue(new Callback<UserResult>() {
+                    @Override
+                    public void onResponse(Call<UserResult> call, Response<UserResult> response) {
+                        if(!response.isSuccessful()){
+                            return;
+                        }
+                        User user = response.body().data;
+                        chatListData.add(user);
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserResult> call, Throwable t) {
+
+                    }
+                });
+    }
+
 }

@@ -3,4 +3,19 @@
     <declare-styleable name="MyToolBar">
         <attr name="title_text" format="reference|string" />
     </declare-styleable>
+
+
+    <attr name="helper_red_dark" format="color" />
+    <attr name="helper_red_dark_selected" format="color" />
+    <attr name="helper_red_light" format="color" />
+    <attr name="helper_red_tapLayout" format="color" />
+    <attr name="helper_red_setting_layer_1" format="color" />
+    <attr name="helper_red_setting_layer_2" format="color" />
+    <attr name="needer_blue_dark" format="color" />
+    <attr name="needer_blue_dark_selected" format="color" />
+    <attr name="needer_blue_light" format="color" />
+    <attr name="needer_blue_tapLayout" format="color" />
+    <attr name="needer_blue_setting_layer_1" format="color" />
+    <attr name="needer_blue_setting_layer_2" format="color" />
+    <!-- add all colors you need (just color's name) -->
 </resources>
