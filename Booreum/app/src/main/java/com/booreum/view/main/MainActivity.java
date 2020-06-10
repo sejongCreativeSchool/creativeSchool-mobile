@@ -50,9 +50,9 @@ public class MainActivity extends CustomAppCompatForToolbar implements I_MainVie
 
         tabLayout.setElevation(10);
 
-        tabLayout.addTab(tabLayout.newTab().setCustomView(createTabView(R.drawable.ic_launcher_background)));
-        tabLayout.addTab(tabLayout.newTab().setCustomView(createTabView(R.drawable.ic_launcher_background)));
-        tabLayout.addTab(tabLayout.newTab().setCustomView(createTabView(R.drawable.ic_launcher_background)));
+        tabLayout.addTab(tabLayout.newTab().setCustomView(createTabView(R.drawable.tab_button_category)));
+        tabLayout.addTab(tabLayout.newTab().setCustomView(createTabView(R.drawable.tab_button_chat)));
+        tabLayout.addTab(tabLayout.newTab().setCustomView(createTabView(R.drawable.tab_button_setting)));
 
         Log.d("MainActivity_", "count = " + tabLayout.getTabCount());
         mAdapter = new MainAdapter(getSupportFragmentManager(), this, tabLayout.getTabCount());
@@ -76,15 +76,15 @@ public class MainActivity extends CustomAppCompatForToolbar implements I_MainVie
         tabLayout.addOnTabSelectedListener(this);
     }
 
+
     /**특별히 프레젠터가 할 일이 없기에 바로 작성함*/
     @Override
     public View createTabView(int resId) {
-        View tabView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_tab, null);
+        View tabView = LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         ImageView imageView = (ImageView) tabView.findViewById(R.id.custom_tab_icon);
         imageView.setImageResource(resId);
         return tabView;
     }
-
     @Override
     public void setTabTitle(String str) {
         setToolbarTitle(str);

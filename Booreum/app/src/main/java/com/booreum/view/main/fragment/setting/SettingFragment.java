@@ -13,13 +13,17 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.booreum.Constant.PreferenceManager;
 import com.booreum.adapter.ListViewAdapter;
 import com.booreum.booreum.R;
 import com.booreum.view.main.I_MainView;
 import com.booreum.view.main.MainActivity;
+import com.bumptech.glide.Glide;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +37,8 @@ public class SettingFragment extends Fragment implements I_SettingView, View.OnC
     private ListView listView;
     private View view;
     private Button statusChangeButton;
+    private ImageView profile;
+    private TextView status_textview;
 
     public SettingFragment(Context context) {
         this.context = context;
@@ -51,10 +57,17 @@ public class SettingFragment extends Fragment implements I_SettingView, View.OnC
     }
 
     private void initView() {
+
         listView = (ListView)view.findViewById(R.id.setting_listView);
         statusChangeButton = (Button)view.findViewById(R.id.setting_change_status_button);
+        status_textview = (TextView)view.findViewById(R.id.setting_now_status_textView);
+        profile = (ImageView)view.findViewById(R.id.setting_profile);
+        Glide.with(getContext()).load(getResources().getDrawable(R.drawable.icon_needer_profile)).circleCrop().into(profile);
 
-
+        if(PreferenceManager.isHelper(getContext())) {
+            statusChangeButton.setText("니더로 전환");
+            status_textview.setText("헬퍼");
+        }
 
         setListViewAdapter();
         setListenter();
@@ -77,6 +90,7 @@ public class SettingFragment extends Fragment implements I_SettingView, View.OnC
         switch (v.getId()){
             case R.id.setting_change_status_button:
                 i_settingPresenter.doChangeStatus();
+
                 break;
         }
     }

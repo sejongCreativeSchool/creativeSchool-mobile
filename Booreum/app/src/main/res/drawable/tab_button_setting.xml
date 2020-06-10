@@ -1,0 +1,14 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- selector가 눌렸을때 -->
+    <item android:state_selected="true"
+        android:drawable="@drawable/tab_icon_setting_selected">
+    </item>
+
+    <!-- selector가 눌리지 않았을때 -->
+    <item android:state_selected="false"
+        android:drawable="@drawable/tab_icon_setting_select_no">
+    </item>
+
+</selector>
+

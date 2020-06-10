@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
@@ -51,6 +52,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         SetTheme.setTheme(this);
 
         setContentView(R.layout.activity_login);
+        getWindow().setStatusBarColor(Color.WHITE);
 
         //find View
         login_id = (EditText)findViewById(R.id.login_id);

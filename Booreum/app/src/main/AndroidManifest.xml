@@ -12,13 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme_needer"
         android:usesCleartextTraffic="true">
+        <activity android:name="com.booreum.view.register.RegisterActiity" />
         <activity
             android:name="com.booreum.view.signup.SignUpActivity"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
-        <activity
-            android:name="com.booreum.view.login.LoginActivity">
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name="com.booreum.view.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,9 +25,7 @@
         </activity>
         <activity
             android:name="com.booreum.view.main.MainActivity"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

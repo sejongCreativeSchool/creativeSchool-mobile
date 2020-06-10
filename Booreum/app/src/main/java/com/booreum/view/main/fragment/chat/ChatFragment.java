@@ -30,10 +30,12 @@ public class ChatFragment extends Fragment implements I_ChatView{
     private I_ChatPresenter i_chatPresenter;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        /**
+         * 먼저 프레젠트나 메인에서 통신해서 채팅있으면 그대로,없으면 없는 레이아웃으로.
+         */
         view = inflater.inflate(R.layout.fragment_chat, container, false);
 
         initView();
@@ -44,14 +46,6 @@ public class ChatFragment extends Fragment implements I_ChatView{
 
     private void initView()
     {
-        /*
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference();
-        reference.child(FirebaseAuth.getInstance().getUid()).child("5eo2IuITfzLvum3clERFqDQk5ws1").setValue(new ChatData("hi","you"));
-        reference.child("user").child(FirebaseAuth.getInstance().getUid()).push().setValue("5eo2IuITfzLvum3clERFqDQk5ws1");
-        */
-
 
         recyclerView = view.findViewById(R.id.chat_recycler);
         recyclerView.setHasFixedSize(true); // 성능강화
