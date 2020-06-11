@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.booreum.Custom.Toolbar.CustomAppCompatForToolbar;
 import com.booreum.booreum.R;
+import com.pm10.library.CircleIndicator;
 
 public class RegisterActiity extends CustomAppCompatForToolbar implements I_RegisterView {
 
@@ -25,7 +26,8 @@ public class RegisterActiity extends CustomAppCompatForToolbar implements I_Regi
 
     private void initView() {
         viewPager = (ViewPager)findViewById(R.id.regist_viewpager);
-
+        CircleIndicator circleIndicator = (CircleIndicator) findViewById(R.id.circle_indicator);
+        circleIndicator.setupWithViewPager(viewPager);
 
     }
 
