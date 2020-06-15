@@ -30,12 +30,13 @@ public class MainPresenter implements I_MainPresenter{
     public static FirebaseUser authUser;
     public static User user;
 
-    public MainPresenter(Context context, I_MainView mainView) {
+    public MainPresenter(Context context, I_MainView mainView, User user) {
 
         this.i_mainView = mainView;
         this.mAuth = FirebaseAuth.getInstance();
         authUser = mAuth.getCurrentUser();
-        setUser();
+        MainPresenter.user = user;
+        //setUser();
     }
 
     private void setUser() {
@@ -50,6 +51,7 @@ public class MainPresenter implements I_MainPresenter{
 
                         User user1 = response.body().data;
                         MainPresenter.user = user1;
+                        Log.d("Setting", "유저받아옴");
                     }
                     @Override
                     public void onFailure(Call<UserResult> call, Throwable t) {

@@ -9,7 +9,7 @@ import com.booreum.view.main.MainActivity;
 public final class SetTheme {
 
     public static void setTheme(Activity activity){
-        if(PreferenceManager.isHelper(activity))
+        if(PreferenceManager.isHelper(activity) && MainActivity.user.getHelper())
         {
             Log.d("Setting", "activity : " + PreferenceManager.getString(activity,PreferenceManager.KEY_STATUS_CHANGE));
             Log.d("Setting", "in if : if");

@@ -36,9 +36,12 @@ public class ChatFragment extends Fragment implements I_ChatView{
         /**
          * 먼저 프레젠트나 메인에서 통신해서 채팅있으면 그대로,없으면 없는 레이아웃으로.
          */
-        view = inflater.inflate(R.layout.fragment_chat, container, false);
+        i_chatPresenter = new ChatPresenter(this,recyclerView);
 
-        initView();
+
+        view = inflater.inflate(R.layout.custom_chat_nothing, container, false);
+
+        //initView();
 
 
         return view;
@@ -55,7 +58,7 @@ public class ChatFragment extends Fragment implements I_ChatView{
         RecyclerDecoration spaceDaoration = new RecyclerDecoration(5);
         recyclerView.addItemDecoration(spaceDaoration);
 
-        i_chatPresenter = new ChatPresenter(this,recyclerView);
+
     }
 
 

@@ -32,7 +32,7 @@ public class SignUpActivity extends CustomAppCompatForToolbar implements I_SignU
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SetTheme.setTheme(this);
+        //SetTheme.setTheme(this);
         setContentView(R.layout.activity_sign_up);
 
         initView();
@@ -83,7 +83,7 @@ public class SignUpActivity extends CustomAppCompatForToolbar implements I_SignU
         switch (v.getId()){
             case R.id.signup_button:
                 User user = new User(name.getText().toString(), "NULL",
-                        true, phone.getText().toString());
+                        false, phone.getText().toString());
                 String pwStr = pw.getText().toString();
                 String pwCheckStr = pw_check.getText().toString();
                 i_signUpPresenter.doSignUp(user, id.getText().toString(), pwStr, pwCheckStr);

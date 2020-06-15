@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SetTheme.setTheme(this);
+        //SetTheme.setTheme(this);
 
         setContentView(R.layout.activity_login);
         getWindow().setStatusBarColor(Color.WHITE);

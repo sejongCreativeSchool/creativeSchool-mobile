@@ -159,13 +159,20 @@ public class LoginPresenter implements I_LoginPresenter, GoogleApiClient.OnConne
                         }
 
                         User user = response.body().data; // 현재유저데이터 저장
+                        Log.d("Setting", "ddd  : "+mAuth.getCurrentUser().getUid());
+                        Log.d("Setting", "ddd  : "+response.body().data);
 
-                        if(loginType == GOOGLE_LOGIN && user == null){
-                            Log.d("LoginPresenter", "SNS 로그인, 첫 로그인 시 회원가입 후 로그인으로 이동");
-                            FirebaseUser cUser = mAuth.getCurrentUser();
-                            user = new User(cUser.getDisplayName(), cUser.getUid(), false, cUser.getPhoneNumber());
-                            retrofit_snsSignUpAndLogin(user);
-                            return;
+                        if(user ==null){
+                            if(loginType == GOOGLE_LOGIN){
+                                Log.d("LoginPresenter", "SNS 로그인, 첫 로그인 시 회원가입 후 로그인으로 이동");
+                                FirebaseUser cUser = mAuth.getCurrentUser();
+                                user = new User(cUser.getDisplayName(), cUser.getUid(), false, cUser.getPhoneNumber());
+                                retrofit_snsSignUpAndLogin(user);
+                                return;
+                            }
+                            else{
+                                Toast.makeText(context, "로그인 오류입니다. 관리자에게 문의하세요", Toast.LENGTH_SHORT).show();
+                            }
                         }
 
                         isSuccess(user);

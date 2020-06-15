@@ -25,11 +25,15 @@ public class MainActivity extends CustomAppCompatForToolbar implements I_MainVie
     private ViewPager viewPager;
     private MainAdapter mAdapter;
     private I_MainPresenter mainPresenter;
-    private User user;
+    public static User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+        user = (User) intent.getSerializableExtra(User.CURRNET_USER_INTENT_CODE);
+
         SetTheme.setTheme(this);
         setContentView(R.layout.activity_main);
 
@@ -43,7 +47,7 @@ public class MainActivity extends CustomAppCompatForToolbar implements I_MainVie
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra(User.CURRNET_USER_INTENT_CODE);
 
-        mainPresenter = new MainPresenter(this, this);
+        mainPresenter = new MainPresenter(this, this, user);
 
         tabLayout = (TabLayout) findViewById(R.id.main_tapLayout);
         viewPager = (ViewPager) findViewById(R.id.main_viewpager);
