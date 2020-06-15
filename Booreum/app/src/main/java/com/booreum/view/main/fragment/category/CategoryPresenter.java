@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.booreum.booreum.R;
+import com.booreum.view.errandset.ErrandSetActivity;
 import com.booreum.view.login.LoginActivity;
 
 public class CategoryPresenter implements I_CategoryPresenter {
@@ -24,37 +25,31 @@ public class CategoryPresenter implements I_CategoryPresenter {
     @Override
     public void selectErrandIntent(View v) {
         Intent intent;
+        intent = new Intent(context.getApplicationContext(), ErrandSetActivity.class);
         switch (v.getId()){
             case R.id.category_bring:
-                intent = new Intent(context.getApplicationContext(), LoginActivity.class);
+
                 intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_BRING);
                 break;
             case R.id.category_buy:
-                intent = new Intent(context.getApplicationContext(), LoginActivity.class);
                 intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_BUY);
                 break;
             case R.id.category_deliver:
-                intent = new Intent(context.getApplicationContext(), LoginActivity.class);
                 intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_DELIEVER);
                 break;
             case R.id.category_submit:
-                intent = new Intent(context.getApplicationContext(), LoginActivity.class);
                 intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_SUBMIT);
                 break;
             case R.id.category_print:
-                intent = new Intent(context.getApplicationContext(), LoginActivity.class);
                 intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_PRINT);
                 break;
             case R.id.category_together:
-                intent = new Intent(context.getApplicationContext(), LoginActivity.class);
                 intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_TOGETHER);
                 break;
             case R.id.category_instead:
-                intent = new Intent(context.getApplicationContext(), LoginActivity.class);
                 intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_INSTEAD);
                 break;
             case R.id.category_ect:
-                intent = new Intent(context.getApplicationContext(), LoginActivity.class);
                 intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_ECT);
                 break;
             default:
