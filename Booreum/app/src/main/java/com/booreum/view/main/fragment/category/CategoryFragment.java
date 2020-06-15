@@ -20,6 +20,17 @@ import com.booreum.booreum.R;
  */
 public class CategoryFragment extends Fragment implements I_CategoryFrag, View.OnClickListener {
 
+    public final static String  CATEGORY_NUMBERING_KEY = "CategoryNumbering";
+    public final static int CATEGORY_NUMBERING_BRING = 1;
+    public final static int CATEGORY_NUMBERING_BUY = 2;
+    public final static int CATEGORY_NUMBERING_DELIEVER = 3;
+    public final static int CATEGORY_NUMBERING_SUBMIT = 4;
+    public final static int CATEGORY_NUMBERING_PRINT = 5;
+    public final static int CATEGORY_NUMBERING_TOGETHER = 6;
+    public final static int CATEGORY_NUMBERING_INSTEAD = 7;
+    public final static int CATEGORY_NUMBERING_ECT = 8;
+
+
     final static int MENU_COUNT = 8;
     private View view;
     public final static int imageButtonID[] = {

@@ -25,17 +25,12 @@ public class ChatPresenter implements I_ChatPresenter {
     ArrayList<String> chatUserList = new ArrayList<>();
 
     private RecyclerView.Adapter adapter;
-    private RecyclerView recyclerView;
 
-    public ChatPresenter(ChatFragment context, RecyclerView recyclerView) {
+    public ChatPresenter(ChatFragment context) {
         i_chatView = context;
         this.database = FirebaseDatabase.getInstance();
         this.reference = database.getReference("user");
-        this.adapter= new ChatListAdapter(chatUserList);
-        this.recyclerView = recyclerView;
-        recyclerView.setAdapter(adapter);
-
-        getChatList();
+        //this.adapter= new ChatListAdapter(chatUserList);
     }
 
     @Override
@@ -43,7 +38,9 @@ public class ChatPresenter implements I_ChatPresenter {
 
     }
 
+    @Override
+    public void getChatList() {
+        Log.d("Chat_", "do");
 
-    void getChatList() {
     }
 }

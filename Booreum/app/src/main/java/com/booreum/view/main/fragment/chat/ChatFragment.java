@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.booreum.Custom.RecyclerDecoration;
 import com.booreum.adapter.ChatListAdapter;
@@ -28,6 +29,7 @@ public class ChatFragment extends Fragment implements I_ChatView{
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private I_ChatPresenter i_chatPresenter;
+    private LinearLayout not_chat;
 
 
     @Override
@@ -36,12 +38,12 @@ public class ChatFragment extends Fragment implements I_ChatView{
         /**
          * 먼저 프레젠트나 메인에서 통신해서 채팅있으면 그대로,없으면 없는 레이아웃으로.
          */
-        i_chatPresenter = new ChatPresenter(this,recyclerView);
+        view = inflater.inflate(R.layout.fragment_chat, container, false);
 
+        i_chatPresenter = new ChatPresenter(this);
+        i_chatPresenter.getChatList();
 
-        view = inflater.inflate(R.layout.custom_chat_nothing, container, false);
-
-        //initView();
+        initView();
 
 
         return view;
@@ -49,14 +51,14 @@ public class ChatFragment extends Fragment implements I_ChatView{
 
     private void initView()
     {
-
-        recyclerView = view.findViewById(R.id.chat_recycler);
+        not_chat = view.findViewById(R.id.chat_notChat);
+        /*recyclerView = view.findViewById(R.id.chat_recycler);
         recyclerView.setHasFixedSize(true); // 성능강화
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
         RecyclerDecoration spaceDaoration = new RecyclerDecoration(5);
-        recyclerView.addItemDecoration(spaceDaoration);
+        recyclerView.addItemDecoration(spaceDaoration);*/
 
 
     }

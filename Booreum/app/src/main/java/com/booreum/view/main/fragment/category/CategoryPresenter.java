@@ -27,28 +27,35 @@ public class CategoryPresenter implements I_CategoryPresenter {
         switch (v.getId()){
             case R.id.category_bring:
                 intent = new Intent(context.getApplicationContext(), LoginActivity.class);
-                Log.d("Category", "enter switch");
+                intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_BRING);
                 break;
             case R.id.category_buy:
                 intent = new Intent(context.getApplicationContext(), LoginActivity.class);
+                intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_BUY);
                 break;
             case R.id.category_deliver:
                 intent = new Intent(context.getApplicationContext(), LoginActivity.class);
+                intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_DELIEVER);
                 break;
             case R.id.category_submit:
                 intent = new Intent(context.getApplicationContext(), LoginActivity.class);
+                intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_SUBMIT);
                 break;
             case R.id.category_print:
                 intent = new Intent(context.getApplicationContext(), LoginActivity.class);
+                intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_PRINT);
                 break;
             case R.id.category_together:
                 intent = new Intent(context.getApplicationContext(), LoginActivity.class);
+                intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_TOGETHER);
                 break;
             case R.id.category_instead:
                 intent = new Intent(context.getApplicationContext(), LoginActivity.class);
+                intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_INSTEAD);
                 break;
             case R.id.category_ect:
                 intent = new Intent(context.getApplicationContext(), LoginActivity.class);
+                intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_ECT);
                 break;
             default:
                 Toast.makeText(context, "error", Toast.LENGTH_SHORT).show();
