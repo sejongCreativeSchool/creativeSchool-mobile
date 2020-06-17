@@ -1,5 +1,5 @@
 package com.booreum.view.errandset;
 
-interface I_ErrandSetView {
-
+public interface I_ErrandSetView {
+    void setFrameVisible();
 }

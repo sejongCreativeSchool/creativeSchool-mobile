@@ -1,14 +1,29 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.booreum.view.errandset.fragment.WhatFragment">
+    tools:context="com.booreum.view.errandset.fragment.WhatFragment"
+    android:orientation="vertical"
+    android:id="@+id/WhatFragment_parentLayout">
 
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="what"
-        android:textColor="@android:color/black"/>
+        android:layout_height="wrap_content"
+        android:text="무엇을"
+        android:textColor="#606060"
+        android:textSize="15dp"/>
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/what_editText"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:paddingLeft="18dp"
+        android:background="@drawable/border_edittext_errand_fragment"
+        android:maxLines="1"
+        android:hint="내용을 입력하세요"/>
+
+
+
+
+</LinearLayout>

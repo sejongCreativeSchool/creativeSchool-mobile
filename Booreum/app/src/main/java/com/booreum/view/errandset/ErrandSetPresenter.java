@@ -1,19 +1,33 @@
 package com.booreum.view.errandset;
 
 import android.content.Context;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.viewpager.widget.ViewPager;
 
 import com.booreum.booreum.R;
+import com.booreum.view.errandset.fragment.WhatFragment;
 
 public class ErrandSetPresenter implements I_ErrandSetPresenter{
 
     private Context context;
     private int categoryNumbering;
+    private I_ErrandSetView i_errandSetView;
+
+    private int nowViewNumber = 0;
+    static String whatStr, fromStr = "test", toStr, whenStr, pointStr;
 
     public ErrandSetPresenter(Context context, int categoryNumbering) {
         this.context = context;
         this.categoryNumbering = categoryNumbering;
+        i_errandSetView = new ErrandSetActivity();
     }
 
     @Override
@@ -60,5 +74,55 @@ public class ErrandSetPresenter implements I_ErrandSetPresenter{
         check_title_tv.setText(titleText);
         set_title_image.setImageResource(resource);
         check_title_image.setImageResource(resource);
+    }
+
+    @Override
+    public void checkFocusEdittext(MotionEvent event, View v) {
+        if (v instanceof EditText) {
+            Rect outRect = new Rect();
+            v.getGlobalVisibleRect(outRect);
+            if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                v.clearFocus();
+                InputMethodManager imm = (InputMethodManager) context.getSystemService(context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+        }
+    }
+
+    @Override
+    public void setNextPage(ViewPager viewPager) {
+        viewPager.setCurrentItem(getNowpositionNumber_Plus());
+    }
+
+    @Override
+    public void setPreviousPage(ViewPager viewPager) {
+        viewPager.setCurrentItem(getNowpositionNumber_Minus());
+    }
+
+
+
+    public int getNowpositionNumber_Plus() {
+        if(nowViewNumber==0){
+            String str = WhatFragment.what.getText().toString();
+            if(!str.isEmpty()) {
+                //str이 비어있지 않으면
+                whatStr = WhatFragment.what.getText().toString();
+                return ++nowViewNumber;
+            }
+        }
+
+        else if (nowViewNumber >= 4) {
+            if (!(whatStr == null || fromStr == null || toStr == null || whenStr == null || pointStr == null)) {
+                //모두가 널이 아니면
+                i_errandSetView.setFrameVisible();
+            }
+        }
+
+        Toast.makeText(context, "내용을 입력하세요", Toast.LENGTH_SHORT).show();
+        return nowViewNumber;
+    }
+
+    public int getNowpositionNumber_Minus() {
+        return nowViewNumber = --nowViewNumber < 0 ? 0 : nowViewNumber;
     }
 }
