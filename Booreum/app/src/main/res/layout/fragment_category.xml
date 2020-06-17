@@ -262,7 +262,7 @@
                 android:id="@+id/category_ect"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:src="@drawable/icon_ect_detail"
+                android:src="@drawable/icon_etc_detail"
                 android:scaleType="fitXY"
                 android:background="?attr/selectableItemBackgroundBorderless"/>
             <TextView

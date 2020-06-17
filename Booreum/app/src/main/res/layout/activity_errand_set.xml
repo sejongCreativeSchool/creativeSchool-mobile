@@ -15,68 +15,279 @@
         app:layout_constraintTop_toTopOf="parent"
         app:title_text="상세조건 검색"/>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <FrameLayout
+        android:id="@+id/errandSet_Frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/view_container"
-        android:orientation="vertical"
         android:layout_marginTop="105dp">
-        <com.pm10.library.CircleIndicator
-            app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/errendSet_indicator"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/errandSet_setErrandLayout"
+            android:visibility="visible"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_marginTop="16dp"/>
-        <TextView
-            android:id="@+id/errandSet_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/errendSet_indicator"
-            app:layout_constraintBottom_toTopOf="@id/errandSet_image"
-            android:text="가져다줘"
-            android:textColor="@android:color/black"
-            android:textSize="21dp"/>
-        <ImageView
-            android:id="@+id/errandSet_image"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:src="@drawable/icon_bring_detail"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/errandSet_title"/>
-        <LinearLayout
-            android:id="@+id/errandSet_container"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/errandSet_image"
-            app:layout_constraintBottom_toTopOf="@id/errendSet_button"
-            android:padding="30dp">
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/errendSet_viewpager"
+            android:layout_height="match_parent">
+            <com.pm10.library.CircleIndicator
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:id="@+id/errandSet_indicator"
+                app:p_gap="7dp"
+                app:p_radius="4dp"
+                app:p_defaultColor="@color/needer_blue_setting_layer_1"
+                app:p_selectedColor="@color/needer_blue_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:layout_marginTop="20dp"/>
+            <TextView
+                android:id="@+id/errandSet_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/needer_blue_setting_layer_1"/>
-        </LinearLayout>
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/errandSet_indicator"
+                app:layout_constraintBottom_toTopOf="@id/errandSet_image"
+                android:text="가져다줘"
+                android:textColor="#3c3c3c"
+                android:textSize="21dp"/>
+            <ImageView
+                android:id="@+id/errandSet_image"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:src="@drawable/icon_bring_detail"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/errandSet_title"/>
+            <LinearLayout
+                android:id="@+id/errandSet_container"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/errandSet_image"
+                app:layout_constraintBottom_toTopOf="@id/errandSet_button_container"
+                android:padding="30dp">
+                <com.booreum.Custom.NonSwipeViewpager
+                    android:id="@+id/errandSet_viewpager"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/needer_blue_setting_layer_1"/>
+            </LinearLayout>
 
-        <Button
-            android:id="@+id/errendSet_button"
-            android:layout_width="136dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/errandSet_container"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="35dp"
-            android:background="@drawable/button_custom_blue"
-            android:includeFontPadding="false"
-            android:text="다음"
-            android:textSize="24dp"/>
+            <LinearLayout
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                android:id="@+id/errandSet_button_container"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="35dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/errandSet_container"
+                app:layout_constraintBottom_toBottomOf="parent">
+                <Button
+                    android:id="@+id/errandSet_button_previous"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_custom_blue"
+                    android:includeFontPadding="false"
+                    android:text="이전"
+                    android:textSize="24dp"
+                    android:layout_marginRight="50dp"/>
+                <Button
+                    android:id="@+id/errandSet_button_next"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_custom_blue"
+                    android:includeFontPadding="false"
+                    android:text="다음"
+                    android:textSize="24dp"/>
+            </LinearLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/errandSet_checkErrandLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="35dp"
+            android:paddingTop="15dp"
+            android:paddingRight="35dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/errandSet_checkErrand_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@id/errandSet_CheckErrand_centerView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread">
+
+                <ImageView
+                    android:id="@+id/errandSet_checkErrand_title_image"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginRight="15dp"
+                    android:src="@drawable/icon_bring_detail" />
+
+                <TextView
+                    android:id="@+id/errandSet_checkErrand_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="가져다줘"
+                    android:textColor="#3c3c3c"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/errandSet_CheckErrand_centerView"
+                android:layout_width="match_parent"
+                android:layout_height="450dp"
+                app:layout_constraintBottom_toTopOf="@id/errandSet_checkErrand_button"
+                app:layout_constraintTop_toBottomOf="@id/errandSet_checkErrand_title">
+
+                <TextView
+                    android:id="@+id/errandSet_checkErrand_what_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="무엇을"
+                    android:textColor="#606060"
+                    android:textSize="15dp"
+                    android:includeFontPadding="false"
+                    app:layout_constraintBottom_toTopOf="@+id/errandSet_checkErrand_what_et"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="spread" />
+
+                <TextView
+                    android:id="@+id/errandSet_checkErrand_what_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/border_edittext_default_signup"
+                    android:hint="내용을 입력하세요"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="20dp"
+                    app:layout_constraintBottom_toTopOf="@id/errandSet_checkErrand_wherefrom_tv"
+                    app:layout_constraintTop_toBottomOf="@id/errandSet_checkErrand_what_tv" />
+
+                <TextView
+                    android:id="@+id/errandSet_checkErrand_wherefrom_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="어디서"
+                    android:textColor="#606060"
+                    android:textSize="15dp"
+                    android:includeFontPadding="false"
+                    app:layout_constraintBottom_toTopOf="@id/errandSet_checkErrand_wherefrom_et"
+                    app:layout_constraintTop_toBottomOf="@+id/errandSet_checkErrand_what_et" />
+
+                <TextView
+                    android:id="@+id/errandSet_checkErrand_wherefrom_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/border_edittext_default_signup"
+                    android:hint="내용을 입력하세요"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingLeft="20dp"
+                    app:layout_constraintBottom_toTopOf="@id/errandSet_checkErrand_whereto_tv"
+                    app:layout_constraintTop_toBottomOf="@id/errandSet_checkErrand_wherefrom_tv" />
+
+                <TextView
+                    android:id="@+id/errandSet_checkErrand_whereto_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="어디로"
+                    android:textColor="#606060"
+                    android:textSize="15dp"
+                    android:includeFontPadding="false"
+                    app:layout_constraintBottom_toTopOf="@id/errandSet_checkErrand_whereto_et"
+                    app:layout_constraintTop_toBottomOf="@+id/errandSet_checkErrand_wherefrom_et" />
+
+                <TextView
+                    android:id="@+id/errandSet_checkErrand_whereto_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/border_edittext_default_signup"
+                    android:hint="내용을 입력하세요"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingLeft="20dp"
+                    app:layout_constraintBottom_toTopOf="@id/errandSet_checkErrand_when_tv"
+                    app:layout_constraintTop_toBottomOf="@id/errandSet_checkErrand_whereto_tv" />
+
+                <TextView
+                    android:id="@+id/errandSet_checkErrand_when_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="언제까지"
+                    android:textColor="#606060"
+                    android:textSize="15dp"
+                    android:includeFontPadding="false"
+                    app:layout_constraintBottom_toTopOf="@id/errandSet_checkErrand_when_et"
+                    app:layout_constraintTop_toBottomOf="@id/errandSet_checkErrand_whereto_et" />
+
+                <TextView
+                    android:id="@+id/errandSet_checkErrand_when_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/border_edittext_default_signup"
+                    android:hint="내용을 입력하세요"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:paddingLeft="20dp"
+                    app:layout_constraintBottom_toTopOf="@+id/errandSet_checkErrand_point_tv"
+                    app:layout_constraintTop_toBottomOf="@id/errandSet_checkErrand_when_tv" />
+
+                <TextView
+                    android:id="@+id/errandSet_checkErrand_point_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="얼마를"
+                    android:textColor="#606060"
+                    android:textSize="15dp"
+                    android:includeFontPadding="false"
+                    app:layout_constraintBottom_toTopOf="@id/errandSet_checkErrand_point_et"
+                    app:layout_constraintTop_toBottomOf="@+id/errandSet_checkErrand_when_et" />
+
+                <TextView
+                    android:id="@+id/errandSet_checkErrand_point_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/border_edittext_default_signup"
+                    android:hint="내용을 입력하세요"
+                    android:imeOptions="actionDone"
+                    android:inputType="phone"
+                    android:paddingLeft="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/errandSet_checkErrand_point_tv" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/errandSet_checkErrand_button"
+                android:layout_width="136dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_custom_blue"
+                android:includeFontPadding="false"
+                android:text="완료"
+                android:textSize="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/errandSet_CheckErrand_centerView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
