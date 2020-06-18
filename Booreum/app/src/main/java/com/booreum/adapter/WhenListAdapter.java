@@ -1,35 +1,29 @@
 package com.booreum.adapter;
 
 import android.content.Context;
-import android.database.DataSetObserver;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.EditText;
-import android.widget.ExpandableListAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.DatePicker;
 
-import com.booreum.Constant.Building;
 import com.booreum.booreum.R;
+import com.booreum.view.errandset.fragment.WhenFragment;
 
-public class FromListAdapter extends BaseExpandableListAdapter {
+public class WhenListAdapter extends BaseExpandableListAdapter {
 
     Context context;
-    EditText editText;
-    String[] building = Building.building;
-    ViewHolder viewHolder;
+    WhenListAdapter.ViewHolder viewHolder;
+    String[] group = new String[]{"날짜", "시간"};
 
-    public FromListAdapter(Context context) {
+    public WhenListAdapter(Context context) {
         this.context = context;
     }
 
-//그룹 사이즈를 반환
+    //그룹 사이즈를 반환
     @Override
     public int getGroupCount() {
-        return 1;
+        return group.length;
     }
 
     //그룹 ID를 반환
@@ -41,35 +35,28 @@ public class FromListAdapter extends BaseExpandableListAdapter {
     //그룹 포지션 반환
     @Override
     public Object getGroup(int groupPosition) {
-        return editText;
+        return null;
     }
 
     //그룹 뷰 생성(그룹 각 뷰의 ROW)
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 
-        String buildingStr = this.building[groupPosition];
-
         if (convertView == null) {
-            viewHolder = new ViewHolder();
+            viewHolder = new WhenListAdapter.ViewHolder();
             LayoutInflater infalInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.expendable_list_group_item, null);
             convertView.setTag(viewHolder);
-        }
-        else{
-            viewHolder = (ViewHolder)convertView.getTag();
+        } else {
+            viewHolder = (WhenListAdapter.ViewHolder) convertView.getTag();
         }
         //그룹을 펼칠 때 또는 닫을 때 아이콘 변경
-        if(isExpanded){
+        if (isExpanded) {
             //viewHolder.iv_image.setBackgroundColor(Color.GREEN);
-        }else{
+        } else {
             //viewHolder.iv_image.setBackgroundColor(Color.WHITE);
         }
-
-        TextView lblListHeader = (TextView) convertView.findViewById(R.id.groupList_text);
-        lblListHeader.setTypeface(null, Typeface.BOLD);
-        lblListHeader.setText(buildingStr);
 
         return convertView;
     }
@@ -84,14 +71,14 @@ public class FromListAdapter extends BaseExpandableListAdapter {
     //차일드 뷰의 사이즈 반환
     @Override
     public int getChildrenCount(int groupPosition) {
-        return 0;
+        return 1;
     }
 
 
     //차일드 뷰 ID 반환
     @Override
     public long getChildId(int groupPosition, int childPosition) {
-        return 0;
+        return childPosition;
     }
 
     @Override
@@ -102,13 +89,35 @@ public class FromListAdapter extends BaseExpandableListAdapter {
     //차일드 뷰 생성(각 차일드 뷰의 (ROW)
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        return null;
+
+        if (convertView == null) {
+
+            LayoutInflater infalInflater = (LayoutInflater) this.context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            convertView = infalInflater.inflate(R.layout.expendable_list_when_child_item1, null);
+            if (isLastChild)
+                convertView = infalInflater.inflate(R.layout.expendable_list_when_child_item2, null);
+        }
+
+        if (!isLastChild) {
+            DatePicker datePicker = (DatePicker) convertView.findViewById(R.id.datePicker);
+            String year = String.valueOf(datePicker.getYear());
+            WhenFragment.year = year;
+            String month = String.valueOf(datePicker.getMonth());
+            WhenFragment.month = month;
+            String day = String.valueOf(datePicker.getDayOfMonth());
+            WhenFragment.day = day;
+        }
+
+        return convertView;
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return false;
     }
+
 
     //뷰홀더 클래스 생
     class ViewHolder {

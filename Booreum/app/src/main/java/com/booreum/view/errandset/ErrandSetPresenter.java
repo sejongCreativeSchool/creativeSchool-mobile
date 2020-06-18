@@ -2,6 +2,7 @@ package com.booreum.view.errandset;
 
 import android.content.Context;
 import android.graphics.Rect;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -12,17 +13,21 @@ import android.widget.Toast;
 
 import androidx.viewpager.widget.ViewPager;
 
+import com.booreum.Constant.Building;
 import com.booreum.booreum.R;
+import com.booreum.view.errandset.fragment.FromFragment;
+import com.booreum.view.errandset.fragment.ToFragment;
 import com.booreum.view.errandset.fragment.WhatFragment;
+import com.booreum.view.errandset.fragment.WhenFragment;
 
-public class ErrandSetPresenter implements I_ErrandSetPresenter{
+public class ErrandSetPresenter implements I_ErrandSetPresenter {
 
     private Context context;
     private int categoryNumbering;
     private I_ErrandSetView i_errandSetView;
 
     private int nowViewNumber = 0;
-    static String whatStr, fromStr = "test", toStr, whenStr, pointStr;
+    static String whatStr, fromStr, toStr, whenStr, pointStr;
 
     public ErrandSetPresenter(Context context, int categoryNumbering) {
         this.context = context;
@@ -31,11 +36,11 @@ public class ErrandSetPresenter implements I_ErrandSetPresenter{
     }
 
     @Override
-    public void setViewTitle(TextView set_title_tv , ImageView set_title_image,TextView check_title_tv , ImageView check_title_image) {
-        String titleText="";
-        int resource=0;
+    public void setViewTitle(TextView set_title_tv, ImageView set_title_image, TextView check_title_tv, ImageView check_title_image) {
+        String titleText = "";
+        int resource = 0;
 
-        switch (categoryNumbering){
+        switch (categoryNumbering) {
             case 1:
                 titleText = "가져다줘";
                 resource = R.drawable.icon_bring_detail;
@@ -99,16 +104,66 @@ public class ErrandSetPresenter implements I_ErrandSetPresenter{
         viewPager.setCurrentItem(getNowpositionNumber_Minus());
     }
 
-
-
     public int getNowpositionNumber_Plus() {
-        if(nowViewNumber==0){
+
+        String errorMessage = "내용을 입력하세요";
+
+        if (nowViewNumber == 0) {
             String str = WhatFragment.what.getText().toString();
-            if(!str.isEmpty()) {
+            if (!str.isEmpty()) {
                 //str이 비어있지 않으면
-                whatStr = WhatFragment.what.getText().toString();
+                whatStr = str;
                 return ++nowViewNumber;
             }
+        }
+
+        else if (nowViewNumber == 1) {
+            String str = FromFragment.fromWhere;
+            String strDetail = FromFragment.fromDetail;
+            if (str != null && !str.isEmpty()) { //str이 비어있지 않으면
+                if (str.equals(Building.building[Building.building.length - 1]) && strDetail.isEmpty()) { // 선택한 장소가 "기타" 인데 "기타" 상세주소를 입력하지 않은 경우a
+                    errorMessage = "기타 장소는 상세주소를 입력해야 합니다.";
+                } else {
+                    if (str.equals(Building.building[Building.building.length - 1]))
+                        fromStr = str + " : " + strDetail;
+                    else
+                        fromStr = str + strDetail;
+                    fromStr.replace("null", "");
+                    FromFragment.fromWhere = "";
+                    FromFragment.fromDetail = "";
+                    FromFragment.collapseAllGroup();
+                    Log.d("Errand_", "fromstr : " + fromStr);
+                    return ++nowViewNumber;
+                }
+            } else
+                errorMessage = "장소를 선택하세요.";
+        }
+
+        else if (nowViewNumber == 2) {
+            String str = ToFragment.toWhere;
+            String strDetail = ToFragment.toDetail;
+            if (str != null && !str.isEmpty()) { //str이 비어있지 않으면
+                if (str.equals(Building.building[Building.building.length - 1]) && strDetail.isEmpty()) { // 선택한 장소가 "기타" 인데 "기타" 상세주소를 입력하지 않은 경우a
+                    errorMessage = "기타 장소는 상세주소를 입력해야 합니다.";
+                } else {
+                    if (str.equals(Building.building[Building.building.length - 1]))
+                        toStr = str + " : " + strDetail;
+                    else
+                        toStr = str + strDetail;
+                    toStr.replace("null", "");
+                    ToFragment.toWhere = "";
+                    ToFragment.toDetail = "";
+                    ToFragment.collapseAllGroup();
+                    Log.d("Errand_", "fromstr : " + toStr);
+                    return ++nowViewNumber;
+                }
+            } else
+                errorMessage = "장소를 선택하세요.";
+        }
+
+        else if (nowViewNumber == 3) {
+            WhenFragment.collapseAllGroup();
+            WhenFragment.setListViewPosition();
         }
 
         else if (nowViewNumber >= 4) {
@@ -118,11 +173,20 @@ public class ErrandSetPresenter implements I_ErrandSetPresenter{
             }
         }
 
-        Toast.makeText(context, "내용을 입력하세요", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show();
         return nowViewNumber;
     }
 
     public int getNowpositionNumber_Minus() {
+        if (nowViewNumber == 1) {
+            FromFragment.fromWhere = "";
+            FromFragment.fromDetail = "";
+            FromFragment.collapseAllGroup();
+        } else if (nowViewNumber == 2) {
+            ToFragment.toWhere = "";
+            ToFragment.toDetail = "";
+            ToFragment.collapseAllGroup();
+        }
         return nowViewNumber = --nowViewNumber < 0 ? 0 : nowViewNumber;
     }
 }

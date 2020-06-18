@@ -68,7 +68,10 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/errandSet_image"
                 app:layout_constraintBottom_toTopOf="@id/errandSet_button_container"
-                android:padding="35dp">
+                android:paddingTop="35dp"
+                android:paddingLeft="35dp"
+                android:paddingRight="35dp"
+                android:paddingBottom="15dp">
                 <com.booreum.Custom.NonSwipeViewpager
                     android:id="@+id/errandSet_viewpager"
                     android:layout_width="wrap_content"

@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme_needer"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.booreum.view.errandset.ErrandSetActivity"></activity>
+        <activity android:name="com.booreum.view.errandset.ErrandSetActivity"
+            android:windowSoftInputMode="adjustResize">
+
+        </activity>
         <activity android:name="com.booreum.view.register.RegisterActiity" />
         <activity
             android:name="com.booreum.view.signup.SignUpActivity"

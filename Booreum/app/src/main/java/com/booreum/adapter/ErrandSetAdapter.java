@@ -37,10 +37,10 @@ public class ErrandSetAdapter extends FragmentStatePagerAdapter{
                 FromFragment fromFragment = new FromFragment(context);
                 return fromFragment;
             case 2:
-                ToFragment toFragment = new ToFragment();
+                ToFragment toFragment = new ToFragment(context);
                 return toFragment;
             case 3:
-                WhenFragment whenFragment = new WhenFragment();
+                WhenFragment whenFragment = new WhenFragment(context);
                 return whenFragment;
             case 4:
                 PointFragment pointFragment = new PointFragment();

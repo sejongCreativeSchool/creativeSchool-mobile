@@ -7,6 +7,10 @@
     <ExpandableListView
         android:id="@+id/from_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:dividerHeight="2dp"
+        android:divider="@color/needer_blue_setting_layer_1"
+        android:headerDividersEnabled="true"
+        android:groupIndicator="@null"/>
 
 </FrameLayout>

@@ -4,11 +4,13 @@
     android:layout_height="match_parent"
     tools:context="com.booreum.view.errandset.fragment.ToFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ExpandableListView
+        android:id="@+id/to_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:textColor="@android:color/black"/>
+        android:dividerHeight="2dp"
+        android:divider="@color/needer_blue_setting_layer_1"
+        android:headerDividersEnabled="true"
+        android:groupIndicator="@null"/>
 
 </FrameLayout>

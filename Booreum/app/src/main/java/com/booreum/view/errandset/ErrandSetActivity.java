@@ -139,5 +139,4 @@ public class ErrandSetActivity extends CustomAppCompatForToolbar implements I_Er
         }
         return super.dispatchTouchEvent(event);
     }
-
 }

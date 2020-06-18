@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <EditText
+        android:id="@+id/childList_item"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/border_edittext_errand_fragment"
+        android:paddingLeft="15dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:textSize="15dp"
+        android:hint="상세주소가 필요한 경우 입력하세요"/>
+
+</LinearLayout>
