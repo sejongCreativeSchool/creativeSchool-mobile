@@ -17,7 +17,7 @@
         app:title_text="상세조건 검색"/>
 
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/errandSet_Frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -50,11 +50,11 @@
                 app:layout_constraintBottom_toTopOf="@id/errandSet_image"
                 android:text="가져다줘"
                 android:textColor="#3c3c3c"
-                android:textSize="21dp"/>
+                android:textSize="17dp"/>
             <ImageView
                 android:id="@+id/errandSet_image"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:src="@drawable/icon_bring_detail"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -289,7 +289,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </FrameLayout>
+    </RelativeLayout>
 
 
 

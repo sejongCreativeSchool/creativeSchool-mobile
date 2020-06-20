@@ -8,7 +8,6 @@
         android:background="@color/needer_blue_tapLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/errand_style"
         android:datePickerMode="spinner"
         android:calendarViewShown="false"
         android:headerBackground="@color/helper_red_dark"

@@ -1,14 +1,38 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.booreum.view.errandset.fragment.PointFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:textColor="@android:color/black"/>
+        android:layout_height="wrap_content"
+        android:text="얼마를"
+        android:textColor="#606060"
+        android:textSize="15dp" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/point_editText"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/border_edittext_errand_fragment"
+        android:gravity="right|center"
+        android:hint="내용을 입력하세요"
+        android:ellipsize="end"
+        android:inputType="number"
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:paddingRight="18dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="* 최소 500point"
+        android:gravity="right"
+        android:textColor="#606060"
+        android:textSize="12dp" />
+
+
+</LinearLayout>

@@ -3,6 +3,7 @@ package com.booreum.view.errandset;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +36,7 @@ public class ErrandSetActivity extends CustomAppCompatForToolbar implements I_Er
     private I_ErrandSetPresenter i_errandSetPresenter;
     private int categoryNumbering;
     private ConstraintLayout parentLayout;
+    //private FrameLayout frameLayout;
 
     /**
      * 프레임1번
@@ -62,7 +65,7 @@ public class ErrandSetActivity extends CustomAppCompatForToolbar implements I_Er
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_errand_set);
-
+        setErrand = (ConstraintLayout) findViewById(R.id.errandSet_setErrandLayout);
         initView();
         setListener();
     }
@@ -77,7 +80,7 @@ public class ErrandSetActivity extends CustomAppCompatForToolbar implements I_Er
 
         ActionBar actionBar = getHomeAsUpActionBar();
 
-        setErrand = (ConstraintLayout) findViewById(R.id.errandSet_setErrandLayout);
+
         viewPager = (NonSwipeViewpager) findViewById(R.id.errandSet_viewpager);
         indicator = findViewById(R.id.errandSet_indicator);
         setErrand_titie = (TextView) findViewById(R.id.errandSet_title);
@@ -85,7 +88,7 @@ public class ErrandSetActivity extends CustomAppCompatForToolbar implements I_Er
         setErrand_button_next = (Button) findViewById(R.id.errandSet_button_next);
         setErrand_button_previous = (Button) findViewById(R.id.errandSet_button_previous);
 
-        checkErrand = (ConstraintLayout) findViewById(R.id.errandSet_CheckErrand_centerView);
+
         checkErrand_titie = (TextView) findViewById(R.id.errandSet_checkErrand_title_tv);
         checkErrand_title_image = (ImageView) findViewById(R.id.errandSet_checkErrand_title_image);
         checkErrand_button = (Button) findViewById(R.id.errandSet_checkErrand_button);
@@ -121,7 +124,6 @@ public class ErrandSetActivity extends CustomAppCompatForToolbar implements I_Er
 
     @Override
     public void setFrameVisible() {
-        checkErrand.setVisibility(View.VISIBLE);
         setErrand.setVisibility(View.GONE);
     }
 

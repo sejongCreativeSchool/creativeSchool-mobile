@@ -124,36 +124,6 @@
     </style>
 
 
-    <!-- Base application theme. -->
-    <style name="errand_style" parent="android:Widget.DeviceDefault.DatePicker">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-
-        <item name="android:statusBarColor">@color/needer_blue_dark</item>
-        <item name="android:textColor">@android:color/black</item>
-        <item name="android:windowLightStatusBar">false</item>
-
-
-        <item name="android:textViewStyle">@style/TextViewStyle</item>
-        <item name="android:buttonStyle">@style/ButtonStyle</item>
-        <item name="android:editTextStyle">@style/EditTextStyle</item>
-
-        <item name="helper_red_dark">@color/helper_red_dark</item>
-        <item name="helper_red_dark_selected">@color/helper_red_dark_selected</item>
-        <item name="helper_red_light">@color/helper_red_light</item>
-        <item name="helper_red_tapLayout">@color/helper_red_tapLayout</item>
-        <item name="helper_red_setting_layer_1">@color/helper_red_setting_layer_1</item>
-        <item name="helper_red_setting_layer_2">@color/helper_red_setting_layer_2</item>
-        <item name="needer_blue_dark">@color/needer_blue_dark</item>
-        <item name="needer_blue_dark_selected">@color/needer_blue_dark_selected</item>
-        <item name="needer_blue_light">@color/needer_blue_light</item>
-        <item name="needer_blue_tapLayout">@color/needer_blue_tapLayout</item>
-        <item name="needer_blue_setting_layer_1">@color/needer_blue_setting_layer_1</item>
-        <item name="needer_blue_setting_layer_2">@color/needer_blue_setting_layer_2</item>
-
-    </style>
     // styles.xml
     <style name="MyAlertDialogStyle" parent="ThemeOverlay.AppCompat.Dialog.Alert">
         <item name="colorAccent">@color/colorPrimary</item>

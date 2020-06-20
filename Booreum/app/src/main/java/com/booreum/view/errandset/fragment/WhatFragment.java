@@ -23,11 +23,8 @@ import com.booreum.view.errandset.I_ErrandSetView;
 
 
 public class WhatFragment extends Fragment {
-
-    LinearLayout parentLayout;
     View view;
     public static EditText what;
-    I_ErrandSetView i_errandSetView = new ErrandSetActivity();
 
     public WhatFragment() {
         // Required empty public constructor
@@ -40,7 +37,6 @@ public class WhatFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_what, container, false);
 
-        parentLayout=(LinearLayout)view.findViewById(R.id.WhatFragment_parentLayout);
         what = (EditText)view.findViewById(R.id.what_editText);
 
         what.setOnKeyListener(new View.OnKeyListener() {

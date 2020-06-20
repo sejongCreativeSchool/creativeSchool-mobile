@@ -16,6 +16,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.booreum.Constant.Building;
 import com.booreum.booreum.R;
 import com.booreum.view.errandset.fragment.FromFragment;
+import com.booreum.view.errandset.fragment.PointFragment;
 import com.booreum.view.errandset.fragment.ToFragment;
 import com.booreum.view.errandset.fragment.WhatFragment;
 import com.booreum.view.errandset.fragment.WhenFragment;
@@ -115,9 +116,7 @@ public class ErrandSetPresenter implements I_ErrandSetPresenter {
                 whatStr = str;
                 return ++nowViewNumber;
             }
-        }
-
-        else if (nowViewNumber == 1) {
+        } else if (nowViewNumber == 1) {
             String str = FromFragment.fromWhere;
             String strDetail = FromFragment.fromDetail;
             if (str != null && !str.isEmpty()) { //str이 비어있지 않으면
@@ -137,9 +136,7 @@ public class ErrandSetPresenter implements I_ErrandSetPresenter {
                 }
             } else
                 errorMessage = "장소를 선택하세요.";
-        }
-
-        else if (nowViewNumber == 2) {
+        } else if (nowViewNumber == 2) {
             String str = ToFragment.toWhere;
             String strDetail = ToFragment.toDetail;
             if (str != null && !str.isEmpty()) { //str이 비어있지 않으면
@@ -159,17 +156,32 @@ public class ErrandSetPresenter implements I_ErrandSetPresenter {
                 }
             } else
                 errorMessage = "장소를 선택하세요.";
+        } else if (nowViewNumber == 3) {
+            int time = WhenFragment.total_minute;
+            int hour = time / 60 % 24;
+            int minute = time % 60;
+            whenStr = hour + "시 " + minute + "분";
+            return ++nowViewNumber;
         }
 
-        else if (nowViewNumber == 3) {
-            WhenFragment.collapseAllGroup();
-            WhenFragment.setListViewPosition();
+        else if (nowViewNumber == 4) {
+            String str = PointFragment.point.getText().toString();
+            if (!str.isEmpty()) {
+                //str이 비어있지 않으면
+                if (Integer.valueOf(str) > 500) {
+                    pointStr = str;
+                    return ++nowViewNumber;
+                }
+                else
+                    PointFragment.point.setText("");
+            }
         }
 
         else if (nowViewNumber >= 4) {
-            if (!(whatStr == null || fromStr == null || toStr == null || whenStr == null || pointStr == null)) {
+            if (whatStr != null && fromStr != null && toStr != null && whenStr != null && pointStr != null) {
                 //모두가 널이 아니면
                 i_errandSetView.setFrameVisible();
+                return nowViewNumber;
             }
         }
 

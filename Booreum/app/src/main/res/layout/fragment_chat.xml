@@ -40,12 +40,12 @@
 
     </LinearLayout>
 
-    <View
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/view_curtain"
         android:layout_marginTop="84dp"
-        android:layout_marginBottom="56dp"/>
+        android:layout_marginBottom="56dp" />
 
 
 </RelativeLayout>
