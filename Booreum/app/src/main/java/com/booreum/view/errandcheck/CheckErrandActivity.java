@@ -19,6 +19,8 @@ import com.booreum.Constant.HideKeyboard;
 import com.booreum.Custom.Toolbar.CustomAppCompatForToolbar;
 import com.booreum.Custom.Toolbar.MyToolBar;
 import com.booreum.booreum.R;
+import com.booreum.view.errandset.ErrandSetActivity;
+import com.booreum.view.main.MainActivity;
 
 public class CheckErrandActivity extends CustomAppCompatForToolbar implements I_CheckErrandView, View.OnClickListener {
 
@@ -113,7 +115,7 @@ public class CheckErrandActivity extends CustomAppCompatForToolbar implements I_
 
             case R.id.checkErrand_button:
                 resetView();
-                i_checkErrandPresenter.setErrandInRetrofit(
+                i_checkErrandPresenter.setErrandInRetrofit(categoryNumber,
                         what.getText().toString(), from.getText().toString(),
                         to.getText().toString(), when.getText().toString(), point.getText().toString());
                 break;
@@ -124,5 +126,20 @@ public class CheckErrandActivity extends CustomAppCompatForToolbar implements I_
     public void setTimeString(String str, int total) {
         when.setText(str);
         total_minute = total;
+    }
+
+    @Override
+    public void finishErrandUpload() {
+        Log.d("ttt", "please turn off0");
+        Log.d("ttt", "please turn off1");
+        //finishActivity();
+        Log.d("ttt", "please turn off2");
+        finish();
+    }
+
+    void finishActivity(){
+        Intent intent = new Intent(CheckErrandActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

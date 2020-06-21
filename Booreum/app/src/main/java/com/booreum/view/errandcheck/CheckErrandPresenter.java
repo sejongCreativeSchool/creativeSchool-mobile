@@ -1,8 +1,11 @@
 package com.booreum.view.errandcheck;
 
+import android.app.Activity;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -12,7 +15,17 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.booreum.Constant.GitHubServiceProvider;
 import com.booreum.booreum.R;
+import com.booreum.model.Errand;
+import com.booreum.model.Errand_;
+import com.booreum.model.User;
+import com.booreum.view.main.MainActivity;
+import com.booreum.view.main.MainPresenter;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CheckErrandPresenter implements I_CheckErrandPresenter, TimePickerDialog.OnTimeSetListener {
 
@@ -114,9 +127,71 @@ public class CheckErrandPresenter implements I_CheckErrandPresenter, TimePickerD
     }
 
     @Override
-    public void setErrandInRetrofit(String what, String from, String to, String when, String point) {
+    public void setErrandInRetrofit(int category,String what, String from, String to, String when, String point) {
+        String category_string = getCategoryString(category);
+        Log.d("ttt", "category : " + category_string);
+        Log.d("ttt", "what : " + what);
+        Log.d("ttt", "from : " + from);
+        Log.d("ttt", "_id : " +  MainPresenter.user.get_id());
+
+        Errand_ errand_ = new  Errand_(MainPresenter.user.get_id(), category_string, from,to, Integer.valueOf( point), when, what);
+        //Errand_(String user, String category, String from, String to, int price, String dueto, String desc)
+
+        GitHubServiceProvider.retrofit.uploadErrand(errand_)
+                .enqueue(new Callback<Errand_>() {
+                    @Override
+                    public void onResponse(Call<Errand_> call, Response<Errand_> response) {
+                        if(!response.isSuccessful()) {
+                            retrofitFailed(response);
+                            Log.d("ttt", "response : " + response.toString());
+                            Log.d("ttt", "response : " + response.message());
+                        }
+                        Toast.makeText(context, "심부름 등록 완료", Toast.LENGTH_SHORT).show();
+                        ((Activity)context).finish();
+                        //i_checkErrandView.finishErrandUpload();
+                    }
+                    @Override
+                    public void onFailure(Call<Errand_> call, Throwable t) {
+                        //retrofitFailed();
+                        Log.d("ttt", "response : " + t.getMessage());
+                    }
+                });
+    }
+
+    void retrofitFailed(Response<Errand_> response){
+        Toast.makeText(context, "심부름 등록 실패", Toast.LENGTH_SHORT).show();
+        Log.d("ttt", "response : " + response.toString());
+        Log.d("ttt", "response : " + response.message());
+    }
 
 
+    String getCategoryString(int categoryNumbering){
+        switch (categoryNumbering) {
+            case 1:
+               return  "가져다줘";
+            case 2:
+                return "사다줘";
+
+            case 3:
+                return "전달해줘";
+
+            case 4:
+                return  "제출해줘";
+
+            case 5:
+                return  "프린트해줘";
+
+            case 6:
+                return "같이해줘";
+
+            case 7:
+                return "대신해줘";
+
+            case 8:
+                return  "기타";
+            default: return "기타";
+
+        }
     }
 
 

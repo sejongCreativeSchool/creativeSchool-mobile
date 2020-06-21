@@ -197,8 +197,9 @@ public class ErrandSetPresenter implements I_ErrandSetPresenter {
                 intent.putExtra("total_minute",WhenFragment.total_minute);
                 intent.putExtra("category",categoryNumbering);
                 ((Activity)context).startActivity(intent);
-
-                return nowViewNumber;
+                ((Activity) context).finish();
+                Log.d("ttt", "goto check");
+                return 0;
             }
         }
 

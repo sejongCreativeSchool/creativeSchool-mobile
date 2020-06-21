@@ -114,6 +114,8 @@
                     android:includeFontPadding="false"
                     android:text="다음"
                     android:textSize="24dp" />
+
+
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

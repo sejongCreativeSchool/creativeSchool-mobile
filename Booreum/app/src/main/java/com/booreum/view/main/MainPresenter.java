@@ -54,6 +54,7 @@ public class MainPresenter implements I_MainPresenter{
                         User user1 = response.body().data;
                         MainPresenter.user = user1;
                         Log.d("Setting", "유저받아옴");
+
                     }
                     @Override
                     public void onFailure(Call<UserResult> call, Throwable t) {

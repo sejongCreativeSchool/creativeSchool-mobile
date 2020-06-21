@@ -29,8 +29,8 @@ public class ErrandSetAdapter extends FragmentStatePagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
-        switch (position){
-            case 0 :
+        switch (position) {
+            case 0:
                 WhatFragment whatFragment = new WhatFragment();
                 return whatFragment;
             case 1:

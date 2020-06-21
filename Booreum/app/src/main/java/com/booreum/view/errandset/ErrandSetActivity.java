@@ -1,9 +1,11 @@
 package com.booreum.view.errandset;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.Activity;
@@ -30,7 +32,9 @@ import com.booreum.adapter.ErrandSetAdapter;
 import com.booreum.booreum.R;
 import com.booreum.view.errandcheck.CheckErrandActivity;
 import com.booreum.view.errandset.fragment.WhatFragment;
+import com.booreum.view.errandset.fragment.WhenFragment;
 import com.booreum.view.main.fragment.category.CategoryFragment;
+import com.booreum.view.main.fragment.setting.SettingFragment;
 import com.pm10.library.CircleIndicator;
 
 public class ErrandSetActivity extends CustomAppCompatForToolbar implements I_ErrandSetView, View.OnClickListener {
@@ -39,6 +43,7 @@ public class ErrandSetActivity extends CustomAppCompatForToolbar implements I_Er
     private int categoryNumbering;
     private ConstraintLayout parentLayout;
     //private FrameLayout frameLayout;
+
 
     /**
      * 프레임1번
@@ -121,4 +126,10 @@ public class ErrandSetActivity extends CustomAppCompatForToolbar implements I_Er
         return super.dispatchTouchEvent(event);
     }
 
+    @Override
+    protected void onStop() {
+        Log.d("ttt", "stop");
+
+        super.onStop();
+    }
 }

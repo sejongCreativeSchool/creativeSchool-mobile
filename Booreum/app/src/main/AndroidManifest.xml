@@ -18,7 +18,6 @@
         <activity
             android:name="com.booreum.view.errandset.ErrandSetActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name="com.booreum.view.register.RegisterActiity" />
         <activity
             android:name="com.booreum.view.signup.SignUpActivity"
             android:windowSoftInputMode="adjustPan" />
