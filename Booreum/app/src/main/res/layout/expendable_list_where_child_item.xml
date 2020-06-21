@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     
     <EditText
         android:id="@+id/childList_item"
@@ -13,5 +14,6 @@
         android:layout_marginRight="35dp"
         android:textSize="15dp"
         android:hint="상세주소가 필요한 경우 입력하세요"/>
+
 
 </LinearLayout>

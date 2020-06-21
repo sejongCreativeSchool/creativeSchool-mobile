@@ -1,6 +1,7 @@
 package com.booreum.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,12 @@ import com.booreum.view.errandset.fragment.FromFragment;
 import com.booreum.view.errandset.fragment.ToFragment;
 import com.booreum.view.main.fragment.list.ListPresenter;
 
+import org.w3c.dom.Text;
+
 public class HelperListAdapter extends BaseExpandableListAdapter {
 
     Context context;
-    HelperListAdapter.ViewHolder viewHolder;
+    ViewHolder viewHolder;
     ErrandResults results ;
 
     public HelperListAdapter(Context context) {
@@ -36,6 +39,8 @@ public class HelperListAdapter extends BaseExpandableListAdapter {
     //그룹 사이즈를 반환
     @Override
     public int getGroupCount() {
+        if(results != null)
+            Log.d("ttt", "getGroupCount : "+results.getData().size());
         return (results == null )? 0 : results.getData().size();
     }
 
@@ -48,7 +53,7 @@ public class HelperListAdapter extends BaseExpandableListAdapter {
     //그룹 포지션 반환
     @Override
     public Object getGroup(int groupPosition) {
-        return null;
+        return groupPosition;
     }
 
     //그룹 뷰 생성(그룹 각 뷰의 ROW)
@@ -56,7 +61,7 @@ public class HelperListAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 
         if (convertView == null) {
-            viewHolder = new HelperListAdapter.ViewHolder();
+            viewHolder = new ViewHolder();
             LayoutInflater infalInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.custom_helper_list_group_item, null);
@@ -65,6 +70,7 @@ public class HelperListAdapter extends BaseExpandableListAdapter {
         else{
             viewHolder = (HelperListAdapter.ViewHolder)convertView.getTag();
         }
+
 
         ImageView profile, arrow, category;
         Button button;
@@ -82,13 +88,14 @@ public class HelperListAdapter extends BaseExpandableListAdapter {
         if(isExpanded){
             arrow.setRotation(180);
         }else{
-            arrow.setRotation(180);
+            arrow.setRotation(0);
         }
 
+        Log.d("ttt", "isExpanded : "+isExpanded);
         //profile = results.getData().get(groupPosition).getUser().getProfile();
         category.setImageResource(setCategoryImage(groupPosition));
         name.setText(results.getData().get(groupPosition).getUser().getName());
-        point.setText(String.valueOf(results.getData().get(groupPosition).getPrice()));
+        point.setText(String.valueOf(results.getData().get(groupPosition).getPrice()) + "p");
 
         return convertView;
     }
@@ -125,7 +132,7 @@ public class HelperListAdapter extends BaseExpandableListAdapter {
     //차일드 뷰의 사이즈 반환
     @Override
     public int getChildrenCount(int groupPosition) {
-        return 0;
+        return 1;
     }
 
 
@@ -144,14 +151,23 @@ public class HelperListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 
-
-
         if (convertView == null) {
 
             LayoutInflater infalInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.expendable_list_where_child_item, null);
+            convertView = infalInflater.inflate(R.layout.custom_helper_list_child_item, null);
         }
+
+        TextView category, point, from, to;
+        category = (TextView)convertView.findViewById(R.id.list_child_category);
+        point = (TextView)convertView.findViewById(R.id.list_child_point);
+        from = (TextView)convertView.findViewById(R.id.list_child_from);
+        to = (TextView)convertView.findViewById(R.id.list_child_to);
+
+        category.setText(results.getData().get(groupPosition).getCategory());
+        point.setText(String.valueOf(results.getData().get(groupPosition).getPrice()));
+        from.setText(results.getData().get(groupPosition).getFrom());
+        to.setText(results.getData().get(groupPosition).getTo());
 
         return convertView;
     }

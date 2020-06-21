@@ -25,7 +25,6 @@ public class ListFragment extends Fragment implements I_ListView {
     View view;
     I_ListPresenter i_listPresenter;
     ExpandableListView expandableListView;
-    LinearLayout progressLayout;
    public  static HelperListAdapter adapter;
 
     public ListFragment() {
@@ -44,6 +43,27 @@ public class ListFragment extends Fragment implements I_ListView {
 
         i_listPresenter.loadList();
 
+        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                expandableListView.collapseGroup(groupPosition);
+                Log.d("ttt", "col : "+groupPosition);
+                return false;
+            }
+        });
+
+        // 그룹이 열릴 경우 이벤트 발
+        expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            int previousGroup = -1;
+
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                if (groupPosition != previousGroup)
+                    expandableListView.collapseGroup(previousGroup);
+                previousGroup = groupPosition;
+            }
+        });
+
         return view;
     }
 
@@ -51,29 +71,11 @@ public class ListFragment extends Fragment implements I_ListView {
         i_listPresenter = new ListPresenter(context);
         adapter = new HelperListAdapter(context);
         expandableListView = (ExpandableListView)view.findViewById(R.id.list_errandList);
-        progressLayout = (LinearLayout)view.findViewById(R.id.list_progress);
+
 
         expandableListView.setAdapter(adapter);
-    }
 
-    @Override
-    public void setProgress(int visibility) {
-        progressLayout.setVisibility(visibility);
-        switch (visibility){
-            case View.VISIBLE :
-                progressLayout.setVisibility(View.INVISIBLE);
-                getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                break;
-            case View.GONE : case View.INVISIBLE :
-                progressLayout.setVisibility(View.VISIBLE);
-                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                break;
-        }
-    }
 
-    void setAdapterData(ErrandResults results){
-        adapter.setResults(results);
     }
 
     @Override

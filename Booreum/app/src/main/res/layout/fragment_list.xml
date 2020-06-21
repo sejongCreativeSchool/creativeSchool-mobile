@@ -6,25 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.booreum.view.main.fragment.list.ListFragment">
 
-    <LinearLayout
-        android:id="@+id/list_progress"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#99000000"
-        android:elevation="10dp"
-        android:gravity="center"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
-    </LinearLayout>
-
 
     <ExpandableListView
         android:id="@+id/list_errandList"
@@ -34,16 +15,9 @@
         android:layout_marginTop="105dp"
         android:layout_marginBottom="56dp"
         android:divider="@android:color/transparent"
+        android:clickable="true"
         android:groupIndicator="@null"/>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/view_curtain"
-        android:elevation="5dp"
-        android:layout_marginTop="105dp"
-        android:layout_marginBottom="56dp"
-        android:scaleType="fitXY"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -42,10 +42,8 @@ public class ListPresenter implements I_ListPresenter {
                         if(!response.isSuccessful()){
                             retrofitFailed();
                         }
-                        Log.d("ListPresenter", "responst : " +response.body().getData().get(0).getDesc());
-                        errandResults = response.body();
-                        i_listView.setData(errandResults);
-                        //ListFragment.adapter.setResults();
+
+                       retrofitSuccess(response);
                     }
 
                     @Override
@@ -56,10 +54,15 @@ public class ListPresenter implements I_ListPresenter {
 
     }
 
+    void retrofitSuccess(Response<ErrandResults> response){
+        errandResults = response.body();
+        i_listView.setData(errandResults);
+        //ListFragment.adapter.setResults();
+    }
+
     void retrofitFailed(){
         Log.d("ListPresenter", "retrofit failed");
         Toast.makeText( context.getApplicationContext(), "서버 통신 실패", Toast.LENGTH_SHORT ).show();
-        i_listView.setProgress(View.GONE);
     }
 
 }
