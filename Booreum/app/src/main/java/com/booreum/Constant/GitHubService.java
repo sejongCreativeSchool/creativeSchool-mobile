@@ -1,5 +1,7 @@
 package com.booreum.Constant;
 
+import com.booreum.model.Errand;
+import com.booreum.model.ErrandResults;
 import com.booreum.model.User;
 import com.booreum.model.UserResult;
 import com.booreum.model.UserResults;
@@ -14,7 +16,11 @@ public interface GitHubService {
 
     //심부름 목록 호출
     @GET("/v1/errand")
-    Call<User> listErrand();
+    Call<ErrandResults> loadErrands();
+
+    //심부름 등록하기
+    @POST("/v1/auth/user")
+    Call<Errand> uploadErrand(@Body Errand errand);
 
     //개별유저 불러오기
     @GET("/v1/auth/user/{accessToken}")

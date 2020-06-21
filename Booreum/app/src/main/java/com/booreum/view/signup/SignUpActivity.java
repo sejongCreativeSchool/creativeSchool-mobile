@@ -125,11 +125,6 @@ public class SignUpActivity extends CustomAppCompatForToolbar implements I_SignU
             v.clearFocus();
             HideKeyboard.hideKeyBoard(this, v);
         }
-        //HideKeyboard.hideKeyBoard(this, name);
-        //HideKeyboard.hideKeyBoard(this, id);
-        //HideKeyboard.hideKeyBoard(this, pw);
-        //HideKeyboard.hideKeyBoard(this, pw_check);
-        //HideKeyboard.hideKeyBoard(this, phone);
     }
 
     @Override

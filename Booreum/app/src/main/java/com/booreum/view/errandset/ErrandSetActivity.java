@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.booreum.Custom.NonSwipeViewpager;
 import com.booreum.Custom.Toolbar.CustomAppCompatForToolbar;
 import com.booreum.adapter.ErrandSetAdapter;
 import com.booreum.booreum.R;
+import com.booreum.view.errandcheck.CheckErrandActivity;
 import com.booreum.view.errandset.fragment.WhatFragment;
 import com.booreum.view.main.fragment.category.CategoryFragment;
 import com.pm10.library.CircleIndicator;
@@ -48,16 +50,6 @@ public class ErrandSetActivity extends CustomAppCompatForToolbar implements I_Er
     private ImageView setErrand_title_image;
     private Button setErrand_button_next;
     private Button setErrand_button_previous;
-
-    /**
-     * 프레임2번
-     */
-    private ConstraintLayout checkErrand;
-    private TextView checkErrand_titie;
-    private ImageView checkErrand_title_image;
-    private Button checkErrand_button;
-    private TextView what, from, to, when, point;
-
 
 
 
@@ -89,16 +81,7 @@ public class ErrandSetActivity extends CustomAppCompatForToolbar implements I_Er
         setErrand_button_previous = (Button) findViewById(R.id.errandSet_button_previous);
 
 
-        checkErrand_titie = (TextView) findViewById(R.id.errandSet_checkErrand_title_tv);
-        checkErrand_title_image = (ImageView) findViewById(R.id.errandSet_checkErrand_title_image);
-        checkErrand_button = (Button) findViewById(R.id.errandSet_checkErrand_button);
-        what = (TextView) findViewById(R.id.errandSet_checkErrand_what_et);
-        from = (TextView) findViewById(R.id.errandSet_checkErrand_wherefrom_et);
-        to = (TextView) findViewById(R.id.errandSet_checkErrand_whereto_et);
-        when = (TextView) findViewById(R.id.errandSet_checkErrand_when_et);
-        point = (TextView) findViewById(R.id.errandSet_checkErrand_point_et);
-
-        i_errandSetPresenter.setViewTitle(setErrand_titie, setErrand_title_image, checkErrand_titie, checkErrand_title_image);
+        i_errandSetPresenter.setViewTitle(setErrand_titie, setErrand_title_image);
         ErrandSetAdapter mAdapter = new ErrandSetAdapter(getSupportFragmentManager(), this, 5);
         viewPager.setAdapter(mAdapter);
 
@@ -122,10 +105,6 @@ public class ErrandSetActivity extends CustomAppCompatForToolbar implements I_Er
         }
     }
 
-    @Override
-    public void setFrameVisible() {
-        setErrand.setVisibility(View.GONE);
-    }
 
     @Override
     protected void linkToolbar() {
@@ -141,4 +120,5 @@ public class ErrandSetActivity extends CustomAppCompatForToolbar implements I_Er
         }
         return super.dispatchTouchEvent(event);
     }
+
 }

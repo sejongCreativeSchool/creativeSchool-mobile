@@ -1,6 +1,7 @@
 package com.booreum.view.errandset.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -29,6 +30,8 @@ public class FromFragment extends Fragment {
         this.context = context;
     }
 
+    View pre_view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,7 +49,6 @@ public class FromFragment extends Fragment {
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                 fromWhere = Building.building[groupPosition];
                 Log.d("Errand_", "그룹클릭리스너 : " + groupPosition);
-
                 return false;
             }
         });
@@ -57,6 +59,7 @@ public class FromFragment extends Fragment {
 
             @Override
             public void onGroupExpand(int groupPosition) {
+                if(groupPosition==0) expandableListView.collapseGroup(0);
                 if (groupPosition != previousGroup)
                     expandableListView.collapseGroup(previousGroup);
                 previousGroup = groupPosition;

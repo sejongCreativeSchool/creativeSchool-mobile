@@ -1,6 +1,8 @@
 package com.booreum.view.errandset;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -15,6 +17,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.booreum.Constant.Building;
 import com.booreum.booreum.R;
+import com.booreum.view.errandcheck.CheckErrandActivity;
 import com.booreum.view.errandset.fragment.FromFragment;
 import com.booreum.view.errandset.fragment.PointFragment;
 import com.booreum.view.errandset.fragment.ToFragment;
@@ -28,7 +31,7 @@ public class ErrandSetPresenter implements I_ErrandSetPresenter {
     private I_ErrandSetView i_errandSetView;
 
     private int nowViewNumber = 0;
-    static String whatStr, fromStr, toStr, whenStr, pointStr;
+    public static String whatStr, fromStr, toStr, whenStr, pointStr;
 
     public ErrandSetPresenter(Context context, int categoryNumbering) {
         this.context = context;
@@ -37,7 +40,7 @@ public class ErrandSetPresenter implements I_ErrandSetPresenter {
     }
 
     @Override
-    public void setViewTitle(TextView set_title_tv, ImageView set_title_image, TextView check_title_tv, ImageView check_title_image) {
+    public void setViewTitle(TextView set_title_tv, ImageView set_title_image) {
         String titleText = "";
         int resource = 0;
 
@@ -77,9 +80,7 @@ public class ErrandSetPresenter implements I_ErrandSetPresenter {
         }
 
         set_title_tv.setText(titleText);
-        check_title_tv.setText(titleText);
         set_title_image.setImageResource(resource);
-        check_title_image.setImageResource(resource);
     }
 
     @Override
@@ -114,6 +115,7 @@ public class ErrandSetPresenter implements I_ErrandSetPresenter {
             if (!str.isEmpty()) {
                 //str이 비어있지 않으면
                 whatStr = str;
+                Log.d("ttt","test : "+nowViewNumber);
                 return ++nowViewNumber;
             }
         } else if (nowViewNumber == 1) {
@@ -126,12 +128,13 @@ public class ErrandSetPresenter implements I_ErrandSetPresenter {
                     if (str.equals(Building.building[Building.building.length - 1]))
                         fromStr = str + " : " + strDetail;
                     else
-                        fromStr = str + strDetail;
+                        fromStr = str + " " + strDetail;
                     fromStr.replace("null", "");
                     FromFragment.fromWhere = "";
                     FromFragment.fromDetail = "";
                     FromFragment.collapseAllGroup();
                     Log.d("Errand_", "fromstr : " + fromStr);
+                    Log.d("ttt","test : "+nowViewNumber);
                     return ++nowViewNumber;
                 }
             } else
@@ -146,12 +149,13 @@ public class ErrandSetPresenter implements I_ErrandSetPresenter {
                     if (str.equals(Building.building[Building.building.length - 1]))
                         toStr = str + " : " + strDetail;
                     else
-                        toStr = str + strDetail;
+                        toStr = str + " " + strDetail;
                     toStr.replace("null", "");
                     ToFragment.toWhere = "";
                     ToFragment.toDetail = "";
                     ToFragment.collapseAllGroup();
                     Log.d("Errand_", "fromstr : " + toStr);
+                    Log.d("ttt","test : "+nowViewNumber);
                     return ++nowViewNumber;
                 }
             } else
@@ -161,6 +165,7 @@ public class ErrandSetPresenter implements I_ErrandSetPresenter {
             int hour = time / 60 % 24;
             int minute = time % 60;
             whenStr = hour + "시 " + minute + "분";
+            Log.d("ttt","test : "+nowViewNumber);
             return ++nowViewNumber;
         }
 
@@ -170,17 +175,29 @@ public class ErrandSetPresenter implements I_ErrandSetPresenter {
                 //str이 비어있지 않으면
                 if (Integer.valueOf(str) > 500) {
                     pointStr = str;
-                    return ++nowViewNumber;
+                    Log.d("ttt","test : "+nowViewNumber);
+                    ++nowViewNumber;
                 }
                 else
                     PointFragment.point.setText("");
             }
         }
 
-        else if (nowViewNumber >= 4) {
+        if (nowViewNumber > 4) {
             if (whatStr != null && fromStr != null && toStr != null && whenStr != null && pointStr != null) {
                 //모두가 널이 아니면
-                i_errandSetView.setFrameVisible();
+
+                Log.d("ttt","test");
+                Intent intent = new Intent(context, CheckErrandActivity.class);
+                intent.putExtra("what", ErrandSetPresenter.whatStr);
+                intent.putExtra("from", ErrandSetPresenter.fromStr);
+                intent.putExtra("to", ErrandSetPresenter.toStr);
+                intent.putExtra("when", ErrandSetPresenter.whenStr);
+                intent.putExtra("point",ErrandSetPresenter. pointStr);
+                intent.putExtra("total_minute",WhenFragment.total_minute);
+                intent.putExtra("category",categoryNumbering);
+                ((Activity)context).startActivity(intent);
+
                 return nowViewNumber;
             }
         }

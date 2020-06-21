@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.viewpager.widget.ViewPager;
 
 public interface I_ErrandSetPresenter {
-    void setViewTitle(TextView set_title_tv , ImageView set_title_image,TextView check_title_tv , ImageView check_title_image);
+    void setViewTitle(TextView set_title_tv , ImageView set_title_image);
     void setNextPage(ViewPager viewPager);
     void setPreviousPage(ViewPager viewPager);
     void checkFocusEdittext(MotionEvent event, View v);

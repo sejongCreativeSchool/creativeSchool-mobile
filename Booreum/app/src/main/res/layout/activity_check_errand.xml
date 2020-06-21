@@ -4,6 +4,229 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.booreum.view.errandcheck.CheckErrandActivity">
+    tools:context="com.booreum.view.errandcheck.CheckErrandActivity"
+    android:id="@+id/checkErrand_parent">
+
+    <com.booreum.Custom.Toolbar.MyToolBar
+        android:id="@+id/checkErrand_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title_text="상세조건 검색"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/view_container"
+        android:paddingTop="25dp"
+        android:layout_marginTop="105dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/errandSet_checkErrandLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="35dp"
+            android:paddingTop="15dp"
+            android:paddingRight="35dp">
+
+            <LinearLayout
+                android:id="@+id/errandSet_checkErrand_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginBottom="30dp"
+                app:layout_constraintBottom_toTopOf="@id/errandSet_CheckErrand_centerView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread">
+
+                <ImageView
+                    android:id="@+id/errandSet_checkErrand_title_image"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginRight="15dp"
+                    android:src="@drawable/icon_bring_detail" />
+
+                <TextView
+                    android:id="@+id/errandSet_checkErrand_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="가져다줘"
+                    android:textColor="#3c3c3c"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/errandSet_CheckErrand_centerView"
+                android:layout_width="match_parent"
+                android:layout_height="450dp"
+                app:layout_constraintBottom_toTopOf="@id/checkErrand_button"
+                app:layout_constraintTop_toBottomOf="@id/errandSet_checkErrand_title">
+
+                <TextView
+                    android:id="@+id/info"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/errandSet_checkErrand_what_tv"
+                    android:text="*텍스트를 클릭하시면 바로 수정 가능합니다."
+                    android:textColor="@color/helper_red_dark"/>
+
+                <TextView
+                    android:id="@+id/errandSet_checkErrand_what_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="무엇을"
+                    android:textColor="#606060"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toTopOf="@+id/errandSet_checkErrand_what_et"
+                    app:layout_constraintTop_toBottomOf="@id/info"
+                    app:layout_constraintVertical_chainStyle="spread" />
+
+                <EditText
+                    android:id="@+id/errandSet_checkErrand_what_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/border_edittext_errand_fragment"
+                    android:hint="내용을 입력하세요"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingLeft="20dp"
+                    android:text="ttt"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@id/errandSet_checkErrand_wherefrom_tv"
+                    app:layout_constraintTop_toBottomOf="@id/errandSet_checkErrand_what_tv" />
+
+                <TextView
+                    android:id="@+id/errandSet_checkErrand_wherefrom_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="어디서"
+                    android:textColor="#606060"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toTopOf="@id/errandSet_checkErrand_wherefrom_et"
+                    app:layout_constraintTop_toBottomOf="@+id/errandSet_checkErrand_what_et" />
+
+                <EditText
+                    android:id="@+id/errandSet_checkErrand_wherefrom_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/border_edittext_errand_fragment"
+                    android:textColor="@color/black"
+                    android:hint="내용을 입력하세요"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingLeft="20dp"
+                    android:text="ttt"
+                    android:textSize="18dp"
+                    app:layout_constraintBottom_toTopOf="@id/errandSet_checkErrand_whereto_tv"
+                    app:layout_constraintTop_toBottomOf="@id/errandSet_checkErrand_wherefrom_tv" />
+
+                <TextView
+                    android:id="@+id/errandSet_checkErrand_whereto_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="어디로"
+                    android:textColor="#606060"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toTopOf="@id/errandSet_checkErrand_whereto_et"
+                    app:layout_constraintTop_toBottomOf="@+id/errandSet_checkErrand_wherefrom_et" />
+
+                <EditText
+                    android:id="@+id/errandSet_checkErrand_whereto_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/border_edittext_errand_fragment"
+                    android:textColor="@color/black"
+                    android:hint="내용을 입력하세요"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingLeft="20dp"
+                    android:text="ttt"
+                    android:textSize="18dp"
+                    app:layout_constraintBottom_toTopOf="@id/errandSet_checkErrand_when_tv"
+                    app:layout_constraintTop_toBottomOf="@id/errandSet_checkErrand_whereto_tv" />
+
+                <TextView
+                    android:id="@+id/errandSet_checkErrand_when_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="언제까지"
+                    android:textColor="#606060"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toTopOf="@id/errandSet_checkErrand_when_et"
+                    app:layout_constraintTop_toBottomOf="@id/errandSet_checkErrand_whereto_et" />
+
+                <EditText
+                    android:id="@+id/errandSet_checkErrand_when_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/border_edittext_errand_fragment"
+                    android:textColor="@color/black"
+                    android:hint="내용을 입력하세요"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:paddingLeft="20dp"
+                    android:text="ttt"
+                    android:textSize="18dp"
+                    android:focusable="false"
+                    app:layout_constraintBottom_toTopOf="@+id/errandSet_checkErrand_point_tv"
+                    app:layout_constraintTop_toBottomOf="@id/errandSet_checkErrand_when_tv" />
+
+                <TextView
+                    android:id="@+id/errandSet_checkErrand_point_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="얼마를"
+                    android:textColor="#606060"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toTopOf="@id/errandSet_checkErrand_point_et"
+                    app:layout_constraintTop_toBottomOf="@+id/errandSet_checkErrand_when_et" />
+
+                <EditText
+                    android:id="@+id/errandSet_checkErrand_point_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/border_edittext_errand_fragment"
+                    android:textColor="@color/black"
+                    android:hint="내용을 입력하세요"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:paddingLeft="20dp"
+                    android:text="ttt"
+                    android:textSize="18dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/errandSet_checkErrand_point_tv" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/checkErrand_button"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/button_custom_blue"
+                app:layout_constraintTop_toBottomOf="@id/errandSet_CheckErrand_centerView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="완료"
+                android:textSize="20dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

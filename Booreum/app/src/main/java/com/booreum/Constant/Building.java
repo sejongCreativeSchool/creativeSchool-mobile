@@ -6,6 +6,7 @@ public final class Building {
     public final static String[] building =
             new String[]
                     {
+                            "상관없음",
                     "학생회관",
                     "광개토관",
                     "군자관",

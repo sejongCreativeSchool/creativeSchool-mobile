@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.booreum.view.main.fragment.category.CategoryFragment;
 import com.booreum.view.main.fragment.chat.ChatFragment;
+import com.booreum.view.main.fragment.list.ListFragment;
 import com.booreum.view.main.fragment.setting.SettingFragment;
 
 public class MainAdapter extends FragmentStatePagerAdapter {
@@ -33,6 +34,8 @@ public class MainAdapter extends FragmentStatePagerAdapter {
             case 2:
                 SettingFragment settingFragment = new SettingFragment(context);
                 return settingFragment;
+            case 3:
+                ListFragment listFragment = new ListFragment(context);
             default:
                 return null;
         }

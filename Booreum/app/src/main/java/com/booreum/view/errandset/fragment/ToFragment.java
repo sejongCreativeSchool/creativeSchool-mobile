@@ -56,6 +56,7 @@ public class ToFragment extends Fragment {
 
             @Override
             public void onGroupExpand(int groupPosition) {
+                if(groupPosition==0) expandableListView.collapseGroup(0);
                 if (groupPosition != previousGroup)
                     expandableListView.collapseGroup(previousGroup);
                 previousGroup = groupPosition;

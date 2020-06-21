@@ -55,7 +55,11 @@ public class MainActivity extends CustomAppCompatForToolbar implements I_MainVie
 
         tabLayout.setElevation(10);
 
-        tabLayout.addTab(tabLayout.newTab().setCustomView(createTabView(R.drawable.tab_button_category)));
+        String status = PreferenceManager.getString(this, PreferenceManager.KEY_STATUS_CHANGE);
+        if(status.equals(PreferenceManager.HELPER) && user.getHelper())
+            tabLayout.addTab(tabLayout.newTab().setCustomView(createTabView(R.drawable.tab_button_list)));
+        else
+            tabLayout.addTab(tabLayout.newTab().setCustomView(createTabView(R.drawable.tab_button_category)));
         tabLayout.addTab(tabLayout.newTab().setCustomView(createTabView(R.drawable.tab_button_chat)));
         tabLayout.addTab(tabLayout.newTab().setCustomView(createTabView(R.drawable.tab_button_setting)));
 

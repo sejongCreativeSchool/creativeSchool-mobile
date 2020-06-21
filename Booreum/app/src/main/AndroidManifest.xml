@@ -14,7 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme_needer"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.booreum.view.errandcheck.CheckErrandPresenter"></activity>
         <activity android:name="com.booreum.view.errandcheck.CheckErrandActivity" />
         <activity
             android:name="com.booreum.view.errandset.ErrandSetActivity"
@@ -23,15 +22,17 @@
         <activity
             android:name="com.booreum.view.signup.SignUpActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name="com.booreum.view.login.LoginActivity" />
-        <activity
-            android:name="com.booreum.view.main.MainActivity"
-            android:windowSoftInputMode="adjustResize">
+        <activity android:name="com.booreum.view.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.booreum.view.main.MainActivity"
+            android:windowSoftInputMode="adjustResize">
+
         </activity>
     </application>
 

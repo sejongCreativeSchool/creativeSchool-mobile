@@ -10,27 +10,25 @@ import android.widget.TextView;
 
 import com.booreum.Constant.Building;
 import com.booreum.booreum.R;
+import com.booreum.model.Errand;
+import com.booreum.model.ErrandResults;
 import com.booreum.view.errandset.fragment.FromFragment;
 import com.booreum.view.errandset.fragment.ToFragment;
 
-public class WhereListAdapter extends BaseExpandableListAdapter  {
+public class HelperListAdapter extends BaseExpandableListAdapter {
 
     Context context;
-    EditText editText;
-    String[] building ;
-    ViewHolder viewHolder;
-    Boolean isFrom; //true => From / false => To
+    HelperListAdapter.ViewHolder viewHolder;
+    ErrandResults results = new ErrandResults();
 
-    public WhereListAdapter(Context context, Boolean isFrom) {
+    public HelperListAdapter(Context context) {
         this.context = context;
-        this.building = Building.building;
-        this.isFrom = isFrom;
     }
 
-//그룹 사이즈를 반환
+    //그룹 사이즈를 반환
     @Override
     public int getGroupCount() {
-        return building.length;
+        return results.getData().size();
     }
 
     //그룹 ID를 반환
@@ -42,24 +40,22 @@ public class WhereListAdapter extends BaseExpandableListAdapter  {
     //그룹 포지션 반환
     @Override
     public Object getGroup(int groupPosition) {
-        return editText;
+        return groupPosition;
     }
 
     //그룹 뷰 생성(그룹 각 뷰의 ROW)
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 
-        String buildingStr = this.building[groupPosition];
-
         if (convertView == null) {
-            viewHolder = new ViewHolder();
+            viewHolder = new HelperListAdapter.ViewHolder();
             LayoutInflater infalInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.expendable_list_group_item, null);
+            convertView = infalInflater.inflate(R.layout.custom_helper_list_group_item, null);
             convertView.setTag(viewHolder);
         }
         else{
-            viewHolder = (ViewHolder)convertView.getTag();
+            viewHolder = (HelperListAdapter.ViewHolder)convertView.getTag();
         }
         //그룹을 펼칠 때 또는 닫을 때 아이콘 변경
         if(isExpanded){
@@ -68,8 +64,6 @@ public class WhereListAdapter extends BaseExpandableListAdapter  {
             //viewHolder.iv_image.setBackgroundColor(Color.WHITE);
         }
 
-        TextView lblListHeader = (TextView) convertView.findViewById(R.id.groupList_text);
-        lblListHeader.setText(buildingStr);
 
         return convertView;
     }
@@ -103,7 +97,7 @@ public class WhereListAdapter extends BaseExpandableListAdapter  {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 
-        final String childText = (String) getChild(groupPosition, childPosition);
+
 
         if (convertView == null) {
 
@@ -111,29 +105,6 @@ public class WhereListAdapter extends BaseExpandableListAdapter  {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.expendable_list_where_child_item, null);
         }
-
-        EditText editText = (EditText) convertView
-                .findViewById(R.id.childList_item);
-
-        if(groupPosition == building.length-1)
-            editText.setHint("주소를 입력하세요.");
-        else
-            editText.setHint("상세주소가 필요한 경우 입력하세요.");
-
-        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus == false && editText.getText() != null){
-                    if(isFrom)
-                        FromFragment.fromDetail = editText.getText().toString();
-                    else
-                        ToFragment.toDetail = editText.getText().toString();
-                    if(hasFocus)
-                        editText.setText("");
-                }
-            }
-        });
-
 
         return convertView;
     }

@@ -4,13 +4,26 @@
     android:layout_height="match_parent"
     tools:context="com.booreum.view.errandset.fragment.FromFragment">
 
-    <ExpandableListView
-        android:id="@+id/from_listview"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:dividerHeight="2dp"
-        android:divider="@color/needer_blue_setting_layer_1"
-        android:headerDividersEnabled="true"
-        android:groupIndicator="@null"/>
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/helper_red_dark"
+            android:text="* 선택 후 다음 버튼을 누르세요."
+            android:gravity="center"/>
+        <ExpandableListView
+            android:id="@+id/from_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:dividerHeight="2dp"
+            android:divider="@color/needer_blue_setting_layer_1"
+            android:headerDividersEnabled="true"
+            android:groupIndicator="@null"/>
+    </LinearLayout>
+
+
 
 </FrameLayout>
