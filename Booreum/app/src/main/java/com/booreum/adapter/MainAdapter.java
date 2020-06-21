@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.booreum.Constant.PreferenceManager;
+import com.booreum.view.main.MainPresenter;
 import com.booreum.view.main.fragment.category.CategoryFragment;
 import com.booreum.view.main.fragment.chat.ChatFragment;
 import com.booreum.view.main.fragment.list.ListFragment;
@@ -24,10 +26,17 @@ public class MainAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+        String status = PreferenceManager.getString(context, PreferenceManager.KEY_STATUS_CHANGE);
         switch (position){
             case 0 :
-                CategoryFragment categoryFragment = new CategoryFragment();
-                return categoryFragment;
+                if(status.equals(PreferenceManager.HELPER) && MainPresenter.user.getHelper()) {
+                    ListFragment listFragment = new ListFragment(context);
+                    return listFragment;
+                }
+                else {
+                    CategoryFragment categoryFragment = new CategoryFragment();
+                    return categoryFragment;
+                }
             case 1:
                 ChatFragment chatFragment = new ChatFragment();
                 return chatFragment;

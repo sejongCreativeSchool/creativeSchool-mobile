@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +17,8 @@ import android.widget.LinearLayout;
 import com.booreum.Constant.HideKeyboard;
 import com.booreum.adapter.HelperListAdapter;
 import com.booreum.booreum.R;
+import com.booreum.model.ErrandResults;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ListFragment extends Fragment implements I_ListView {
 
     Context context;
@@ -27,7 +26,7 @@ public class ListFragment extends Fragment implements I_ListView {
     I_ListPresenter i_listPresenter;
     ExpandableListView expandableListView;
     LinearLayout progressLayout;
-    HelperListAdapter adapter;
+   public  static HelperListAdapter adapter;
 
     public ListFragment() {
     }
@@ -73,10 +72,15 @@ public class ListFragment extends Fragment implements I_ListView {
         }
     }
 
+    void setAdapterData(ErrandResults results){
+        adapter.setResults(results);
+    }
+
     @Override
-    public void setData() {
-        /**
-         * 데이터 가져와서 어뎁터에 추가해주고*/
+    public void setData(ErrandResults results) {
+        Log.d("ListPresenter", "responst : " +results.getData().get(0).getDesc());
+        //setAdapterData(results);
+        adapter.setResults(results);
         adapter.notifyDataSetChanged();
     }
 

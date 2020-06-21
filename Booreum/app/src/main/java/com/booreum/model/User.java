@@ -26,11 +26,21 @@ public class User implements Serializable {
 
     private String department;
 
+    private String profile;
+
     public User(@NonNull String name, @NonNull String accessToken, @NonNull Boolean helper, @NonNull String phone) {
         this.name = name;
         this.accessToken = accessToken;
         this.helper = helper;
         this.phone = phone;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 
     @NonNull

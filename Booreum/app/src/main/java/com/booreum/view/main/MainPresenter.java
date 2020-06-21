@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.booreum.Constant.GitHubServiceProvider;
+import com.booreum.Constant.PreferenceManager;
 import com.booreum.booreum.R;
 import com.booreum.model.User;
 import com.booreum.model.UserResult;
@@ -32,6 +33,7 @@ public class MainPresenter implements I_MainPresenter{
 
     public MainPresenter(Context context, I_MainView mainView, User user) {
 
+        this.context = context;
         this.i_mainView = mainView;
         this.mAuth = FirebaseAuth.getInstance();
         authUser = mAuth.getCurrentUser();
@@ -65,7 +67,10 @@ public class MainPresenter implements I_MainPresenter{
     public String doTabTitle(int position) {
         switch (position) {
             case 0:
-                i_mainView.setTabTitle("카테고리");
+                if(PreferenceManager.isHelper(context) && user.getHelper())
+                    i_mainView.setTabTitle("리스트");
+                else
+                    i_mainView.setTabTitle("카테고리");
                 break;
             case 1:
                 i_mainView.setTabTitle("채팅");

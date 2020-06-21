@@ -1,5 +1,6 @@
 package com.booreum.view.main.fragment.list;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.util.Log;
@@ -23,7 +24,7 @@ public class ListPresenter implements I_ListPresenter {
     Context context;
     I_ListView i_listView;
 
-    ErrandResults errandResults;
+    public  static ErrandResults errandResults;
 
     public ListPresenter(Context context) {
         this.context = context;
@@ -32,7 +33,7 @@ public class ListPresenter implements I_ListPresenter {
 
     @Override
     public void loadList() {
-        i_listView.setProgress(View.VISIBLE);
+        //i_listView.setProgress(View.VISIBLE);
 
         GitHubServiceProvider.retrofit.loadErrands()
                 .enqueue(new Callback<ErrandResults>() {
@@ -41,8 +42,10 @@ public class ListPresenter implements I_ListPresenter {
                         if(!response.isSuccessful()){
                             retrofitFailed();
                         }
+                        Log.d("ListPresenter", "responst : " +response.body().getData().get(0).getDesc());
                         errandResults = response.body();
-
+                        i_listView.setData(errandResults);
+                        //ListFragment.adapter.setResults();
                     }
 
                     @Override
