@@ -1,7 +1,7 @@
 # creativeSchool-mobile
 2020 - 1학기 창의학기제 모바일 레포지토리
 
-## 1주차
+#### 1주차
 - OAuth 2.0에 대해 알아보고, 소셜 로그인에 대해 실습과정을 함.
 - 안드로이드 스튜디오 build:gradle 3.6.1, google-services:4.3.3 기준. 
 
@@ -17,7 +17,7 @@ https://www.youtube.com/watch?v=FrRo26dYGfc
 (20.03.22)
 
 
-## 2주차
+#### 2주차
 - 이번 실습은 노트북이 고장나고 수리로 인한 입고로 인해 늦게 깃에 푸쉬되었음.
 - 리사이클러뷰와 파이어베이스 데이터베이스를 활용하여 게시판 만들기 실습을 진행함.
 - 기준은 위와 동일.
@@ -26,7 +26,7 @@ https://www.youtube.com/watch?v=FrRo26dYGfc
 https://www.youtube.com/watch?v=HcPWt69d_wY
 - Use Firebase Database, Glide
 
-## 3주차
 #### [Week 3 :: Retrofit을 활용하여 공적마스크 지도 앱 제작](./week3/week3.md)
 #### [Week 4 :: FCM을 이용한 알림메시지 수신이 가능한 채팅앱 제작](./week4/week4.md) (코드, 이미지 미첨부)
 #### [Week 5 :: SharedPreferences를 이용한 메모장 앱 제작](./week5/week5.md) (작성 중)
+#### [Week 6 :: 프로젝트 설계](./week6.md)
