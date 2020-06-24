@@ -27,6 +27,7 @@
 정리하자면, 앱 구성요소는 개별적이고 비순차적으로 실행이 가능하고, 사용자나 운영체제에 의해 언제든지 제거될 수 있다. 그렇기 때문에 앱 구성요소에 앱 데이터나 상태 등을 저장해서는 안되고 앱 구성요소는 서로 종속되면 안되는 것이다.
 
 <br/>
+	
 또한, 일반 아키텍처의 원칙으로는
 
 - 관심사 분리 (Separate of Concerns) :
@@ -41,7 +42,7 @@
 
 
 
-#### MVC패턴
+#### **MVC패턴**
 MVC패턴은 모델-뷰-컨트롤러 방식으로, 사용자 인터페이스와 비즈니스 로직을 분리해서 어플리케이션의 시각적 요소나 그 이면에서 실행되는 비즈니스 로직을 서로 영향없이 쉽게 고칠 수 있는 모델이다.
 
 1.	모델 (비즈니스 로직)
@@ -93,120 +94,97 @@ MVC패턴은 모델-뷰-컨트롤러 방식으로, 사용자 인터페이스와 
 ```
 
 
-#### 발생한 문제
+#### **MVP모델**
 
--레트로핏 사용법을 알기 위해선 HTTP 등의 이해가 더 필요했다. 실 프로젝트 진행 전까지 더 공부할 예정.
+<br/><img width="400" alt="스크린샷 2020-03-31 오후 8 36 44" src="https://user-images.githubusercontent.com/45682868/85539698-19391900-b651-11ea-95ca-faf1944326ac.png">
 
--Tmap 관련하여 문제는 발생하지 않음.
+- 모델-뷰-프리젠터 구조이며, 컨트롤러와 달리 프리젠터는 종속되어 있지 않아도 모델과 뷰를 연결시켜서 MVC 패턴이 가지고 있던 문제점을 일부 해소한다. 특징은 다음과 같다.
 
-- 현재위치를 알기 위해서는 GPS와 네트워크로 현재위치를 받아온다는 퍼미션을 하여야 한다.
+1. 모델
+	- MVC와 동일
+2. View
+	- 사용자에게 제공되는 UI
+	- 액티비티/프래그먼트가 뷰의 일부로 간주
+	- 사용자의 입력을 받고 이벤트를 프리젠터로 전달
+3. Presenter
+	- 모델과 뷰 상호작용 관리
+	- 컨트롤러와 본질적 동일. 하지만, 뷰에 연결되지 않는 단순 인터페이스
+	- 뷰에게 표시할 내용만 전달 (표시방법은 지시하지 않음)
 
-```xml
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-```
-현재위치는 개인정보보호를 위해 앱 첫 실행시, 경우에 따라선 해당 퍼미션을 수행해야 할 때마다 사용자에게 허가를 받아야 한다.
-안드로이드에서 기본 퍼미션 받는 방법은
-```java
- // Here, thisActivity is the current activity
-    if (ContextCompat.checkSelfPermission(thisActivity,
-            Manifest.permission.READ_CONTACTS)
-            != PackageManager.PERMISSION_GRANTED) {
-
-        // Permission is not granted
-        // Should we show an explanation?
-        if (ActivityCompat.shouldShowRequestPermissionRationale(thisActivity,
-                Manifest.permission.READ_CONTACTS)) {
-            // Show an explanation to the user *asynchronously* -- don't block
-            // this thread waiting for the user's response! After the user
-            // sees the explanation, try again to request the permission.
-        } else {
-            // No explanation needed; request the permission
-            ActivityCompat.requestPermissions(thisActivity,
-                    new String[]{Manifest.permission.READ_CONTACTS},
-                    MY_PERMISSIONS_REQUEST_READ_CONTACTS);
-
-            // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-            // app-defined int constant. The callback method gets the
-            // result of the request.
-        }
-    } else {
-        // Permission has already been granted
-    }
-    
-```
-응답처리는 다음과 같다.
-```java
-   @Override
-    public void onRequestPermissionsResult(int requestCode,
-            String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_READ_CONTACTS: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-                } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                }
-                return;
-            }
-
-            // other 'case' lines to check for other
-            // permissions this app might request.
-        }
-    }
-
-```
-그러나 매번 응답처리도 힘들었고, OS와 퍼미션에 따라 조금씩 달라 애를 먹었다.
-
-그래서 찾은 것이 TedPermission이다.
-사용법은 다음과 같다.
-```java
- TedPermission.with(this)
-                .setPermissionListener(permissionlistener) // 리스너 아래 참고
-                .setRationaleMessage("현재위치 정보를 받기 위해서는 위치정보 접근 권한이 필요해요") //퍼미션을 받는 이유
-                .setDeniedMessage("왜 거부하셨어요...\n하지만 [설정] > [권한] 에서 권한을 허용할 수 있어요.") //퍼미션 거부 시 메세지
-                .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.INTERNET) // 퍼미션 종류
-                .check();
-```
-
-위에서 퍼미션 권한 허용 여부에 따라 리스너에서 처리한다.
+**presenter**
 
 ```java
- PermissionListener permissionlistener = new PermissionListener() {
-            @Override
-            public void onPermissionGranted() {
-                Toast.makeText(CheckPermission.this, "권한 허가", Toast.LENGTH_SHORT).show();
-                Intent intent= new Intent(CheckPermission.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+	public Interface MainActivity{
+		void confirm();
+		interface View{
+			void setText(String text);
+		}
+	}
+```
+**View**
 
-            }
+```java
+	public class MainActivity implementes Presenter.View{
+		private Presenter presenter;
+		private TextView textView;
 
-            @Override
-            public void onPermissionDenied(List<String> deniedPermissions) {
-                Toast.makeText(CheckPermission.this, "권한 거부\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
-            }
-        };
+		protect void onCreate(#####){
+			super.onCreate(saveInstance);
+			setContente(R.layout.main);
+
+			presenter = new PresenterImpl();
+
+			textView.setonClicklistener(##presenter confirm());
+			
+		}
+	}
+```
+**presenterImpl**
+
+```java
+	public Interface MainActivity{
+		void confirm(){
+			if(view != null)
+				view.settext(###)
+		}
+	}
 ```
 
-### T Map API와 Retrofit을 이용한 공적마스크 지도 APP
+View에 대한 직접적인 접근이 요구되는 Android의 Activity는 직접적인 view 접근은 Activity 가 하도록 하고 이에 대한 제어는 Presenter 가 하도록 하고 있다. MVP 패턴에서 모델과 뷰는 MVC 패턴에서와는 달리 더이상 서로 간의 의존성이 존재하지 않는다. 모델은 프리젠터의 요청만 수행하면 되므로 다른 부분과의 상호작용은 전혀 신경쓰지 않아도 된다. 하지만 프리젠터도 시간이 지날수록 코드가 쌓여 비대해지게 되어 유지보수에 어려움이 있을 수 있다. 그리고 프리젠터를 구현하기 위해 인터페이스와 인터페이스 구현체를 구현해야 하는 등 MVC에 비해서 필요한 클래수 수가 증가하게 된다. 또한 뷰와 프리젠터의 1:1 관계로 인해 서로 간 의존성이 커지게 된다는 단점이 있다.
 
-<img width="400" alt="스크린샷 2020-03-31 오후 8 36 44" src="https://user-images.githubusercontent.com/45682868/85535754-716e1c00-b64d-11ea-8288-a6710f47a51f.png">
+<br/>
 
-<Retrofit에 관한 예제이기에 수량체크는 하지 않음>
 
-##### Purpose
-안드로이드에서 Retrofit을 사용법을 알아보기 위해 공적마스크 지도 어플 제작 프로젝트를 시작하였음.
+#### **MVVM모델**
 
-##### Language
-: JAVA (Android)
+<br/><img width="400" alt="스크린샷 2020-03-31 오후 8 36 44" src="https://user-images.githubusercontent.com/45682868/85550267-c1ec7600-b65b-11ea-851d-247ccdb3464b.png">
 
-##### Comments
-- TedPermission을 사용하지 못하더라도 퍼미션체크를 할 수 있도록 안드로이드에서 제공하느 기본 퍼미션 체크를 더 연습해봐야겠다.  
-- 레트로핏 관련하여 공식문서와 작성법 등을 더 배워야겠다.  
-##### Study Result
+
+사용자 입력은 이제 뷰를 통해 들어오게 된다. 뷰는 이러한 이벤트를 프리젠터로 전달하고 프리젠터는 모델과의 상호작용을 통해 뷰에게 업데이트 할 내용을 전달한다. 그리고 이 내용을 받은 뷰가 최종적으로 업데이트 된다. 
+
+특징은 다음과 같다.
+
+1.  Model
+	- MVC와 동일
+2. View
+	- 사용자에게 제공되는 UI
+	- 사용자의 입력을 받고 이벤트를 자신이 사용할 뷰모델로 전달
+3. ViewModel
+	- 뷰를 나타내주기 위한 모델 + 뷰의 표현 로직 담당
+	- 뷰와 독립적
+	- UI 관련 데이터 보관, 관리
+	- 모델이 변경되면 관련된 뷰모델을 사용하는 뷰가 자동 업데이트
+
+
+<br/><img width="400" alt="스크린샷 2020-03-31 오후 8 36 44" src="https://user-images.githubusercontent.com/45682868/85550573-0f68e300-b65c-11ea-81bb-b10dcf8539da.png">
+
+하지만 안드로이드에서 MVVM이 가지는 문제점은 View에 대한 처리가 복잡해질수록 ViewModel에 거대해지게 되고 상대적으로 Activity는 아무런 역할도 하지 않는 형태의 클래스로 변모하게 되었다. Controller의 성격을 지닌 Activity 가 실질적으로 아무런 역할을 하지 못하고 ViewModel에 치중된 모습을 보여줌으로써 다른 형태의 Activity 클래스를 구현한 꼴이 되어버린다. MainViewModel에 있는 로직을 다시 Activity 로 롤백한다하면 다시 MVC 가 가지고 있는 문제점을 가지게 되는 아이러니한 모습을 가지게 되었다.
+
+
+#### 결과 
+지금까지의 프로젝트는 패턴을 생각하지 않고 만들었다. 어플의 크기도 작고 복잡하지 않아서 액티비티에 함수와 기능들을 모아 작성하였는데, 이번 프로젝트부터는 패턴에 맞추어 개발하고자 한다.
+
+이번에 사용해볼 패턴은 MVP 패턴으로, MVP패턴을 이용해서 이와 같이 Model과 View간의 결합도를 낮추면, 새로운 기능을 추가하거나 변경할 필요가 있을 때 관련된 부분만 수정하면 되기 때문에 확장성이 좋아지며, 테스트 코드를 작성하기 편리해지기 때문에 더 안전한 코드 작업이 가능해지기에 선택했다.
+
+
 
