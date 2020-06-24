@@ -30,3 +30,5 @@ https://www.youtube.com/watch?v=HcPWt69d_wY
 #### [Week 4 :: FCM을 이용한 알림메시지 수신이 가능한 채팅앱 제작](./week4/week4.md) (코드, 이미지 미첨부)
 #### [Week 5 :: SharedPreferences를 이용한 메모장 앱 제작](./week5/week5.md) (작성 중)
 #### [Week 6 :: 프로젝트 설계](./week6.md)
+
+#### [Week 8~14 :: 프로젝트](./week8~14.md)
