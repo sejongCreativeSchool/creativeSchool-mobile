@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp">
+
+    <RelativeLayout
+        android:id="@+id/chatDetail_chat_item_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/chatDetail_chat_item_time_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="9dp"
+            android:layout_toLeftOf="@+id/chatDtail_chat_item_text_box"
+            android:gravity="bottom"
+            android:layout_alignBottom="@+id/chatDtail_chat_item_text_box"
+            android:text="dd"
+            android:textColor="#606060"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:id="@+id/chatDtail_chat_item_text_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/chatDetail_chat_item_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#606060"
+                android:padding="15dp"
+                android:maxLength="25"
+                android:text="testtest"
+                android:textSize="12dp"
+                android:background="@drawable/border_chat_detail_me"
+                android:layout_gravity="right"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/chatDetail_chat_item_time_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="9dp"
+            android:layout_toRightOf="@+id/chatDtail_chat_item_text_box"
+            android:gravity="bottom"
+            android:layout_alignBottom="@+id/chatDtail_chat_item_text_box"
+            android:text="dd"
+            android:textColor="#606060" />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

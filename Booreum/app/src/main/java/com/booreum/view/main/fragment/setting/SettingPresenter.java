@@ -13,6 +13,8 @@ import androidx.core.app.ActivityCompat;
 import com.booreum.Constant.PreferenceManager;
 import com.booreum.booreum.R;
 import com.booreum.model.User;
+import com.booreum.view.login.LoginActivity;
+import com.booreum.view.main.MainActivity;
 import com.booreum.view.main.MainPresenter;
 
 class SettingPresenter implements I_SettingPresenter, DialogInterface.OnClickListener {
@@ -64,6 +66,17 @@ class SettingPresenter implements I_SettingPresenter, DialogInterface.OnClickLis
 
             }
         }
+    }
+
+    @Override
+    public void doLogOut() {
+        MainPresenter.mAuth.signOut();
+        Intent intent = new Intent(context, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        if(PreferenceManager.getBoolean(context, PreferenceManager.KEY_AUTO_LOGIN))
+            PreferenceManager.setBoolean(context, PreferenceManager.KEY_AUTO_LOGIN, false);
+        context.startActivity(intent);
+        ((Activity)context).finish();
     }
 
     //다이얼로그

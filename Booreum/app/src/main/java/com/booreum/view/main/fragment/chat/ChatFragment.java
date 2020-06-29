@@ -1,5 +1,6 @@
 package com.booreum.view.main.fragment.chat;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -25,12 +26,20 @@ import java.util.ArrayList;
 
 public class ChatFragment extends Fragment implements I_ChatView{
 
+    Context context;
     private View view;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private I_ChatPresenter i_chatPresenter;
-    private LinearLayout not_chat;
+    private static LinearLayout not_chat;
+    static ChatListAdapter chatListAdapter;
 
+    public ChatFragment() {
+    }
+
+    public ChatFragment(Context context) {
+        this.context = context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,11 +49,9 @@ public class ChatFragment extends Fragment implements I_ChatView{
          */
         view = inflater.inflate(R.layout.fragment_chat, container, false);
 
-        i_chatPresenter = new ChatPresenter(this);
-        i_chatPresenter.getChatList();
+        i_chatPresenter = new ChatPresenter(context);
 
         initView();
-
 
         return view;
     }
@@ -52,15 +59,17 @@ public class ChatFragment extends Fragment implements I_ChatView{
     private void initView()
     {
         not_chat = view.findViewById(R.id.chat_notChat);
-        /*recyclerView = view.findViewById(R.id.chat_recycler);
+
+        recyclerView = view.findViewById(R.id.chat_recycler);
         recyclerView.setHasFixedSize(true); // 성능강화
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
         RecyclerDecoration spaceDaoration = new RecyclerDecoration(5);
-        recyclerView.addItemDecoration(spaceDaoration);*/
+        recyclerView.addItemDecoration(spaceDaoration);
 
-
+        chatListAdapter= new ChatListAdapter(context);
+        recyclerView.setAdapter(chatListAdapter);
     }
 
 
@@ -69,4 +78,13 @@ public class ChatFragment extends Fragment implements I_ChatView{
     public void onIntentChatDetail() {
 
     }
+
+    @Override
+    public void onChangeData() {
+        chatListAdapter.notifyDataSetChanged();
+        chatListAdapter.updateChatDetail();
+        not_chat.setVisibility(View.GONE);
+    }
+
+
 }

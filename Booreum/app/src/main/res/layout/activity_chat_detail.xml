@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/needer_blue_setting_layer_1"
+    tools:context="com.booreum.view.chatdetail.ChatDetailActivity">
+
+    <com.booreum.Custom.Toolbar.MyToolBar
+        android:id="@+id/chatDetail_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        app:title_text="채팅"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/chatDetail_center"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/chatDetail_toolbar"
+        app:layout_constraintBottom_toTopOf="@id/chatDetail_chatArea">
+        <ImageView
+            android:id="@+id/chatDetail_profile"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="35dp"
+            android:src="@drawable/icon_needer_profile"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="30dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/chatDetail_youState"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:textColor="?attr/helper_red_dark"
+                    android:textSize="18dp"
+                    android:text="니더"/>
+                <TextView
+                    android:id="@+id/chatDetail_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="18dp"
+                    android:text="Test"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/chatDetail_department"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#7678d2"
+                android:text="소프트웨어학과"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/chatDetail_done_button"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginRight="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:includeFontPadding="false"
+            android:background="@drawable/button_custom_blue"
+            android:layout_gravity="right"
+            android:text="완료"
+            android:textSize="18dp"/>
+        
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/chatDetail_chatArea"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:elevation="15dp"
+        android:paddingTop="45dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingBottom="20dp"
+        android:background="@drawable/view_container"
+        app:layout_constraintTop_toBottomOf="@id/chatDetail_center"
+        app:layout_constraintBottom_toTopOf="@id/chatDetail_send_box">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatDetail_chatView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+    <LinearLayout
+        android:id="@+id/chatDetail_send_box"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:elevation="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/white">
+        <EditText
+            android:id="@+id/chatDetail_cht_edit"
+            android:layout_weight="8"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <Button
+            android:id="@+id/chatDetail_send_button"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:text="전송"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

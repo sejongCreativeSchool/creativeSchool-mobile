@@ -1,14 +1,56 @@
 package com.booreum.model;
 
-import androidx.annotation.NonNull;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChatList
 {
-    List<ChatData> chatData;
+    String needer;
+    String helper;
+    String neederName;
+    String helperName;
 
-    public ChatList(List<ChatData> chatData) {
-        this.chatData = chatData;
+    List<ChatData> chat = new ArrayList<>();
+
+    public void setList(ChatData data){
+        chat.add(data);
+    }
+    public List<ChatData> getList(){
+        return chat;
+    }
+    public String getLastMsg(){
+        return chat.get(chat.size()-1).getMsg();
+    }
+
+    public String getNeeder() {
+        return needer;
+    }
+
+    public void setNeeder(String needer) {
+        this.needer = needer;
+    }
+
+    public String getHelper() {
+        return helper;
+    }
+
+    public void setHelper(String helper) {
+        this.helper = helper;
+    }
+
+    public String getNeederName() {
+        return neederName;
+    }
+
+    public void setNeederName(String neederName) {
+        this.neederName = neederName;
+    }
+
+    public String getHelperName() {
+        return helperName;
+    }
+
+    public void setHelperName(String helperName) {
+        this.helperName = helperName;
     }
 }

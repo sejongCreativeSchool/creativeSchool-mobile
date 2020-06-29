@@ -3,6 +3,7 @@ package com.booreum.model;
 public class ChatData {
     private String msg;
     private String name;
+    private String time;
 
     public ChatData() {
     }
@@ -10,6 +11,14 @@ public class ChatData {
     public ChatData(String msg, String name) {
         this.msg = msg;
         this.name = name;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getMsg() {

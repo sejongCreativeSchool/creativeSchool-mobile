@@ -12,6 +12,7 @@ import com.booreum.Constant.PreferenceManager;
 import com.booreum.booreum.R;
 import com.booreum.model.User;
 import com.booreum.model.UserResult;
+import com.booreum.model.UserResults;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,6 +31,7 @@ public class MainPresenter implements I_MainPresenter{
     public static FirebaseAuth mAuth;
     public static FirebaseUser authUser;
     public static User user;
+    public static UserResults userResults;
 
     public MainPresenter(Context context, I_MainView mainView, User user) {
 
@@ -38,7 +40,27 @@ public class MainPresenter implements I_MainPresenter{
         this.mAuth = FirebaseAuth.getInstance();
         authUser = mAuth.getCurrentUser();
         MainPresenter.user = user;
+        loadUsers();
         //setUser();
+    }
+
+    void loadUsers(){
+        GitHubServiceProvider.retrofit.loadUsers().enqueue(new Callback<UserResults>() {
+            @Override
+            public void onResponse(Call<UserResults> call, Response<UserResults> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(context, "유저 불러오기 서버 에러", Toast.LENGTH_SHORT).show();
+                    Log.d("MainPresenter", "User Retrofit error in onResponse");
+                }
+                userResults = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<UserResults> call, Throwable t) {
+                Toast.makeText(context, "유저 불러오기 서버 에러", Toast.LENGTH_SHORT).show();
+                Log.d("MainPresenter", "User Retrofit error in onResponse");
+            }
+        });
     }
 
     private void setUser() {

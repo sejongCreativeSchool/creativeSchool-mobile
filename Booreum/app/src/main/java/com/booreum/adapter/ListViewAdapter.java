@@ -1,7 +1,7 @@
 package com.booreum.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.booreum.Constant.Const;
 import com.booreum.booreum.R;
+import com.booreum.view.webview.WebViewActivity;
 
 import java.util.ArrayList;
 
@@ -58,14 +60,21 @@ public class ListViewAdapter extends BaseAdapter  {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(position == 0)
-                    Toast.makeText(context, "0", Toast.LENGTH_SHORT).show();
+                if(position == 0) {
+                    Intent intent = new Intent(context, WebViewActivity.class);
+                    intent.putExtra("URL", Const.URL_TERM);
+                    intent.putExtra("TITLE","이용약관");
+                    context.startActivity(intent);
+                }
                 else if(position ==1)
                     Toast.makeText(context, "1", Toast.LENGTH_SHORT).show();
-                else if(position ==2)
-                    Toast.makeText(context, "2", Toast.LENGTH_SHORT).show();
-                else if(position ==3)
-                    Toast.makeText(context, "3", Toast.LENGTH_SHORT).show();
+                else if(position == 2) {
+                    Intent intent = new Intent(context, WebViewActivity.class);
+                    intent.putExtra("URL", Const.URL_POST);
+                    intent.putExtra("TITLE","공지사항");
+                    context.startActivity(intent);
+                }
+
             }
         });
 

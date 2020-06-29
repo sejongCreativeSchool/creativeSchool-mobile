@@ -38,7 +38,7 @@ public class MainAdapter extends FragmentStatePagerAdapter {
                     return categoryFragment;
                 }
             case 1:
-                ChatFragment chatFragment = new ChatFragment();
+                ChatFragment chatFragment = new ChatFragment(context);
                 return chatFragment;
             case 2:
                 SettingFragment settingFragment = new SettingFragment(context);

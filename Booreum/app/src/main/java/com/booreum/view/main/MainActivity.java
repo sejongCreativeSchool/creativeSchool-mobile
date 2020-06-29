@@ -28,6 +28,8 @@ public class MainActivity extends CustomAppCompatForToolbar implements I_MainVie
     private I_MainPresenter mainPresenter;
     public static User user;
 
+    public static boolean nowHelper ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,8 @@ public class MainActivity extends CustomAppCompatForToolbar implements I_MainVie
     private void initView() {
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra(User.CURRNET_USER_INTENT_CODE);
+
+        nowHelper = PreferenceManager.isHelper(this);
 
         mainPresenter = new MainPresenter(this, this, user);
 

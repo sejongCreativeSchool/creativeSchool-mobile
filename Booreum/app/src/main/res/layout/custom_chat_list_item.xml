@@ -18,13 +18,13 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:src="@drawable/ic_launcher_foreground"
-            android:background="@drawable/ic_launcher_background"/>
+            android:src="@drawable/icon_needer_profile"/>
 
         <Button
             android:id="@+id/chat_frag_button"
             android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
+            android:includeFontPadding="false"
             android:text="진행 중"
             android:gravity="center"
             android:background="@drawable/button_custom_blue_small"
@@ -59,6 +59,8 @@
             android:text="1"
             android:textSize="10dp"
             android:textColor="?attr/helper_red_light"
+            android:includeFontPadding="false"
+            android:layout_marginBottom="10dp"
             app:layout_constraintStart_toEndOf="@id/chat_frag_profile"
             app:layout_constraintTop_toBottomOf="@id/chat_frag_name"
             app:layout_constraintBottom_toBottomOf="parent"

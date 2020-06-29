@@ -7,29 +7,41 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.booreum.Constant.Building;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.booreum.booreum.R;
-import com.booreum.model.Errand;
+import com.booreum.model.ChatList;
 import com.booreum.model.ErrandResults;
-import com.booreum.view.errandset.fragment.FromFragment;
-import com.booreum.view.errandset.fragment.ToFragment;
-import com.booreum.view.main.fragment.list.ListPresenter;
+import com.booreum.view.main.MainPresenter;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
+import java.util.ArrayList;
+import java.util.List;
 
-public class HelperListAdapter extends BaseExpandableListAdapter {
+public class HelperListAdapter extends BaseExpandableListAdapter implements View.OnClickListener {
 
     Context context;
     ViewHolder viewHolder;
     ErrandResults results ;
 
+
+
     public HelperListAdapter(Context context) {
         this.context = context;
+
+
     }
+
+
 
     public void setResults(ErrandResults errandResults){
         results = new ErrandResults();
@@ -39,8 +51,6 @@ public class HelperListAdapter extends BaseExpandableListAdapter {
     //그룹 사이즈를 반환
     @Override
     public int getGroupCount() {
-        if(results != null)
-            Log.d("ttt", "getGroupCount : "+results.getData().size());
         return (results == null )? 0 : results.getData().size();
     }
 
@@ -91,13 +101,23 @@ public class HelperListAdapter extends BaseExpandableListAdapter {
             arrow.setRotation(0);
         }
 
-        Log.d("ttt", "isExpanded : "+isExpanded);
         //profile = results.getData().get(groupPosition).getUser().getProfile();
         category.setImageResource(setCategoryImage(groupPosition));
         name.setText(results.getData().get(groupPosition).getUser().getName());
         point.setText(String.valueOf(results.getData().get(groupPosition).getPrice()) + "p");
 
+        button.setOnClickListener(this);
+
         return convertView;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.helperlist_button:
+
+                break;
+        }
     }
 
     private int setCategoryImage(int groupPosition) {

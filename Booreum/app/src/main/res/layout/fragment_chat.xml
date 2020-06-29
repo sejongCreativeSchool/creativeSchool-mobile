@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="84dp"
         android:layout_marginBottom="56dp"
-        android:visibility="invisible"/>
+        android:visibility="visible"/>
 
     <LinearLayout
         android:id="@+id/chat_notChat"
@@ -21,6 +21,7 @@
         android:layout_marginTop="84dp"
         android:layout_marginBottom="56dp"
         android:orientation="vertical"
+        android:elevation="10dp"
         android:gravity="center">
         <ImageView
             android:id="@+id/nothing_image"
