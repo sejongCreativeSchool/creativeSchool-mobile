@@ -156,7 +156,7 @@ public class ChatDetailActivity extends CustomAppCompatForToolbar implements Vie
                 for(DataSnapshot snapshot : dataSnapshot.child("chat").getChildren()){
 
                     ChatData data = snapshot.getValue(ChatData.class);
-                    chatList.setList(data);
+                    chatList.addChatData(data);
                 }
 
                 if(MainPresenter.user.getHelper() && MainActivity.nowHelper ){ // 지금 헬퍼면

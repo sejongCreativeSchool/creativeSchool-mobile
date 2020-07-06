@@ -19,8 +19,8 @@ import com.booreum.Constant.HideKeyboard;
 import com.booreum.Custom.Toolbar.CustomAppCompatForToolbar;
 import com.booreum.Custom.Toolbar.MyToolBar;
 import com.booreum.booreum.R;
-import com.booreum.view.errandset.ErrandSetActivity;
 import com.booreum.view.main.MainActivity;
+import com.booreum.view.main.fragment.category.CategoryFragment;
 
 public class CheckErrandActivity extends CustomAppCompatForToolbar implements I_CheckErrandView, View.OnClickListener {
 
@@ -31,8 +31,7 @@ public class CheckErrandActivity extends CustomAppCompatForToolbar implements I_
     private TextView checkErrand_titie;
     private ImageView checkErrand_title_image;
     private Button checkErrand_button;
-    public static EditText what, from, to, when, point;
-    private String whatStr, fromStr, toStr, whenStr, pointStr;
+    public static EditText editText;
 
     int total_minute;
 
@@ -51,7 +50,6 @@ public class CheckErrandActivity extends CustomAppCompatForToolbar implements I_
     }
 
     private void setListener() {
-        when.setOnClickListener(this);
         checkErrand_button.setOnClickListener(this);
     }
 
@@ -59,25 +57,15 @@ public class CheckErrandActivity extends CustomAppCompatForToolbar implements I_
         parentLayout = (ConstraintLayout)findViewById(R.id.checkErrand_parent);
 
         Intent intent = getIntent();
-        categoryNumber = intent.getExtras().getInt("category");
-        whatStr = intent.getExtras().getString("what");
-        toStr = intent.getExtras().getString("to");
-        fromStr = intent.getExtras().getString("from");
-        whenStr = intent.getExtras().getString("when");
-        pointStr = intent.getExtras().getString("point");
-
-        total_minute = intent.getExtras().getInt("total_minute");
+        categoryNumber = intent.getExtras().getInt(CategoryFragment.CATEGORY_NUMBERING_KEY);
 
         i_checkErrandPresenter = new CheckErrandPresenter(categoryNumber, this, total_minute);
 
         checkErrand_titie= (TextView)findViewById(R.id.errandSet_checkErrand_title_tv);
         checkErrand_title_image = (ImageView)findViewById(R.id.errandSet_checkErrand_title_image);
         checkErrand_button = (Button)findViewById(R.id.checkErrand_button);
-        what = (EditText) findViewById(R.id.errandSet_checkErrand_what_et); what.setText(whatStr);
-        from = (EditText)findViewById(R.id.errandSet_checkErrand_wherefrom_et); from.setText(fromStr);
-        to = (EditText)findViewById(R.id.errandSet_checkErrand_whereto_et); to.setText(toStr);
-        when = (EditText)findViewById(R.id.errandSet_checkErrand_when_et); when.setText(whenStr);
-        point = (EditText)findViewById(R.id.errandSet_checkErrand_point_et); point.setText(pointStr);
+
+        editText = (EditText)findViewById(R.id.errandSet_edit);
 
         i_checkErrandPresenter.setViewTitle(checkErrand_titie, checkErrand_title_image);
 
@@ -109,31 +97,15 @@ public class CheckErrandActivity extends CustomAppCompatForToolbar implements I_
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.errandSet_checkErrand_when_et:
-                i_checkErrandPresenter.setTimeDialog();
-                break;
-
             case R.id.checkErrand_button:
                 resetView();
-                i_checkErrandPresenter.setErrandInRetrofit(categoryNumber,
-                        what.getText().toString(), from.getText().toString(),
-                        to.getText().toString(), when.getText().toString(), point.getText().toString());
+                i_checkErrandPresenter.setErrandInRetrofit(     );
                 break;
         }
     }
 
     @Override
-    public void setTimeString(String str, int total) {
-        when.setText(str);
-        total_minute = total;
-    }
-
-    @Override
     public void finishErrandUpload() {
-        Log.d("ttt", "please turn off0");
-        Log.d("ttt", "please turn off1");
-        //finishActivity();
-        Log.d("ttt", "please turn off2");
         finish();
     }
 

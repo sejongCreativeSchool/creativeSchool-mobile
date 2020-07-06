@@ -27,11 +27,9 @@ public class CategoryFragment extends Fragment implements I_CategoryFrag, View.O
     public final static int CATEGORY_NUMBERING_SUBMIT = 4;
     public final static int CATEGORY_NUMBERING_PRINT = 5;
     public final static int CATEGORY_NUMBERING_TOGETHER = 6;
-    public final static int CATEGORY_NUMBERING_INSTEAD = 7;
-    public final static int CATEGORY_NUMBERING_ECT = 8;
 
 
-    final static int MENU_COUNT = 8;
+    final static int MENU_COUNT = 6;
     private View view;
     public final static int imageButtonID[] = {
             R.id.category_bring,
@@ -39,9 +37,7 @@ public class CategoryFragment extends Fragment implements I_CategoryFrag, View.O
             R.id.category_deliver,
             R.id.category_submit,
             R.id.category_print,
-            R.id.category_together,
-            R.id.category_instead,
-            R.id.category_ect
+            R.id.category_together
     };
     private ImageButton imageButton[], search;
     private EditText editText;

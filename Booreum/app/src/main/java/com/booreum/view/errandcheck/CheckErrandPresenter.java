@@ -27,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CheckErrandPresenter implements I_CheckErrandPresenter, TimePickerDialog.OnTimeSetListener {
+public class CheckErrandPresenter implements I_CheckErrandPresenter{
 
     int categoryNumbering;
     Context context;
@@ -48,36 +48,28 @@ public class CheckErrandPresenter implements I_CheckErrandPresenter, TimePickerD
 
         switch (categoryNumbering) {
             case 1:
-                titleText = "가져다줘";
+                titleText = "0";
                 resource = R.drawable.icon_bring_detail;
                 break;
             case 2:
-                titleText = "사다줘";
+                titleText = "1";
                 resource = R.drawable.icon_buy_detail;
                 break;
             case 3:
-                titleText = "전달해줘";
+                titleText = "2";
                 resource = R.drawable.icon_deliver_detail;
                 break;
             case 4:
-                titleText = "제출해줘";
+                titleText = "3";
                 resource = R.drawable.icon_submit_detail;
                 break;
             case 5:
-                titleText = "프린트해줘";
+                titleText = "4";
                 resource = R.drawable.icon_print_detail;
                 break;
             case 6:
-                titleText = "같이해줘";
+                titleText = "5";
                 resource = R.drawable.icon_together_detail;
-                break;
-            case 7:
-                titleText = "대신해줘";
-                resource = R.drawable.icon_instead_detail;
-                break;
-            case 8:
-                titleText = "기타";
-                resource = R.drawable.icon_etc_detail;
                 break;
         }
 
@@ -99,63 +91,7 @@ public class CheckErrandPresenter implements I_CheckErrandPresenter, TimePickerD
     }
 
     @Override
-    public void setTimeDialog() {
-        int hour = total_minute/60%24;
-        int minute = total_minute%60;
-
-        TimePickerDialog dialog = new TimePickerDialog(context, android.R.style.Theme_Holo_Light_Dialog, this, hour, minute, true);
-        dialog.setTitle("대여반납시간");
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        dialog.show();
-
-    }
-
-    @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
-        String str="" ;
-
-        int total_minute_temp = hourOfDay*60 + minute;
-        if(total_minute > total_minute_temp) {
-            Toast.makeText(context, "요청시간이 짧거나 다음 날입니다.\n헬퍼와 요청시간을 상의하세요.", Toast.LENGTH_SHORT).show();
-            str = "상의";
-        }else
-            str += + hourOfDay + "시 " + minute + "분";
-
-        total_minute = total_minute_temp;
-        i_checkErrandView.setTimeString(str, total_minute_temp);
-    }
-
-    @Override
-    public void setErrandInRetrofit(int category,String what, String from, String to, String when, String point) {
-        String category_string = getCategoryString(category);
-        Log.d("ttt", "category : " + category_string);
-        Log.d("ttt", "what : " + what);
-        Log.d("ttt", "from : " + from);
-        Log.d("ttt", "_id : " +  MainPresenter.user.get_id());
-
-        Errand_ errand_ = new  Errand_(MainPresenter.user.get_id(), category_string, from,to, Integer.valueOf( point), when, what);
-        //Errand_(String user, String category, String from, String to, int price, String dueto, String desc)
-
-        GitHubServiceProvider.retrofit.uploadErrand(errand_)
-                .enqueue(new Callback<Errand_>() {
-                    @Override
-                    public void onResponse(Call<Errand_> call, Response<Errand_> response) {
-                        if(!response.isSuccessful()) {
-                            retrofitFailed(response);
-                            Log.d("ttt", "response : " + response.toString());
-                            Log.d("ttt", "response : " + response.message());
-                        }
-                        Toast.makeText(context, "심부름 등록 완료", Toast.LENGTH_SHORT).show();
-                        ((Activity)context).finish();
-                        //i_checkErrandView.finishErrandUpload();
-                    }
-                    @Override
-                    public void onFailure(Call<Errand_> call, Throwable t) {
-                        //retrofitFailed();
-                        Log.d("ttt", "response : " + t.getMessage());
-                    }
-                });
+    public void setErrandInRetrofit() {
     }
 
     void retrofitFailed(Response<Errand_> response){
@@ -184,11 +120,6 @@ public class CheckErrandPresenter implements I_CheckErrandPresenter, TimePickerD
             case 6:
                 return "같이해줘";
 
-            case 7:
-                return "대신해줘";
-
-            case 8:
-                return  "기타";
             default: return "기타";
 
         }

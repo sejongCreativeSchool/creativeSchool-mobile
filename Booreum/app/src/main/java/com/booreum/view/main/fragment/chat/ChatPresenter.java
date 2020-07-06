@@ -42,65 +42,12 @@ public class ChatPresenter implements I_ChatPresenter {
         ChildEventListener childEventListener_chatUser = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                neederList.clear();
-                helperList.clear();
 
-                Log.d("ttt",dataSnapshot.getValue().toString());
-                ChatList chatList = dataSnapshot.getValue(ChatList.class);
-                String key = dataSnapshot.getKey();
-                Log.d("ttt", "key : " + key);
-                Log.d("ttt", dataSnapshot.child("chat").toString());
-                Log.d("ttt", dataSnapshot.child("chat").getValue().toString());
-
-                for(DataSnapshot snapshot : dataSnapshot.child("chat").getChildren()){
-                    Log.d("ttt", "snapshot : " + snapshot.getValue(ChatData.class).getMsg());
-                    Log.d("ttt", "snapshot : " + snapshot.getValue(ChatData.class).getTime());
-                    ChatData data = snapshot.getValue(ChatData.class);
-                    chatList.setList(data);
-                }
-
-                if(MainPresenter.user.getHelper() && MainActivity.nowHelper ){ // 지금 헬퍼면
-                    if(chatList.getHelper().equals(MainPresenter.user.getAccessToken())) {
-                        helperList.add(chatList);
-                        i_chatView.onChangeData();
-                    }
-                }
-                else { // 지금 니더면
-                    if(chatList.getNeeder().equals(MainPresenter.user.getAccessToken())) {
-                        neederList.add(chatList);
-                        i_chatView.onChangeData();
-                    }
-                }
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                neederList.clear();
-                helperList.clear();
-
-                Log.d("ttt",dataSnapshot.getValue().toString());
-                ChatList chatList = dataSnapshot.getValue(ChatList.class);
-
-                for(DataSnapshot snapshot : dataSnapshot.child("chat").getChildren()){
-                    Log.d("ttt", "snapshot : " + snapshot.getValue(ChatData.class).getMsg());
-                    Log.d("ttt", "snapshot : " + snapshot.getValue(ChatData.class).getTime());
-                    ChatData data = snapshot.getValue(ChatData.class);
-                    chatList.setList(data);
-                }
-
-                if(MainPresenter.user.getHelper() && MainActivity.nowHelper){ // 지금 헬퍼면
-                    if(chatList.getHelper().equals(MainPresenter.user.getAccessToken())) {
-                        helperList.add(chatList);
-                        i_chatView.onChangeData();
-                    }
-                }
-                else { // 지금 니더면
-                    if(chatList.getNeeder().equals(MainPresenter.user.getAccessToken())) {
-                        neederList.add(chatList);
-                        i_chatView.onChangeData();
-                    }
-                }
             }
 
             @Override

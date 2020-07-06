@@ -81,12 +81,12 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
 
                 if(MainActivity.nowHelper){
                     chatList = ChatPresenter.helperList.get(position);
-                   chatData = ChatPresenter.helperList.get(position).getList();
+                   chatData = ChatPresenter.helperList.get(position).getChat();
 
                 }
                 else{
                     chatList = ChatPresenter.neederList.get(position);
-                    chatData = ChatPresenter.neederList.get(position).getList();
+                    chatData = ChatPresenter.neederList.get(position).getChat();
                 }
                 Intent intent = new Intent(context, ChatDetailActivity.class);
                 context.startActivity(intent);

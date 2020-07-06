@@ -12,12 +12,18 @@ public class ChatList
 
     List<ChatData> chat = new ArrayList<>();
 
-    public void setList(ChatData data){
+    public void addChatData(ChatData data){
         chat.add(data);
     }
-    public List<ChatData> getList(){
+
+    public List<ChatData> getChat() {
         return chat;
     }
+
+    public void setChat(List<ChatData> chat) {
+        this.chat = chat;
+    }
+
     public String getLastMsg(){
         return chat.get(chat.size()-1).getMsg();
     }

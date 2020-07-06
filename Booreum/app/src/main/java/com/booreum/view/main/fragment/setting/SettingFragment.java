@@ -72,8 +72,8 @@ public class SettingFragment extends Fragment implements I_SettingView, View.OnC
         Glide.with(getContext()).load(getResources().getDrawable(R.drawable.icon_needer_profile)).circleCrop().into(profile);
 
         if(PreferenceManager.isHelper(getContext())) {
-            statusChangeButton.setText("니더로 전환");
-            status_textview.setText("헬퍼");
+            statusChangeButton.setText("멘티로 전환");
+            status_textview.setText("멘토");
         }
 
         settingName.setText(MainPresenter.user.getName());

@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.booreum.booreum.R;
-import com.booreum.view.errandset.ErrandSetActivity;
+import com.booreum.view.errandcheck.CheckErrandActivity;
 import com.booreum.view.login.LoginActivity;
 
 public class CategoryPresenter implements I_CategoryPresenter {
@@ -25,10 +25,9 @@ public class CategoryPresenter implements I_CategoryPresenter {
     @Override
     public void selectErrandIntent(View v) {
         Intent intent;
-        intent = new Intent(context.getApplicationContext(), ErrandSetActivity.class);
+        intent = new Intent(context.getApplicationContext(), CheckErrandActivity.class);
         switch (v.getId()){
             case R.id.category_bring:
-
                 intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_BRING);
                 break;
             case R.id.category_buy:
@@ -45,12 +44,6 @@ public class CategoryPresenter implements I_CategoryPresenter {
                 break;
             case R.id.category_together:
                 intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_TOGETHER);
-                break;
-            case R.id.category_instead:
-                intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_INSTEAD);
-                break;
-            case R.id.category_ect:
-                intent.putExtra(CategoryFragment.CATEGORY_NUMBERING_KEY, CategoryFragment.CATEGORY_NUMBERING_ECT);
                 break;
             default:
                 Toast.makeText(context, "error", Toast.LENGTH_SHORT).show();
